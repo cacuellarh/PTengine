@@ -90,16 +90,16 @@ WSGI_APPLICATION = 'bosquejo.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'price',
-        'USER': 'ciblroot',
-        'PASSWORD': '123',
-        'HOST': 'localhost',  # Puedes especificar la dirección del servidor MySQL aquí
-        'PORT': '5432',  # Deja en blanco para usar el puerto predeterminado de MySQL
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'price',
+#         'USER': 'ciblroot',
+#         'PASSWORD': '123',
+#         'HOST': 'localhost',  # Puedes especificar la dirección del servidor MySQL aquí
+#         'PORT': '5432',  # Deja en blanco para usar el puerto predeterminado de MySQL
+#     }
+# }
 
 
 # Password validation
