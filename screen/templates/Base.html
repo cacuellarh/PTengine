@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link  href="../static/cropperjs/dist/cropper.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/Css/base.css">
+</head>
+<body>
+    
+    <h1>Price tracker</h1>
+
+    <form method="post" action="{% url 'execute' %}">
+        {% csrf_token %}
+
+        <label for="">URL</label>
+        <input type="text" name="url">
+        <button type="submit">Capture</button>
+    </form>
+
+    <div class="">
+        {% block content %}{% endblock %}
+    </div>
+
+    <div class="save_cut">
+        <img src="" alt="" id="output">
+            
+         <button id="send_form">Guardar</button>   
+    </div>
+    
+
+
+        <script src="../static/cropperjs/dist/cropper.min.js"></script>
+    <script src="../static/JS/cropper.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js"></script>
+</body>
+</html>
