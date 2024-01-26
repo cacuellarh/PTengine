@@ -1,7 +1,7 @@
 import time
 from selenium import webdriver
 from ..Services.Console_info import Console
-
+from selenium.webdriver.chrome.service import Service
 
 class ScreenShot:
 
@@ -31,11 +31,12 @@ class ScreenShot:
         
     def take_screen(self, url_, action):
         
+        service = Service(executable_path="/usr/bin/chromedriver")
         Console.success("Tomando captura")
         self.url = url_
         self.options = webdriver.ChromeOptions()
         self._conf()
-        self.boswer = webdriver.Chrome(options=self.options)
+        self.boswer = webdriver.Chrome(options=self.options, service=service)
         
         self._calculate_height()
         options = webdriver.ChromeOptions()
