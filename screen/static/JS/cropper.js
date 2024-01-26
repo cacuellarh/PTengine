@@ -1,3 +1,4 @@
+const base_url = "http://18.188.170.117:8001/api/"
 const image = document.getElementById("image_capture")
 const cropper = new  Cropper(image, {
     aspectRatio: 0,  // Proporción de aspecto (puedes ajustar según tus necesidades)
@@ -40,7 +41,7 @@ function generate_metadata(){
         const form = new FormData()
         form.append("image", blob, "image_cut.png")
 
-        fetch("http://127.0.0.1:8000/api/save_image",{method:"POST", body: form})
+        fetch(base_url + "save_image",{method:"POST", body: form})
             .then(res => {
                 return res.json()
             })
@@ -79,7 +80,7 @@ function send_api(){
     form_metadata.append("scaleY", data_form.coordinates.scaleY)
     form_metadata.append("url", data_form.url)
 
-    fetch("http://127.0.0.1:8000/api/save_image_db",{method:"POST", body: form_metadata})
+    fetch(base_url +"save_image_db",{method:"POST", body: form_metadata})
             .then(res => {
                 return res.json()
             })

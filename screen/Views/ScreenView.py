@@ -66,6 +66,7 @@ class Exec(generics.CreateAPIView):
         if request.method == "POST":
             
             url_form = request.POST.get("url")
+            Console.info(f"URL ingresada: {url_form}")
             self.screen.take_screen(url_= url_form, action="save")
             
             return  render(request, "ScreenView.html", {"url" : url_form})
@@ -99,27 +100,3 @@ class SaveScreen(generics.CreateAPIView):
             Data = {"price" : price}
         ).to_dict())
         
-       
-# class ValidatePrice(generics.ListAPIView):
-#     ocr : OCR
-#     validate : Validate
-#     email : SmptConfig  
-    
-#     def __init__(self):
-        
-#         self.screen = ScreenShot()
-#         self.ocr = OCR()
-#         self.validate = Validate()
-#         self.email = SmptConfig() 
-       
-#     def post(self, request):
-        
-#        prices =  self.validate.aut_validate(request)
-       
-#        if prices["current_price"] != prices["db_price"]:
-           
-#            price = prices["db_price"]
-#            self.email.notify("camiloandres_kane@hotmail.com","prueba", f"El precio cambio a {price}")
-#        else:
-           
-#            return JsonResponse({"message" : "El precio scaneado no ha cambiado"})      
