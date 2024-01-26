@@ -9,8 +9,8 @@ class ScreenShot:
     options : webdriver
     boswer : webdriver
     heigth : int
-    save_path_img = "~/entornos/ptengine/PTengine/screen/static/img/"
-    save_path_temp = "~/entornos/ptengine/PTengine/screen/static/temp/"
+    save_path_img = "/home/ec2-user/entornos/ptengine/PTengine/screen/static/img"
+    save_path_temp = "/home/ec2-user/entornos/ptengine/PTengine/screen/static/temp/"
     def _conf(self):
 
         Console.info("Iniciando screen")
