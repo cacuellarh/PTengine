@@ -14,6 +14,7 @@ class ScreenShot:
     def _conf(self):
 
         Console.info("Iniciando screen")
+        self.options.add_argument('--disable-software-rasterizer')
         self.options.add_argument('--window-size=1024,768')
         self.options.add_argument('--headless')
         self.options.add_argument("--hide-scrollbars")
@@ -41,6 +42,7 @@ class ScreenShot:
         
         self._calculate_height()
         options = webdriver.ChromeOptions()
+        self.options.add_argument('--disable-software-rasterizer')
         options.add_argument('--no-sandbox')
         options.add_argument(f'--window-size=1080,{self.heigth}')
         options.add_argument('--headless')
