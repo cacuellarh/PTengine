@@ -24,7 +24,7 @@ class ScreenShot:
         try:
             self.boswer.get(self.url)
             Console.info("Cargando URL")
-            time.sleep(2)  # Puedes ajustar el tiempo de espera según sea necesario
+            time.sleep(6)  # Puedes ajustar el tiempo de espera según sea necesario
             self.height = self.boswer.execute_script(
                 "return Math.max( document.body.scrollHeight, document.documentElement.scrollHeight)")
             Console.info(f"Calculando altura de screen: {self.height}")
