@@ -52,8 +52,9 @@ class ScreenShot:
         self.browser.get(self.url)
         
         if action == "save":
-            self.browser.save_screenshot(self.save_path_img + "prueba_python.png")
+            self.browser.save_screenshot(f"{self.save_path_img}prueba_python.png")
             Console.success("Screen guardado")
+            Console.success(f"ruta del screen{self.save_path_img}prueba_python.png")
         elif action == "validate":
             self.browser.save_screenshot(self.save_path_temp + "temp_validate.png")
             Console.success("Screen guardado")       
