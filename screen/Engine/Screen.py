@@ -9,7 +9,7 @@ class ScreenShot:
     options : webdriver
     boswer : webdriver
     heigth : int
-
+    save_path = "\\home\\ec2-user\\entornos\\ptengine\\PTengine\\screen\\static\\img\\prueba_python.png"
     def _conf(self):
 
         Console.info("Iniciando screen")
@@ -51,8 +51,8 @@ class ScreenShot:
         self.browser.get(self.url)
         
         if action == "save":
-            self.browser.save_screenshot("C:\\Users\\lolo\\Desktop\\Programacion\\prueba micha_app\\bosquejo\\screen\\static\\img\\prueba_python.png")
+            self.browser.save_screenshot(self.save_path)
             Console.success("Screen guardado")
         elif action == "validate":
-            self.browser.save_screenshot("C:\\Users\\lolo\\Desktop\\Programacion\\prueba micha_app\\bosquejo\\screen\\static\\temp\\temp_validate.png")
+            self.browser.save_screenshot(self.save_path)
             Console.success("Screen guardado")       
