@@ -1,17 +1,8 @@
 const base_url = "http://18.188.170.117:8001/api/"
 const image = document.getElementById("image_capture")
 const cropper = new  Cropper(image, {
-    aspectRatio: 0,  // Proporción de aspecto (puedes ajustar según tus necesidades)
-    viewMode: 0,
-    data : {
-        "x": 486.86381543860324,
-        "y": 903.6888531907867,
-        "width": 133.15403438857885,
-        "height": 42.799511053471775,
-        "rotate": 0,
-        "scaleX": 1,
-        "scaleY": 1
-    }    // Vista previa centrada
+    aspectRatio: 1,  // Proporción de aspecto (puedes ajustar según tus necesidades)
+    viewMode: 1
 })
 
 let data_form
@@ -20,6 +11,37 @@ const btn = document.getElementById("btn_cropp")
 const save_cut = document.getElementById("save_cut")
 const url = document.getElementById("url_input")
 const btn_send = document.getElementById("send_form")
+const btn_capture = document.getElementById("capture")
+const moveYT = document.getElementById("moveY-T")
+const moveYB = document.getElementById("moveY-B")
+const moveXL = document.getElementById("moveX-L")
+const moveXR = document.getElementById("moveX-R")
+const zoom_up = document.getElementById("zoom+")
+const zoom_down = document.getElementById("zoom-")
+
+
+moveYT.addEventListener("click", ()=>{
+    cropper.move(0,13)
+})
+moveYB.addEventListener("click", ()=>{
+    cropper.move(0,-13)
+})
+
+moveXL.addEventListener("click", ()=>{
+    cropper.move(12,0)
+})
+
+moveXR.addEventListener("click", ()=>{
+    cropper.move(-12,0)
+})
+
+zoom_up.addEventListener("click", ()=>{
+    cropper.zoom(0.1)
+})
+
+zoom_down.addEventListener("click", ()=>{
+    cropper.zoom(-0.1)
+})
 
 btn.addEventListener("click", ()=>{
 

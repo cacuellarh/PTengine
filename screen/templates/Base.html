@@ -3,36 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Price Tracker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link  href="../static/cropperjs/dist/cropper.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../static/Css/base.css">
+    <link rel="stylesheet" href="../static/Css/site.css">
 </head>
 <body>
-    
-    <h1>Price tracker</h1>
-
-    <form method="post" action="{% url 'execute' %}">
-        {% csrf_token %}
-
-        <label for="">URL</label>
-        <input type="text" name="url">
-        <button type="submit">Capture</button>
-    </form>
-
-    <div class="">
-        {% block content %}{% endblock %}
-    </div>
-
-    <div class="save_cut">
-        <img src="" alt="" id="output">
-            
-         <button id="send_form">Guardar</button>   
-    </div>
-    
-
-
-        <script src="../static/cropperjs/dist/cropper.min.js"></script>
+    <header>
+        <div class="toggle">
+            <label class="menu_toggle">
+                <span class="line"></span>
+                <span class="line"></span>
+                <span class="line"></span>
+            </label> 
+        </div>
+        <div>
+            <h1>Price Tracker</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Soporte</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section class="menu_container">
+        <ul>
+            <li>Soporte</li>
+        </ul>
+    </section>
+    <section class="container">
+        <div class="description">
+            <h2>Monitoreamos cambios en los precios de tus productos favoritos</h2>
+            <h3>... para que, cuando cambien, ¡puedas comprarlos al mejor precio!"</h3>
+        </div>
+        <div class="monitor">
+            <form method="post" action="{% url 'execute' %}" class="page_url">
+                {% csrf_token %}
+                <input type="text" name="url" placeholder="Enter URL">
+                <button class="button_style " type="submit" id="capture">Capturar</button>
+            </form>
+            <div class="page">
+                {% block content %}{% endblock %} 
+            </div>
+        </div>
+        <div class="card">
+            <div>
+                <figure>
+                    <img src="../static/img/icons/icon_url.png" alt="Url">
+                </figure>
+                <article>
+                    <p><strong>Introduce la dirección URL</strong><br>del sitio web donde se encuentra el producto que deseas monitorear.</p>
+                </article>
+            </div>
+            <div>
+                <figure>
+                    <img src="../static/img/icons/icon_select.png" alt="Seleccione área">
+                </figure>
+                <article>
+                    <p><strong>Selecciona un área</strong><br>de la página que deseas monitorear</p>
+                </article>
+            </div>
+            <div>
+                <figure>
+                    <img src="../static/img/icons/icon_calendar.png" alt="Frecuencia">
+                </figure>
+                <article>
+                    <p><strong>Establece la frecuencia</strong><br>de verificaciones de cada cuánto tiempo se realizarán las verificaciones</p>
+                </article>
+            </div>
+            <div>
+                <figure>
+                    <img src="../static/img/icons/icon_email.png" alt="Notificaciones">
+                </figure>
+                <article>
+                    <p><strong>Recibe notificaciones</strong><br>de cambios en tu correo electrónico</p>
+                </article>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <!-- Contenido del pie de página con el año actual -->
+        <p>&copy; <span id="year"></span> Price Tracker Inc.</p>
+        <div>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Use</a>
+        </div>
+    </footer>
+    <script src="../static/cropperjs/dist/cropper.min.js"></script>
     <script src="../static/JS/cropper.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js"></script>
+    <script>
+       document.querySelector('.menu_toggle').addEventListener('click', function() {
+            this.classList.toggle('active');
+            document.querySelector('.menu_container').classList.toggle('menu_container_move');
+        });
+
+        document.getElementById('year').innerText = new Date().getFullYear();
+    </script>
 </body>
 </html>
