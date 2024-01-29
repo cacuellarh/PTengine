@@ -30,7 +30,7 @@ class ScreenShot:
             Console.info(f"Calculando altura de screen: {self.height}")
             
         except Exception as e:
-            Console.error(f"Error al calcular la altura: {str(e)}")
+            Console.warning(f"Error al calcular la altura: {str(e)}")
 
     def take_screen(self, url_, action):
         #try:

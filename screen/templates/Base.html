@@ -41,7 +41,7 @@
         <div class="monitor">
             <form method="post" action="{% url 'execute' %}" class="page_url">
                 {% csrf_token %}
-                <input type="text" name="url" placeholder="Enter URL">
+                <input type="text" id="url_input" name="url" placeholder="Enter URL">
                 <button class="button_style " type="submit" id="capture">Capturar</button>
             </form>
             <div class="page">
@@ -92,6 +92,7 @@
         </div>
     </footer>
     <script src="../static/cropperjs/dist/cropper.min.js"></script>
+    <script src="../static/JS/form_valid.js"></script>
     <script src="../static/JS/cropper.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js"></script>
     <script>
@@ -102,5 +103,6 @@
 
         document.getElementById('year').innerText = new Date().getFullYear();
     </script>
+    
 </body>
 </html>
