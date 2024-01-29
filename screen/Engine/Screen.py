@@ -33,7 +33,7 @@ class ScreenShot:
             Console.error(f"Error al calcular la altura: {str(e)}")
 
     def take_screen(self, url_, action):
-        try:
+        #try:
             Console.success("Tomando captura")
             self.url = url_
             self.options = webdriver.ChromeOptions()
@@ -61,7 +61,7 @@ class ScreenShot:
             elif action == "validate":
                 self.boswer.save_screenshot(self.save_path_temp + "temp_validate.png")
                 Console.success("Screen guardado")
-        except Exception as e:
-            Console.warning(f"Error al tomar la captura de pantalla: {str(e)}")
-        finally:
-            self.boswer.quit()  # Asegúrate de cerrar la instancia del navegador al finalizar       
+        # except Exception as e:
+        #     Console.warning(f"Error al tomar la captura de pantalla: {str(e)}")
+        # finally:
+        #     self.boswer.quit()  # Asegúrate de cerrar la instancia del navegador al finalizar       
