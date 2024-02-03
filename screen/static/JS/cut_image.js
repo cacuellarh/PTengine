@@ -1,4 +1,5 @@
-const base_url = "http://127.0.0.1:8000/api/"
+//const base_url = "http://127.0.0.1:8000/api/"
+const base_url = "http://195.35.14.162:8000/api"
 const btn = document.getElementById("btn_cropp")
 const save_cut = document.getElementById("save_cut")
 const btn_send = document.getElementById("send_form")
