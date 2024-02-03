@@ -1,6 +1,6 @@
 import string
 from numpy import integer
-import pywhatkit
+#import pywhatkit
 from screen.Interfaces.Inotification import Inotification
 
 
@@ -19,7 +19,7 @@ class Whatsapp(Inotification):
         self.minute = params.get("minute")
         
     def notify(self):
-        
-        pywhatkit.sendwhatmsg(self.number, self.msg, self.hour, self.minute, tab_close=True)
+        pass
+        #pywhatkit.sendwhatmsg(self.number, self.msg, self.hour, self.minute, tab_close=True)
         
         

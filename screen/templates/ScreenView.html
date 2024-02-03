@@ -1,10 +1,8 @@
 {% extends 'Base.html' %}
 
 {% block content %}
-
-
 <div class="cut_seccion">
-    <img src="../static/img/prueba_python.png" alt="" id="image_capture">
+    <img src="../static/img/{{img_name}}.png" alt="" id="image_capture">
 </div>
 <div class="confirm_selection">
     <div class="btn-cropp">
@@ -26,11 +24,6 @@
         <div class="frequency">
             <label for="frequency">Frecuencia:</label>
             <select id="frequency" name="frequency" required>
-                <option value="1">Every 5 min</option>
-                <option value="2">Every 10 min</option>
-                <option value="3">Every 15 min</option>
-                <option value="4">Every 30 min</option>
-                <option value="5">Every hour</option>
                 <option value="6">Every 3 hours</option>
                 <option value="7">Every 6 hours</option>
                 <option value="8">Every 12 hours</option>
@@ -40,8 +33,10 @@
             </select>
         </div>
     </div>
-    <input id="url_input" type="hidden"  value="{{url}}">
+    <input id="url_" type="hidden"  value="{{url}}">
     <button type="submit" class="button_send"  id="send_form">Comenzar monitoreo gratuito</button>
 </form>
+<script src="../static/cropperjs/dist/cropper.min.js"></script>
+<script src="../static/JS/cut_image.js"></script>
 
 {% endblock %}

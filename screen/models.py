@@ -1,8 +1,13 @@
 from email.policy import default
 from django.db import models
 
+class Frequency(models.Model):
+    
+    id_frequency = models.AutoField(primary_key=True)
+    frecuency = models.DecimalField(max_digits=10 ,decimal_places=2)
+    
 class ImageTrack(models.Model):
-    id = models.AutoField(primary_key=True)
+    id_image = models.AutoField(primary_key=True)
     price = models.IntegerField()
     x = models.DecimalField(max_digits=30, decimal_places=20)
     y = models.DecimalField(max_digits=30, decimal_places=20)
@@ -12,6 +17,8 @@ class ImageTrack(models.Model):
     scaleX = models.DecimalField(max_digits=30, decimal_places=20)
     scaleY = models.DecimalField(max_digits=30, decimal_places=20)
     url = models.CharField(max_length=500)
+    delete_soft = models.BooleanField(default= False)
+    frequency_fk = models.ForeignKey(Frequency, on_delete=models.CASCADE, default=1)
 
     def __str__(self):
         return f"ImageTrack {self.id}"

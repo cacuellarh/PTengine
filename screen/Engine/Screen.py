@@ -8,10 +8,16 @@ class ScreenShot:
     boswer : webdriver 
     height : int
     width : int
-    #save_path_img = "C:\\Users\\lolo\\Desktop\\Programacion\\server_pruebas\\bosquejo\\screen\\static\\img\\"
-    #save_path_temp = "C:\\Users\\lolo\\Desktop\\Programacion\\server_pruebas\\bosquejo\\screen\\static\\temp\\"
-    save_path_img = "/home/ubuntu/ptengine/ptengine/PTengine/screen/static/img/"
-    save_path_temp = "/home/ubuntu/ptengine/ptengine/PTengine/screen/static/temp/"
+    
+    ## WINDOWS MODE
+    
+    save_path_img = "C:\\Users\\lolo\\Desktop\\Programacion\\prueba micha_app\\bosquejo\\screen\\static\\img\\"
+    save_path_temp = "C:\\Users\\lolo\\Desktop\\Programacion\\prueba micha_app\\bosquejo\\screen\\static\\temp\\"
+    
+    ## LINUX MODE
+    
+    #save_path_img = "/home/ubuntu/ptengine/ptengine/PTengine/screen/static/img/"
+    #save_path_temp = "/home/ubuntu/ptengine/ptengine/PTengine/screen/static/temp/"
     
     def __init__(self) -> None:
     
@@ -38,7 +44,7 @@ class ScreenShot:
             self.boswer.get(self.url)
             Console.info("Cargando URL")
             
-            self.boswer.implicitly_wait(6)
+            self.boswer.implicitly_wait(2)
             self.height = self.boswer.execute_script(
                 "return Math.max( document.body.scrollHeight, document.documentElement.scrollHeight)")
             Console.info(f"Calculando altura de screen: {self.height}")
@@ -48,7 +54,7 @@ class ScreenShot:
             Console.warning(f"Error al calcular la altura: {str(e)}")
             self.boswer.quit()
 
-    def take_screen(self, url_, action):
+    def take_screen(self, url_, action, file_name):
         try:
             Console.success("Tomando captura")
             self.url = url_    
@@ -59,7 +65,7 @@ class ScreenShot:
             self.boswer.get(self.url)
 
             if action == "save":
-                self.boswer.save_screenshot(f"{self.save_path_img}prueba_python.png")
+                self.boswer.save_screenshot(f"{self.save_path_img}{file_name}.png")
                 Console.success("Screen guardado")
                 Console.success(f"Ruta del screen {self.save_path_img}prueba_python.png")
             elif action == "validate":

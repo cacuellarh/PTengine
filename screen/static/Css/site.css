@@ -103,6 +103,22 @@ input {
 /* ================================================================
    ======================== Estilos header ========================
    ================================================================ */
+.loader{
+
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.hidden_loader{
+
+   display: none;
+}
 header {
     width: 100%;
     height: 4rem;
@@ -269,6 +285,7 @@ header .button_style:hover,
 
     width: 45rem;
     height: 75rem;
+    position: relative;;
 }
 .monitor .page_url {
     width: 100%;
@@ -744,6 +761,8 @@ footer div a:hover {
     footer div a {
         padding: 0 0 1rem 0;
     }
+
+    
 }
 
 @media screen and (max-width: 500px) {

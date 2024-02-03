@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Price Tracker</title>
+    <a href="http://127.0.0.1:8000/api/tracker_price"><title>Price Tracker</title></a>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../static/Css/site.css">
 </head>
 <body>
+    
     <header>
         <div class="toggle">
             <label class="menu_toggle">
@@ -20,7 +21,7 @@
             </label> 
         </div>
         <div>
-            <h1>Price Tracker</h1>
+            <a href="http://127.0.0.1:8000/api/tracker_price"><h1>Price Tracker</h1></a>
         </div>
         <nav>
             <ul>
@@ -45,6 +46,9 @@
                 <button class="button_style " type="submit" id="capture">Capturar</button>
             </form>
             <div class="page">
+                <div id="loader" class="loader hidden_loader">
+                    <img src="../static/img/gift/loader.gif" alt="">
+                </div>
                 {% block content %}{% endblock %} 
             </div>
         </div>
@@ -83,6 +87,8 @@
             </div>
         </div>
     </section>
+
+    
     <footer>
         <!-- Contenido del pie de página con el año actual -->
         <p>&copy; <span id="year"></span> Price Tracker Inc.</p>
@@ -91,7 +97,8 @@
             <a href="#">Terms of Use</a>
         </div>
     </footer>
-    <script src="../static/cropperjs/dist/cropper.min.js"></script>
+
+    
     <script src="../static/JS/form_valid.js"></script>
     <script src="../static/JS/cropper.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js"></script>
