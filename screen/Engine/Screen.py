@@ -1,6 +1,6 @@
 from selenium import webdriver
 from ..Services.Console_info import Console
-
+import time
 class ScreenShot:
 
     url = ""
@@ -35,7 +35,7 @@ class ScreenShot:
         self.options.add_argument('--disable-notifications')
         self.options.add_argument('--disable-popup-blocking')
         self.options.add_argument('--disable-logging')
-        
+        self.options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.6167.140 Safari/537.3")
         self.boswer = webdriver.Chrome(options=self.options)
 
     def _calculate_height(self):
@@ -44,7 +44,8 @@ class ScreenShot:
             self.boswer.get(self.url)
             Console.info("Cargando URL")
             
-            self.boswer.implicitly_wait(2)
+            time.sleep(2)
+            # self.boswer.implicitly_wait(20)
             self.height = self.boswer.execute_script(
                 "return Math.max( document.body.scrollHeight, document.documentElement.scrollHeight)")
             Console.info(f"Calculando altura de screen: {self.height}")
@@ -63,6 +64,7 @@ class ScreenShot:
             self.options.add_argument(f'--window-size=1080,{self.height}')
             self.boswer = webdriver.Chrome(options=self.options)
             self.boswer.get(self.url)
+            time.sleep(10)
 
             if action == "save":
                 self.boswer.save_screenshot(f"{self.save_path_img}{file_name}.png")
