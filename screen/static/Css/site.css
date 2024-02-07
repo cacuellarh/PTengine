@@ -281,12 +281,7 @@ header .button_style:hover,
     border-radius: 8px;
     padding: 2rem;
 }
-.page{
 
-    width: 45rem;
-    height: 75rem;
-    position: relative;;
-}
 .monitor .page_url {
     width: 100%;
     display: flex;
@@ -340,11 +335,6 @@ header .button_style:hover,
     flex-direction: column;
     align-items: center;
     justify-content: center;
-}
-
-.monitor .page img {
-    width: 7rem;
-    height: 7rem;
 }
 
 .monitor .page span {
@@ -420,12 +410,11 @@ header .button_style:hover,
     overflow: hidden;
     margin: 2rem 0 0 0 !important;
     overflow-y: scroll;
+    height: 40rem;
 }
 
-#image_capture {
-    width: 100%;
-    height: 100%;
-    background-color: #3ab65c;
+.cut_seccion img {
+    width: 100% !important;
 }
 
 .confirm_selection {
