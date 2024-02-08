@@ -4,7 +4,7 @@ from django.db import models
 class Frequency(models.Model):
     
     id_frequency = models.AutoField(primary_key=True)
-    frecuency = models.DecimalField(max_digits=10 ,decimal_places=2)
+    frecuency = models.CharField(max_length=50)
     
 class ImageTrack(models.Model):
     id_image = models.AutoField(primary_key=True)
@@ -17,6 +17,7 @@ class ImageTrack(models.Model):
     scaleX = models.DecimalField(max_digits=30, decimal_places=20)
     scaleY = models.DecimalField(max_digits=30, decimal_places=20)
     url = models.CharField(max_length=500)
+    email = models.EmailField(max_length=254, default="@") 
     delete_soft = models.BooleanField(default= False)
     frequency_fk = models.ForeignKey(Frequency, on_delete=models.CASCADE, default=1)
 

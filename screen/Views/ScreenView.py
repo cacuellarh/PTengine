@@ -1,4 +1,4 @@
-from ..Services.Auto_validate import Validate
+from ..DB.Repos.Frecuency_repos import Frequency_repos
 from ..API.ResponseServer import ResponseServer
 from django.http import JsonResponse
 from ..Engine.Screen import ScreenShot
@@ -75,7 +75,7 @@ class Exec(generics.CreateAPIView):
             #Usando screen, para tomar la captura con selenium segun la URL insertada.
             self.screen.take_screen(url_= url_form, action="save", file_name=file_id)
             
-            return  render(request, "ScreenView.html", {"url" : url_form , "img_name" : file_id})
+            return  render(request, "ScreenView.html", {"url" : url_form , "img_name" : file_id, "frequency" : Frequency_repos.get_all()})
 
 class SaveScreen(generics.CreateAPIView):
     

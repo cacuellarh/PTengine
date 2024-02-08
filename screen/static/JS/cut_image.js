@@ -1,11 +1,12 @@
 //const base_url = "http://127.0.0.1:8000/api/"
-const base_url = "http://195.35.14.162:8000/api"
+const base_url = "http://195.35.14.162:8002/api"
 const btn = document.getElementById("btn_cropp")
 const save_cut = document.getElementById("save_cut")
 const btn_send = document.getElementById("send_form")
 const btn_capture = document.getElementById("capture")
 const image = document.getElementById("image_capture")
 const email = document.getElementById("email")
+const frequency = document.getElementById("frequency")
 let data_form
 
 
@@ -124,6 +125,7 @@ function send_api(){
     form_metadata.append("scaleY", data_form.coordinates.scaleY)
     form_metadata.append("url", data_form.url)
     form_metadata.append("email", email.value)
+    form_metadata.append("frequency", frequency.value)
 
     fetch(base_url +"save_image_db",{method:"POST", body: form_metadata})
             .then(res => {

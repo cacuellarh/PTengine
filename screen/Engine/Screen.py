@@ -16,8 +16,8 @@ class ScreenShot:
     
     ## LINUX MODE
     
-    save_path_img = "/usr/ptengine/PTengine/screen/static/img/"
-    save_path_temp = "/usr/ptengine/PTengine/screen/static/temp/"
+    # save_path_img = "/usr/ptengine/PTengine/screen/static/img/"
+    # save_path_temp = "/usr/ptengine/PTengine/screen/static/temp/"
     
     def __init__(self) -> None:
     
@@ -64,7 +64,7 @@ class ScreenShot:
             self.options.add_argument(f'--window-size=1080,{self.height}')
             self.boswer = webdriver.Chrome(options=self.options)
             self.boswer.get(self.url)
-            time.sleep(10)
+            time.sleep(2)
 
             if action == "save":
                 self.boswer.save_screenshot(f"{self.save_path_img}{file_name}.png")

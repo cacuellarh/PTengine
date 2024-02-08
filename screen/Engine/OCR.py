@@ -7,6 +7,7 @@ from ..Services.Console_info import Console
 class OCR:
     
     #_temp_path = "C:\\Users\\lolo\\Desktop\\Programacion\\prueba micha_app\\bosquejo\\screen\\static\\temp\\"
+    
     _temp_path = "/usr/ptengine/PTengine/screen/static/temp/"
 
     def __init__(self) -> None:

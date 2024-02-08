@@ -3,8 +3,6 @@
 {% block content %}
 <div class="cut_seccion">
     <img src="../static/img/{{img_name}}.png" alt="" id="image_capture">
-</div>
-<div class="confirm_selection">
     <div class="btn-cropp">
         <button id="moveY-T"><img src="../static/img/icons/icon_up_arrow.png" alt="Up"></button>
         <button id="moveY-B"><img src="../static/img/icons/icon_down_arrow.png" alt="Down"></button>
@@ -13,6 +11,8 @@
         <button id="zoom+"><img src="../static/img/icons/icon_plus.png" alt="+"></button>
         <button id="zoom-"><img src="../static/img/icons/icon_minus.png" alt="-"></button>
     </div>
+</div>
+<div class="confirm_selection">
     <button id="btn_cropp">Confirmar selección</button>
 </div>
 <form id="emailForm" action="" method="post">
@@ -22,14 +22,12 @@
             <input type="email" name="email" id="email" placeholder="me@example.com" required>
         </div>
         <div class="frequency">
-            <label for="frequency">Frecuencia:</label>
+            <label for="frequency">Tiempo de monitoreo:</label>
             <select id="frequency" name="frequency" required>
-                <option value="6">Every 3 hours</option>
-                <option value="7">Every 6 hours</option>
-                <option value="8">Every 12 hours</option>
-                <option value="9" selected>Every Day</option>
-                <option value="10">Every Week</option>
-                <option value="11">Every Month</option> 
+                <option value="6" selected>1 dia</option>
+                <option value="7">3 dia</option>
+                <option value="8">8 días</option>
+                <option value="9" >15 días</option>
             </select>
         </div>
     </div>
