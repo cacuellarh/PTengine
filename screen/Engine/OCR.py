@@ -12,7 +12,7 @@ class OCR:
 
     def __init__(self) -> None:
         
-        #pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe' 
+        pytesseract.pytesseract.tesseract_cmd = r'/usr/bin/tesseract' 
         
         Console.info("Iniciando OCR")
         
