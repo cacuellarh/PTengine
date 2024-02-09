@@ -20,14 +20,14 @@
         <div class="Send">
             <label for="email">Enviar cambio a:</label>
             <input type="email" name="email" id="email" placeholder="me@example.com" required>
+            <span class="err_form" id="email_valid">*Error: La direccion de correo es invalida*</span>
         </div>
         <div class="frequency">
             <label for="frequency">Tiempo de monitoreo:</label>
             <select id="frequency" name="frequency" required>
-                <option value="6" selected>1 dia</option>
-                <option value="7">3 dia</option>
-                <option value="8">8 días</option>
-                <option value="9" >15 días</option>
+                {% for fre in frequency %}
+                    <option value="{{ fre.id_frequency}}"> {{ fre.frecuency}}</option>
+                {% endfor %}
             </select>
         </div>
     </div>

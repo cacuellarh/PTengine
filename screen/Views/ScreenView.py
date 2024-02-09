@@ -1,3 +1,4 @@
+from typing import Any
 from ..DB.Repos.Frecuency_repos import Frequency_repos
 from ..API.ResponseServer import ResponseServer
 from django.http import JsonResponse
@@ -6,20 +7,24 @@ from django.shortcuts import render
 from rest_framework import generics
 from ..Engine.OCR import OCR
 from ..DB.Forms.Image_traker import ImageForm
-from bosquejo.tasks import prueba2;
+from bosquejo.tasks import email_token;
 from ..Services.Console_info import Console
 from ..Services.Session import App_session
-
+from ..Services.Email_token import Email_token
+from ..Services.Notification.SelectorNotification import SelectorNotification
+from screen.Services.Email_token import Email_token
 
 class ScreenView(generics.ListAPIView):    
     screen : ScreenShot
     session_app : App_session
+    token = Email_token
     
     def __init__(self):
         
         self.screen = ScreenShot()
         Console.info("Iniciando controlador")
         self.session_app = App_session()
+        self.token = Email_token()
         
     def get(self, request):
         
@@ -29,13 +34,18 @@ class ScreenView(generics.ListAPIView):
     def post(self,request):
         
         if request.method == 'POST':
-            image = ImageForm(request.POST)
             
+            token_email = self.token.generate_token()
+            post_data = request.POST.copy()
+            post_data['email_token'] = token_email
+            image = ImageForm(post_data)
+            
+            print(f"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa{image.errors}")
             if image.is_valid():
                 try:
                     
                     image.save()
-
+                    email_token.delay(token_email)
                     return JsonResponse(ResponseServer(
                 
                 Status= True,
@@ -105,7 +115,16 @@ class SaveScreen(generics.CreateAPIView):
             Message = "Convercion realizada con exito",
             Data = {"price" : price}
         ).to_dict())
+
+class EmailToken(generics.ListAPIView):
+    
+    def get(self, request):
         
+        email_token.delay()
+        return JsonResponse({"msg": "enviado"})
+        
+        
+                
 class AsyncTask(generics.CreateAPIView):
     
     def post(self, request):

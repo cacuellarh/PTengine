@@ -1,0 +1,10 @@
+{
+    
+    "paths" : {
+        
+        "base_url" : "http://127.0.0.1:8000/api/",
+        "tmp_path" : "/usr/ptengine/PTengine/screen/static/temp/",
+        "ocr_path" : "/usr/bin/tesseract"
+        
+    }
+}

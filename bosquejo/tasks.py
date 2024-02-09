@@ -1,9 +1,11 @@
+import queue
 from celery import shared_task
 from screen.Engine.OCR import OCR
 from screen.Engine.Screen import ScreenShot
 from screen.Services.Notification.SelectorNotification import SelectorNotification
 from screen.Services.Auto_validate import Validate
 from screen.Services.Console_info import Console
+from screen.Services.Email_token import Email_token
 
 @shared_task
 def prueba():
@@ -42,4 +44,14 @@ def prueba2():
         print(f"Error en tarea_intensa: {e}")
         Console.warning("Ejecutando prueba 2")
         raise  # Re-raise the exception after logging it
+
+@shared_task(queue="email_queue")
+
+def email_token(token_email):
+    
+    notification = SelectorNotification()
+    notification.select_notification("email")
+    notification.conf({"destiny": "camiloandres_kane@hotmail.com", "body": f"Token recibido: {token_email}", "affair": "confirmacion de correo"})
+    notification.send_notification()
+    
         

@@ -12,7 +12,8 @@ class OCR:
 
     def __init__(self) -> None:
         
-        pytesseract.pytesseract.tesseract_cmd = r'/usr/bin/tesseract' 
+        pytesseract.pytesseract.tesseract_cmd = r'/usr/bin/tesseract'
+        #pytesseract.pytesseract.tesseract_cmd = r'C:\\Program Files\\Tesseract-OCR\Tesseract'  
         
         Console.info("Iniciando OCR")
         

@@ -1,5 +1,6 @@
-//const base_url = "http://127.0.0.1:8000/api/"
-const base_url = "http://195.35.14.162:8002/api"
+// const base_url = "http://127.0.0.1:8000/api/"
+
+const base_url = "http://195.35.14.162:8002/api/"
 const btn = document.getElementById("btn_cropp")
 const save_cut = document.getElementById("save_cut")
 const btn_send = document.getElementById("send_form")
@@ -8,7 +9,14 @@ const image = document.getElementById("image_capture")
 const email = document.getElementById("email")
 const frequency = document.getElementById("frequency")
 let data_form
+let price_check = false
+let validations_form = {
 
+    email_required : false,
+    email_check : false,
+    price_check : false,
+    price_as_number : false
+}
 
 const cropper = new  Cropper(image, {
     aspectRatio: 0,  // Proporción de aspecto (puedes ajustar según tus necesidades)
@@ -27,7 +35,14 @@ const moveXR = document.getElementById("moveX-R")
 const zoom_up = document.getElementById("zoom+")
 const zoom_down = document.getElementById("zoom-")
 const url_input = document.getElementById("url_")
+const email_valid = document.getElementById("email_valid")
 
+
+//validar campo email
+email_valid.style.display="none"
+email.addEventListener("focusout", ()=>{
+    input_email_valid()
+})
 moveYT.addEventListener("click", ()=>{
     cropper.move(0,13)
 })
@@ -61,7 +76,20 @@ btn.addEventListener("click", ()=>{
 
 btn_send.addEventListener("click", ()=>{
 
-    send_api()
+    
+    if(email.value != ""){
+        validations_form.email_required = true
+    }else{
+        validations_form.email_required = false
+    }
+    console.log(validations_form)
+    if(validations_form.email_check && validations_form.email_required && validations_form.price_as_number && validations_form.price_check){
+        send_api()
+    }else{
+
+        alert("Por favor valide los campos")
+    }
+    
 
 })
 
@@ -97,18 +125,52 @@ function generate_metadata(){
                     url : url_input.value
                 }
 
-                if(confirm("¡El precio correcto seleccionado es : $" + res_view.price.price + "?"))
+                if(confirm("¡El precio correcto seleccionado es : $" + res_view.price.price + "?")){
 
-                console.log(res_view)
-                
-                data_form = res_view
+                    validations_form.price_check = true
+                    console.log(res_view.price.price)
+                    if(!isNaN(res_view.price.price)){
 
+                        data_form = res_view
+                        validations_form.price_as_number = true
+                    }else{
+
+                        alert("El area seleccionada no contiene un numero valido.")
+                        validations_form.price_as_number = false
+                    }
+                    
+                }else{
+                    price_check = false
+                    validations_form.price_check = false
+                }
+        
             })
             .catch(error =>{
                 console.error(error)
             })
 
     })
+}
+
+function input_email_valid(){
+
+    let email = document.getElementById("email");
+    let email_ = email.value;
+    console.log(email_);
+    let regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+    if(regex.test(email_)){
+        console.log("correo valido");
+        email_valid.style.display="none";
+        validations_form.email_check = true;
+        return true;
+    }else{
+        console.log("correo invalido");
+        email_valid.style.display="block";
+        validations_form.email_check = false;
+        return false;
+    }
+    
 }
 
 function send_api(){
@@ -125,7 +187,7 @@ function send_api(){
     form_metadata.append("scaleY", data_form.coordinates.scaleY)
     form_metadata.append("url", data_form.url)
     form_metadata.append("email", email.value)
-    form_metadata.append("frequency", frequency.value)
+    form_metadata.append("frequency_fk", frequency.value)
 
     fetch(base_url +"save_image_db",{method:"POST", body: form_metadata})
             .then(res => {
@@ -139,6 +201,5 @@ function send_api(){
             .catch(error =>{
                 console.error(error)
             })
-
     
 }
