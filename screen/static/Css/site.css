@@ -366,7 +366,7 @@ header .button_style:hover,
 }
 
 .monitor .alert_email .Send {
-    width: 85%;
+    width: 80%;
     margin: 0;
 }
 
@@ -379,7 +379,7 @@ header .button_style:hover,
 }
 
 .monitor .alert_email .frequency {
-    width: 15%;
+    width: 20%;
     margin: 0;
 }
 
@@ -419,12 +419,11 @@ header .button_style:hover,
     margin: 2rem 0 0 0 !important;
     overflow-y: scroll;
     position: relative;
-    height: 30rem;
 }
 
 #image_capture {
     width: 100%;
-    /* height: 100%;  */
+    height: 100%; 
     background-color: #3ab65c;
 }
 
@@ -456,9 +455,9 @@ header .button_style:hover,
     font-size: 1.8rem;
     transition: background-color 0.3s ease;
     border-radius: 5px;
-    width: auto;
-    height: 3.1rem;
-    padding: 0.7rem;
+    width: 3rem;
+    height: 3rem;
+    padding: 0.5rem;
 }
 
 .btn-cropp button img {
@@ -692,14 +691,10 @@ footer div a:hover {
         height: auto;
     }
 
-    .btn-cropp {
-        width: 100%;
-        justify-content: space-around;
-    }
-
     .btn-cropp button {
-        height: 2.9rem;
-        padding: 0.6rem;
+        height: 2.5rem;
+        width: 2.5rem;
+        padding: 0.3rem;
     }
 
     #btn_cropp {
