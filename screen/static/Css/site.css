@@ -419,11 +419,12 @@ header .button_style:hover,
     margin: 2rem 0 0 0 !important;
     overflow-y: scroll;
     position: relative;
+    height: 30rem;
 }
 
 #image_capture {
     width: 100%;
-    height: 100%; 
+    /* height: 100%;  */
     background-color: #3ab65c;
 }
 
