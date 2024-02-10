@@ -419,11 +419,13 @@ header .button_style:hover,
     margin: 2rem 0 0 0 !important;
     overflow-y: scroll;
     position: relative;
+    height: 30rem;
 }
 
 #image_capture {
     width: 100%;
-    height: 100%; 
+    /* height: 100%;  */
+    height: 50rem;
     background-color: #3ab65c;
 }
 
@@ -443,7 +445,7 @@ header .button_style:hover,
     gap: .5rem;
     position: absolute;
     top: 1rem;
-    right: 1rem;
+    left: 1rem;
 }
 
 .btn-cropp button {
