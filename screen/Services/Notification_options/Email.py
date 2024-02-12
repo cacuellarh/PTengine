@@ -11,7 +11,7 @@ class Email(Inotification):
     server_smtp = 'smtp.office365.com'
     port_smtp = 587
     user_smtp = 'camiloandres_kane@hotmail.com'
-    password_smtp = 'Colombia2019'
+    password_smtp = 'Colombia2024*'
     _destiny = ""
     _body = ""
     _affair = ""
@@ -26,7 +26,7 @@ class Email(Inotification):
     
     def notify(self):
         
-        conexion_smtp = smtplib.SMTP(self.server_smtp, self.port_smtp)
+        conexion_smtp = smtplib.SMTP(self.server_smtp, 587)
         conexion_smtp.starttls()
 
         # Iniciar sesión en el servidor SMTP
