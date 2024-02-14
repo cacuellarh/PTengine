@@ -21,24 +21,19 @@ class Validate:
         self.ocr = OCR()
     
     #METODO PRINCIPAL, ENCARGADO DE CONECTAR CON EL OCR Y REALIZAR VALIDACIONES DE LOS PRECIOS    
-    def aut_validate(self):
+    def aut_validate(self, img : ImageTrack):
         
-        #SE REALIZA BUSQUEDA BASE DE LAS IMAGENES GUARDADAS
-        db = ImageTrack.objects.all()
-        img1 = ""
-        for img in db:
-            img1 = img
-        
+
         #METODO ENCARGADO DE TOMAR EL SCREEN SEGUN LA URL GUARDADA EN BASE   
-        self.screen.take_screen(url_= img1.url, action="validate")
+        self.screen.take_screen(url_= img.url, action="validate")
 
         #SE ASIGNAN LAS RUTAS DONDE SERAN GUARDADAS LAS IAMGENES TEMPORALES PARA SER ANALIZADAS 
         ruta_entrada = f"{self._temp_path}temp_validate.png"
-        ruta_salida = f"{self._temp_path}fini.png"
+        ruta_salida = f"{self._temp_path}price_cut_{img.email_token}.png"
         route_calibrate = f"{self._temp_path}calibrate.png"
         
         #ABRE LA IMAGEN TEMPORAL Y SE REALIZAR CORTE DE ESTA MISMA SEGUN LAS COORDENADAS GUARDADAS EN DB
-        with Image.open(f"{self._temp_path}temp_validate.png") as img_cut:
+        with Image.open(f"{self._temp_path}{img.email_token}") as img_cut:
     
             x =  img.x
             y =  img.y
@@ -58,11 +53,11 @@ class Validate:
                     price_found = self.ocr.convert(ruta_salida)    
                     return  {"current_price" : price_found, "db_price" : img.price}
             
-            else: #SI NO CONTIENE NUMERO SE REALIZA AJUSTE DE TAMAÑO DE RECORTE EN H Y W, CON EL FIN DE ECONTRAR UN NUMERO CERCANO
+            #else: #SI NO CONTIENE NUMERO SE REALIZA AJUSTE DE TAMAÑO DE RECORTE EN H Y W, CON EL FIN DE ECONTRAR UN NUMERO CERCANO
                 
                 #SE CALIBRA EL TAMAÑO Y SE TOMA SCREEN
-                Console.warning("Re calibrando coordenadas")
-                c = CalibrateCordinates.calibrate(img, 1.05)
-                Console.warning(f"Coordenadas re calibradas: {c.x}, {c.y}, {c.width}, {c.height}")
-                img_cut = img_cut.crop((c.x, c.y, c.x + c.width, c.y + c.height))
-                img_cut.save(route_calibrate)
+                # Console.warning("Re calibrando coordenadas")
+                # c = CalibrateCordinates.calibrate(img, 1.05)
+                # Console.warning(f"Coordenadas re calibradas: {c.x}, {c.y}, {c.width}, {c.height}")
+                # img_cut = img_cut.crop((c.x, c.y, c.x + c.width, c.y + c.height))
+                # img_cut.save(route_calibrate)

@@ -6,13 +6,15 @@ from ..Engine.Screen import ScreenShot
 from django.shortcuts import render
 from rest_framework import generics
 from ..Engine.OCR import OCR
-from ..DB.Forms.Image_traker import ImageForm
+from screen.models import Client
 from bosquejo.tasks import email_token;
 from ..Services.Console_info import Console
 from ..Services.Session import App_session
 from ..Services.Email_token import Email_token
 from ..Services.Notification.SelectorNotification import SelectorNotification
 from screen.Services.Email_token import Email_token
+from screen.DB.Repos.Client_repos import Client_repos
+from screen.DB.Repos.Image_repos import Image_repos
 
 class ScreenView(generics.ListAPIView):    
     screen : ScreenShot
@@ -25,6 +27,8 @@ class ScreenView(generics.ListAPIView):
         Console.info("Iniciando controlador")
         self.session_app = App_session()
         self.token = Email_token()
+        self.img_repos = Image_repos()
+        self.client_repos = Client_repos()
         
     def get(self, request):
         
@@ -32,42 +36,42 @@ class ScreenView(generics.ListAPIView):
         return render(request, "Base.html")
     
     def post(self,request):
-        
+        client_on_exist : Client = None
+        email = request.POST.get("email")
+        image = False
         if request.method == 'POST':
-            
+            post = request.POST.copy()
             token_email = self.token.generate_token()
-            post_data = request.POST.copy()
-            post_data['email_token'] = token_email
-            image = ImageForm(post_data)
-            
-            print(f"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa{image.errors}")
-            if image.is_valid():
-                try:
-                    
-                    image.save()
-                    email_token.delay(token_email)
-                    return JsonResponse(ResponseServer(
-                
-                Status= True,
-                Message = "Metadatos guardados correctamente",
-                Data = {}
-            ).to_dict())
-                
-                except Exception as e:
-                    
-                    print("Error : " + e)
-                        
-
+            post["email_token"] = token_email
+    
+            client_on_exist = self.client_repos.get(column="email", value=email)
+            if client_on_exist is None:
+                client = self.client_repos.create({"email": email})
+                post["client_fk"] = client.id_client
+                image = self.img_repos.create(data=post)
+                email_token.delay(email,token_email)  
+                      
             else:
-                image = ImageForm()
-        
-          
-        return JsonResponse(ResponseServer(
-            
-            Status= False,
-            Message = "Error al guardar metadatos",
-            Data = {}
-        ).to_dict())
+                
+                post["client_fk"] = client_on_exist.id_client
+                image = self.img_repos.create(data=post)
+                email_token.delay(email,token_email)
+
+            if image:
+                
+                return JsonResponse(ResponseServer(
+                
+                    Status= True,
+                    Message = "Metadatos guardados correctamente",
+                    Data = {}
+                ).to_dict())
+            else:
+                return JsonResponse(ResponseServer(
+                    Status=False,
+                    Message="Error al crear la imagen",
+                    Data={}
+                ).to_dict())
+                    
         
 
 #End-point post, donde llega la informacion de la URL para ser renderizada 

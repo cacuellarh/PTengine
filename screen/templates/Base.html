@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link  href="../static/cropperjs/dist/cropper.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../static/Css/site.css">
+    <link rel="stylesheet" href="../static/Css/modal_confirm.css">
 </head>
 <body>
     
@@ -35,6 +36,23 @@
         </ul>
     </section>
     <section class="container">
+        <div class="modal_email_confirm disabled" id="modal_email_confirm"> 
+            <div class="card_modal">
+                <h2>Gracias por usar tracket price</h2>
+                <div class="card_body">
+                    <h4><strong>Confirmar correo de activacion</strong></h4>
+                    <p>Para que tracket price empeice a notificar el cambio de precio, necesitamos que te dirigas al correo registrado y confirmes con el link de activacion!.</p>
+                </div>
+                <div class="card_footer">
+    
+                    <a href="{% url 'main_menu' %}">Volver al inicio</a>
+    
+                </div>
+                
+            </div>
+            
+        </div>
+
         <div class="description">
             <h2>Monitoreamos cambios en los precios de tus productos favoritos</h2>
             <h3>... para que, cuando cambien, ¡puedas comprarlos al mejor precio!"</h3>
@@ -86,6 +104,8 @@
                 </article>
             </div>
         </div>
+
+        
     </section>
 
     

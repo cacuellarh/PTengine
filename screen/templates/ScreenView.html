@@ -1,6 +1,8 @@
 {% extends 'Base.html' %}
 
 {% block content %}
+
+
 <div class="cut_seccion">
     <img src="../static/img/{{img_name}}.png" alt="" id="image_capture">
     <div class="btn-cropp">
@@ -15,7 +17,7 @@
 <div class="confirm_selection">
     <button id="btn_cropp">Confirmar selección</button>
 </div>
-<form id="emailForm" action="" method="post">
+<div id="emailForm">
     <div class="alert_email">
         <div class="Send">
             <label for="email">Enviar cambio a:</label>
@@ -32,8 +34,10 @@
         </div>
     </div>
     <input id="url_" type="hidden"  value="{{url}}">
-    <button type="submit" class="button_send"  id="send_form">Comenzar monitoreo gratuito</button>
-</form>
+    <button class="button_send"  id="send_form">Comenzar monitoreo gratuito</button>
+</div>
+
+
 <script src="../static/cropperjs/dist/cropper.min.js"></script>
 <script src="../static/JS/cut_image.js"></script>
 

@@ -11,13 +11,13 @@ class ScreenShot:
     
     ## WINDOWS MODE
     
-    #save_path_img = "C:\\Users\\lolo\\Desktop\\Programacion\\prueba micha_app\\bosquejo\\screen\\static\\img\\"
-    #save_path_temp = "C:\\Users\\lolo\\Desktop\\Programacion\\prueba micha_app\\bosquejo\\screen\\static\\temp\\"
+    save_path_img = "C:\\Users\\lolo\\Desktop\\Programacion\\prueba micha_app\\bosquejo\\screen\\static\\img\\"
+    save_path_temp = "C:\\Users\\lolo\\Desktop\\Programacion\\prueba micha_app\\bosquejo\\screen\\static\\temp\\"
     
     ## LINUX MODE
     
-    save_path_img = "/usr/ptengine/PTengine/screen/static/img/"
-    save_path_temp = "/usr/ptengine/PTengine/screen/static/temp/"
+    #save_path_img = "/usr/ptengine/PTengine/screen/static/img/"
+    #save_path_temp = "/usr/ptengine/PTengine/screen/static/temp/"
     
     def __init__(self) -> None:
     
@@ -44,7 +44,7 @@ class ScreenShot:
             self.boswer.get(self.url)
             Console.info("Cargando URL")
             
-            time.sleep(2)
+            #time.sleep(2)
             # self.boswer.implicitly_wait(20)
             self.height = self.boswer.execute_script(
                 "return Math.max( document.body.scrollHeight, document.documentElement.scrollHeight)")
@@ -64,14 +64,14 @@ class ScreenShot:
             self.options.add_argument(f'--window-size=1080,{self.height}')
             self.boswer = webdriver.Chrome(options=self.options)
             self.boswer.get(self.url)
-            time.sleep(4)
+            #time.sleep(4)
 
             if action == "save":
                 self.boswer.save_screenshot(f"{self.save_path_img}{file_name}.png")
                 Console.success("Screen guardado")
                 Console.success(f"Ruta del screen {self.save_path_img}prueba_python.png")
             elif action == "validate":
-                self.boswer.save_screenshot(self.save_path_temp + "temp_validate.png")
+                self.boswer.save_screenshot(f"{self.save_path_temp}{file_name}.png")
                 Console.success("Screen guardado")          
         except Exception as e:
             Console.warning(f"Error al tomar la captura de pantalla: {str(e)}")

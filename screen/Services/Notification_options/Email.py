@@ -8,10 +8,10 @@ from screen.Interfaces.Inotification import Inotification
 
 class Email(Inotification):
     
-    server_smtp = 'smtp.office365.com'
+    server_smtp = 'smtp.gmail.com'
     port_smtp = 587
-    user_smtp = 'camiloandres_kane@hotmail.com'
-    password_smtp = 'Colombia2024*'
+    user_smtp = 'noreply.trackmyprice@gmail.com'
+    password_smtp = 'xnekzcxhzpidbohm'
     _destiny = ""
     _body = ""
     _affair = ""
@@ -26,27 +26,31 @@ class Email(Inotification):
     
     def notify(self):
         
-        conexion_smtp = smtplib.SMTP(self.server_smtp, 587)
-        conexion_smtp.starttls()
+        try:
+            conexion_smtp = smtplib.SMTP(self.server_smtp, self.port_smtp)
+            conexion_smtp.starttls()
+            print("en emailñ")
+            # Iniciar sesión en el servidor SMTP
+            conexion_smtp.login(self.user_smtp, self.password_smtp)
 
-        # Iniciar sesión en el servidor SMTP
-        conexion_smtp.login(self.user_smtp, self.password_smtp)
+            # Construir el mensaje
+            message = MIMEMultipart()
+            message['From'] = self.user_smtp
+            message['To'] = self._destiny
+            message['Subject'] = self._affair
 
-        # Construir el mensaje
-        message = MIMEMultipart()
-        message['From'] = self.user_smtp
-        message['To'] = self._destiny
-        message['Subject'] = self._affair
+            # Agregar el cuerpo del mensaje
+            message.attach(MIMEText('Notificacion de precio: {}'.format(self._body), 'plain'))
 
-        # Agregar el cuerpo del mensaje
-        message.attach(MIMEText('Notificacion de precio: {}'.format(self._body), 'plain'))
+            # Enviar el mensaje
+            errs = conexion_smtp.sendmail(self.user_smtp, self._destiny, message.as_string())
+            Console.success(f"Correo enviado : {errs}")
 
-        # Enviar el mensaje
-        errs = conexion_smtp.sendmail(self.user_smtp, self._destiny, message.as_string())
-        Console.success(f"Correo enviado : {errs}")
-
-        # Cerrar la conexión SMTP
-        conexion_smtp.quit()
+        except Exception as e:
+            Console.warning(f"Error al enviar correo de token: {e}")
+        finally:
+            
+            conexion_smtp.quit()    
 
 
         

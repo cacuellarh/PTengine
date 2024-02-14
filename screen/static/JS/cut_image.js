@@ -1,6 +1,6 @@
-// const base_url = "http://127.0.0.1:8000/api/"
+const base_url = "http://127.0.0.1:8000/api/"
 
-const base_url = "http://195.35.14.162:8002/api/"
+//const base_url = "http://195.35.14.162:8002/api/"
 const btn = document.getElementById("btn_cropp")
 const save_cut = document.getElementById("save_cut")
 const btn_send = document.getElementById("send_form")
@@ -8,6 +8,7 @@ const btn_capture = document.getElementById("capture")
 const image = document.getElementById("image_capture")
 const email = document.getElementById("email")
 const frequency = document.getElementById("frequency")
+const modal_confirm = document.getElementById("modal_email_confirm")
 let data_form
 let price_check = false
 let validations_form = {
@@ -176,7 +177,7 @@ function input_email_valid(){
 function send_api(){
 
     form_metadata = new FormData()
-
+    
     form_metadata.append("price", data_form.price.price)
     form_metadata.append("x", data_form.coordinates.x)
     form_metadata.append("y", data_form.coordinates.y)
@@ -196,6 +197,12 @@ function send_api(){
             .then(data =>{
 
                 console.log(data)
+                if(data.Status){
+
+                    modal_confirm.classList.remove("disabled")
+                }else{
+                    modal_confirm.classList.add("disabled")
+                }
                 
             })
             .catch(error =>{
