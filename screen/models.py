@@ -29,4 +29,4 @@ class ImageTrack(models.Model):
     email_token =  models.CharField(max_length=100, default=None)  
 
     def __str__(self):
-        return f"ImageTrack {self.id}"
+        return f"ImageTrack {self.id_image}"

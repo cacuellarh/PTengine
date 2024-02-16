@@ -6,14 +6,14 @@ from ..Services.Console_info import Console
 
 class OCR:
     
-    _temp_path = "C:\\Users\\lolo\\Desktop\\Programacion\\prueba micha_app\\bosquejo\\screen\\static\\temp\\"
+    #_temp_path = "C:\\Users\\lolo\\Desktop\\Programacion\\prueba micha_app\\bosquejo\\screen\\static\\temp\\"
     
-    #_temp_path = "/usr/ptengine/PTengine/screen/static/temp/"
+    _temp_path = "/usr/ptengine/PTengine/screen/static/temp/"
 
     def __init__(self) -> None:
         
-        #pytesseract.pytesseract.tesseract_cmd = r'/usr/bin/tesseract'
-        pytesseract.pytesseract.tesseract_cmd = r'C:\\Program Files\\Tesseract-OCR\Tesseract'  
+        pytesseract.pytesseract.tesseract_cmd = r'/usr/bin/tesseract'
+        #pytesseract.pytesseract.tesseract_cmd = r'C:\\Program Files\\Tesseract-OCR\Tesseract'  
         
         Console.info("Iniciando OCR")
         
@@ -83,15 +83,15 @@ class OCR:
                return {"status" : False, "price" : price_convert}
     
     def validate_consistency(self, price_convert, price_db):
+        price_c = price_convert["price"]
+        margin_factor = 0.2
+        margin = price_c  * margin_factor
         
-        margin_factor = 0.7
-        margin = price_convert * margin_factor
-        
-        if abs(price_db - price_convert) <= margin:
+        if abs(price_db - price_c) <= margin:
             
-            Console.info(f"Consistencia de precios correcta db : {price_db}, convert: {price_convert}, margen: {margin}")
+            Console.info(f"Consistencia de precios correcta db : {price_db}, convert: {price_c }, margen: {margin}")
             return True
         else:
             
-            Console.warning(f"Consistencia de precios Incorrecta db : {price_db}, convert: {price_convert}, margen: {margin}")
+            Console.warning(f"Consistencia de precios Incorrecta db : {price_db}, convert: {price_c }, margen: {margin}")
             return False

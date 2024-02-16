@@ -8,13 +8,15 @@ from rest_framework import generics
 from ..Engine.OCR import OCR
 from screen.models import Client
 from bosquejo.tasks import email_token;
+from bosquejo.tasks import validate;
 from ..Services.Console_info import Console
 from ..Services.Session import App_session
 from ..Services.Email_token import Email_token
-from ..Services.Notification.SelectorNotification import SelectorNotification
 from screen.Services.Email_token import Email_token
 from screen.DB.Repos.Client_repos import Client_repos
 from screen.DB.Repos.Image_repos import Image_repos
+from django.core.serializers import serialize
+import json
 
 class ScreenView(generics.ListAPIView):    
     screen : ScreenShot
@@ -131,8 +133,15 @@ class EmailToken(generics.ListAPIView):
                 
 class AsyncTask(generics.CreateAPIView):
     
-    def post(self, request):
-        prueba2.delay()
+    def get(self, request):
+        img_repos = Image_repos()
+        img_all = img_repos.gel_all()
+
+        for img in img_all:
+            if img.notify_validate:
+                data = serialize("json", [img])
+                Console.info("Tarea publicada")
+                validate.delay(data)
         
         return JsonResponse({"msg" : "si"})       
                

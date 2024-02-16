@@ -25,15 +25,15 @@ class Validate:
         
 
         #METODO ENCARGADO DE TOMAR EL SCREEN SEGUN LA URL GUARDADA EN BASE   
-        self.screen.take_screen(url_= img.url, action="validate")
+        self.screen.take_screen(url_= img.url, action="validate", file_name=img.email_token)
 
         #SE ASIGNAN LAS RUTAS DONDE SERAN GUARDADAS LAS IAMGENES TEMPORALES PARA SER ANALIZADAS 
         ruta_entrada = f"{self._temp_path}temp_validate.png"
         ruta_salida = f"{self._temp_path}price_cut_{img.email_token}.png"
-        route_calibrate = f"{self._temp_path}calibrate.png"
+        route_calibrate = f"{self._temp_path}{img.email_token}.png"
         
         #ABRE LA IMAGEN TEMPORAL Y SE REALIZAR CORTE DE ESTA MISMA SEGUN LAS COORDENADAS GUARDADAS EN DB
-        with Image.open(f"{self._temp_path}{img.email_token}") as img_cut:
+        with Image.open(f"{self._temp_path}{img.email_token}.png") as img_cut:
     
             x =  img.x
             y =  img.y
@@ -46,8 +46,8 @@ class Validate:
             
             price_check = self.ocr.validate_number(ruta_salida) #SE VALIDA SI LA IMAGEN CONTIENE UN NUMERO
             
-            if price_check: #SE VALIDA SI LA IMAGEN RECIEN CORTADA AL SER CONVERTIDA A STRING, CONTIENE UN NUMERO
-                if self.ocr.validate_consistency(price_check, img.price): #!IMPORTANTE, SE REALIZA CERCANIA DEL NUMERO CONVERTIDO CONTRA EL NUMERO GUARDADO
+            if price_check["status"]: #SE VALIDA SI LA IMAGEN RECIEN CORTADA AL SER CONVERTIDA A STRING, CONTIENE UN NUMERO
+                #if self.ocr.validate_consistency(price_check, img.price): #!IMPORTANTE, SE REALIZA CERCANIA DEL NUMERO CONVERTIDO CONTRA EL NUMERO GUARDADO
                                                                           #ESTO CON EL FIN DE EVITAR QUE CUALQUIER NUMERO QUE SE ESCANEE SEA APROVADO COMO UN CAMBIO DE PRECIO  
                     
                     price_found = self.ocr.convert(ruta_salida)    

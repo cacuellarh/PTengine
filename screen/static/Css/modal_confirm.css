@@ -1,62 +1,133 @@
-@import url(site.css);
-.modal_email_confirm{
+/* @import url(site.css); */
 
+.modal_email_confirm{
     position: fixed;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.521);
+    background-color:  rgba(0, 0, 0, 0.5);
     color: aliceblue;
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1;
+    top: 0;
+    right: 0;
 }
-.card_modal{
 
-    width: 30%;
-    height: 30%;
-    background-color: whitesmoke;
-    color: black;    
+.card_modal,
+.card_confirm {
+    width: 50rem;
+    height: auto;
+    border-radius: 5px;
+    overflow: hidden;
+    background-color: #fff;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    color: #000;
 }
-    .card_body{
 
-        margin-top: 3rem;
-    }
-    .card_modal h2{
+.card_modal h2 {
+    font-size: 3rem;
+    text-align: center;
+    margin: 0 0 1rem;
+}
 
-        color: white;
-        background-color: var(--button_color);
-        padding-bottom: 1rem;
-        text-align: center;
-    }
+.card_modal h3 {
+    font-size: 1.2rem;
+    text-align: center;
+    margin: 0 0 1rem;
+}
 
-    .card_modal h4{
+.card_modal p {
+    font-size: 1rem;
+    text-align: center;
+    margin: 0 0 1rem;
+}
 
-        color: black;
-        font-size: 1.2rem;
-        text-align: center;
-    }
-
-    .card_modal p{
-
-        color: black;
-        text-align: center;
-        color: gray;
-
-    }
-
-    .card_footer{
-
-        width: 100%;
-        background-color: var(--button_color);
-        color: white;
-        margin-top: 4.4rem;
-        cursor: pointer;
-        text-align: center;
-    }
-
+.card_modal a,
+.card_confirm a {
+    background-color: #910A67;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    width: 12rem;
+    padding: 1rem 0;
+    display: flex;
+    justify-content: center;
+}
 
 .disabled{
-
     display: none;
+}
+
+.card_confirm h1 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin: 0 0 1rem;
+}
+
+.card_confirm img {
+    width: 4rem;
+    height: auto;
+    margin: 0 0 1rem;
+}
+
+.card_confirm img {
+    width: 4rem;
+    height: auto;
+    margin: 0 0 1rem;
+}
+
+.card_confirm p {
+    font-size: 1.2rem;
+    text-align: center;
+    margin: 0 0 1rem;
+}
+
+/* ============================================================ */
+/* ======================== Responsive ======================== */
+/* ============================================================ */
+
+@media screen and (max-width: 576px) {
+    :root {
+        font-size: 19px;
+    }
+    .card_modal,
+    .card_confirm {
+        width: 85%;
+    }
+
+    .card_modal h2,
+    .card_confirm h1 {
+        font-size: 1.5rem;
+    }
+
+    .card_confirm p {
+        font-size: 1rem;
+    }
+
+    .card_modal h3 {
+        font-size: .8rem;
+    }
+
+    .card_confirm img {
+        width: 3rem;
+    }
+
+    .card_modal p {
+        font-size: .7rem;
+    }
+
+    .card_modal a,
+    .card_confirm a {
+        font-size: .8rem;
+        width: 8rem;
+        padding: 0.5rem 0;
+    }
 }

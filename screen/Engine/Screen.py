@@ -1,6 +1,7 @@
 from selenium import webdriver
 from ..Services.Console_info import Console
 import time
+import logging
 class ScreenShot:
 
     url = ""
@@ -11,16 +12,17 @@ class ScreenShot:
     
     ## WINDOWS MODE
     
-    save_path_img = "C:\\Users\\lolo\\Desktop\\Programacion\\prueba micha_app\\bosquejo\\screen\\static\\img\\"
-    save_path_temp = "C:\\Users\\lolo\\Desktop\\Programacion\\prueba micha_app\\bosquejo\\screen\\static\\temp\\"
+    # save_path_img = "C:\\Users\\lolo\\Desktop\\Programacion\\prueba micha_app\\bosquejo\\screen\\static\\img\\"
+    # save_path_temp = "C:\\Users\\lolo\\Desktop\\Programacion\\prueba micha_app\\bosquejo\\screen\\static\\temp\\"
     
     ## LINUX MODE
     
-    #save_path_img = "/usr/ptengine/PTengine/screen/static/img/"
-    #save_path_temp = "/usr/ptengine/PTengine/screen/static/temp/"
+    save_path_img = "/usr/ptengine/PTengine/screen/static/img/"
+    save_path_temp = "/usr/ptengine/PTengine/screen/static/temp/"
     
     def __init__(self) -> None:
-    
+        
+        logging.getLogger('selenium').setLevel(logging.WARNING)
         self.options = webdriver.ChromeOptions()
         self.options.add_argument('--headless')
         self.options.add_argument('--disable-software-rasterizer')

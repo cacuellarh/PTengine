@@ -3,18 +3,18 @@ from screen.Services.Notification.SelectorNotification import SelectorNotificati
 from screen.Services.Auto_validate import Validate
 from screen.Services.Console_info import Console
 from screen.DB.Repos.Image_repos import Image_repos
+from django.core.serializers import deserialize
 
 @shared_task(queue="validate_queue")
-def validate():
-
-    img_repos = Image_repos()
+def validate(img):
     validate = Validate()
- 
-    prices =  validate.aut_validate()
+    for obj in deserialize("json", img):
+        ins = obj.object
+        prices =  validate.aut_validate(ins)
+        current =prices["current_price"]
+        db = prices["db_price"]
+        print(f"precio actual:{current} , precio db; {db}")
     
-    print(prices["current_price"] != prices["db_price"])
-
-        
 
 @shared_task(queue="email_queue")
 
