@@ -5,6 +5,8 @@ from screen.Services.Console_info import Console
 from screen.DB.Repos.Image_repos import Image_repos
 from django.core.serializers import deserialize
 
+# celery -A bosquejo worker -Q email_queue -l info
+
 @shared_task(queue="validate_queue")
 def validate(img):
     validate = Validate()
