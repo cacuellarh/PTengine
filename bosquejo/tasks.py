@@ -22,7 +22,8 @@ def email_token(email,token_email):
     
     notification = SelectorNotification()
     notification.select_notification("email")
-    url = f"http://127.0.0.1:8000/api/token_confirm/{token_email}"
+    url = f"http://195.35.14.162:8002/api/token_confirm/{token_email}"
+    #url = f"http://127.0.0.1:8000/api/token_confirm/{token_email}"
     notification.conf({"destiny": email, "body": f"Token recibido: {url}, loprosadasdasd", "affair": "confirmacion de correo"})
     notification.send_notification()
     print("enviando")
