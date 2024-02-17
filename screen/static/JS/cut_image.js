@@ -37,7 +37,7 @@ const zoom_up = document.getElementById("zoom+")
 const zoom_down = document.getElementById("zoom-")
 const url_input = document.getElementById("url_")
 const email_valid = document.getElementById("email_valid")
-
+const load = document.getElementById("loader");
 
 //validar campo email
 email_valid.style.display="none"
@@ -77,19 +77,23 @@ btn.addEventListener("click", ()=>{
 
 btn_send.addEventListener("click", ()=>{
 
-    
+    load.classList.remove("hidden_loader")
+
     if(email.value != ""){
         validations_form.email_required = true
     }else{
         validations_form.email_required = false
     }
-    console.log(validations_form)
+
     if(validations_form.email_check && validations_form.email_required && validations_form.price_as_number && validations_form.price_check){
         send_api()
     }else{
 
         alert("Por favor valide los campos")
-    }
+        
+    } 
+ 
+
     
 
 })
@@ -196,12 +200,14 @@ function send_api(){
             })
             .then(data =>{
 
-                console.log(data)
+                
                 if(data.Status){
 
+                    load.classList.add("hidden_loader")
                     modal_confirm.classList.remove("disabled")
                 }else{
                     modal_confirm.classList.add("disabled")
+                    load.classList.add("hidden_loader")
                 }
                 
             })

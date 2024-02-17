@@ -33,7 +33,7 @@ class Image_repos():
             return False        
 
     def gel_all(self):
-        return ImageTrack.objects.all()
+        return ImageTrack.objects.select_related("client_fk").all()
             
        
     def activate_notification(self, token):
