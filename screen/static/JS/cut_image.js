@@ -130,7 +130,7 @@ function generate_metadata(){
                     url : url_input.value
                 }
 
-                if(confirm("¡El precio correcto seleccionado es : $" + res_view.price.price + "?")){
+                if(confirm("El precio correcto seleccionado es : $" + res_view.price.price + "?")){
 
                     validations_form.price_check = true
                     console.log(res_view.price.price)
