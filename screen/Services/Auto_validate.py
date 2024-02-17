@@ -11,8 +11,8 @@ from ..Services.Console_info import Console
 class Validate:
     
     #ATRIBUTOS DE CLASE, RUTAS DE LA CARPETA TEMPORAL Y OBJETO DEL OCR
-    #_temp_path = "C:\\Users\\lolo\\Desktop\\Programacion\\prueba micha_app\\bosquejo\\screen\\static\\temp\\"
-    _temp_path = "/usr/ptengine/PTengine/screen/static/temp/"
+    _temp_path = "C:\\Users\\lolo\\Desktop\\Programacion\\prueba micha_app\\bosquejo\\screen\\static\\temp\\"
+    #_temp_path = "/usr/ptengine/PTengine/screen/static/temp/"
     ocr : OCR  
     
     #INICIALIZACION DE ATRIBUTOS

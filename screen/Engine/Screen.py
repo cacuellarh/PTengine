@@ -46,8 +46,8 @@ class ScreenShot:
             self.boswer.get(self.url)
             Console.info("Cargando URL")
             
-            #time.sleep(2)
-            # self.boswer.implicitly_wait(20)
+            time.sleep(2)
+
             self.height = self.boswer.execute_script(
                 "return Math.max( document.body.scrollHeight, document.documentElement.scrollHeight)")
             Console.info(f"Calculando altura de screen: {self.height}")
@@ -66,7 +66,7 @@ class ScreenShot:
             self.options.add_argument(f'--window-size=1080,{self.height}')
             self.boswer = webdriver.Chrome(options=self.options)
             self.boswer.get(self.url)
-            time.sleep(4)
+            time.sleep(10)
 
             if action == "save":
                 self.boswer.save_screenshot(f"{self.save_path_img}{file_name}.png")
