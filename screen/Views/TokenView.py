@@ -13,7 +13,6 @@ class Token:
             is_valid = self.image_repos.activate_notification(token=token)
             if is_valid:
                 return render(request, "Token_confirm.html")
-            else:
-                
+            else:    
                 raise("El token ingresado no es correcto")
         
