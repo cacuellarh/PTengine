@@ -35,14 +35,12 @@ class Email(Inotification):
 
             # Construir el mensaje
             message = MIMEMultipart()
-            message['Content-Type'] = 'text/html'
             message['From'] = self.user_smtp
             message['To'] = self._destiny
             message['Subject'] = self._affair
 
             # Agregar el cuerpo del mensaje
-            message.attach(MIMEText('Notificacion de precio: {}'.format(self._body), 'plain'))
-
+            message.attach(MIMEText('Notificacion de precio: {}'.format(self._body), 'html'))
             # Enviar el mensaje
             errs = conexion_smtp.sendmail(self.user_smtp, self._destiny, message.as_string())
             Console.success(f"Correo enviado : {errs}")
