@@ -35,6 +35,7 @@ class Email(Inotification):
 
             # Construir el mensaje
             message = MIMEMultipart()
+            message['Content-Type'] = 'text/html'
             message['From'] = self.user_smtp
             message['To'] = self._destiny
             message['Subject'] = self._affair
