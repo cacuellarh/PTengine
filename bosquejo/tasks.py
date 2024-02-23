@@ -10,23 +10,7 @@ from django.core.serializers import deserialize
 def validate(img):
     notify = SelectorNotification()
     notify.select_notification("email")
-    validate = Validate()
-    for obj in deserialize("json", img):
-        ins = obj.object
-   
-        prices =  validate.aut_validate(ins)
-        current =prices["current_price"]
-        db = prices["db_price"]
-        
-        #if current != db:
-        notify.conf({"destiny": ins.client_fk.email,
-                    "body": "index.html", "affair": "Notificacion cambio de precio"})
-            #print(f"precio actual:{current} , precio db; {db}")
-        notify.send_notification()
-
-@shared_task(queue="email_queue")
-
-def email_token(email,token_email):
+    
     
     html = ''' 
     <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -308,11 +292,29 @@ def email_token(email,token_email):
         </html>
 
     '''
+    validate = Validate()
+    for obj in deserialize("json", img):
+        ins = obj.object
+   
+        prices =  validate.aut_validate(ins)
+        current =prices["current_price"]
+        db = prices["db_price"]
+        
+        #if current != db:
+        notify.conf({"destiny": ins.client_fk.email,
+                    "body": html, "affair": "Notificacion cambio de precio"})
+            #print(f"precio actual:{current} , precio db; {db}")
+        notify.send_notification()
+
+@shared_task(queue="email_queue")
+
+def email_token(email,token_email):
+    
     notification = SelectorNotification()
     notification.select_notification("email")
     url = f"http://195.35.14.162:8002/api/token_confirm/{token_email}"
     #url = f"http://127.0.0.1:8000/api/token_confirm/{token_email}"
-    notification.conf({"destiny": email, "body": html, "affair": "confirmacion de correo"})
+    notification.conf({"destiny": email, "body": url, "affair": "confirmacion de correo"})
     notification.send_notification()
     print("enviando")
     
