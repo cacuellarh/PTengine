@@ -1,0 +1,57 @@
+{% extends 'Base.html' %}
+{% block content %}
+<section class="description">
+    <h2>Monitoreamos cambios en los precios de tus productos favoritos</h2>
+    <h3>... para que, cuando cambien, ¡puedas comprarlos al mejor precio!"</h3>
+</section>
+<section class="card">
+    <div>
+        <figure>
+            <img src="../static/img/icons/icon_url.png" alt="Url">
+        </figure>
+        <article>
+            <p><strong>Introduce la dirección URL</strong><br>del sitio web donde se encuentra el producto que deseas monitorear.</p>
+        </article>
+        <img class="img_next" src="../static/img/icons/icon_next.png" alt="">
+    </div>
+    <div>
+        <figure>
+            <img src="../static/img/icons/icon_select.png" alt="Seleccione área">
+        </figure>
+        <article>
+            <p><strong>Selecciona un área</strong><br>del precio del producto que deseas monitorear</p>
+        </article>
+        <img class="img_next" src="../static/img/icons/icon_next.png" alt="">
+    </div>
+    <div>
+        <figure>
+            <img src="../static/img/icons/icon_calendar.png" alt="Frecuencia">
+        </figure>
+        <article>
+            <p><strong>Establece el periodo</strong><br>de tiempo durante el cual deseas que la página monitoree el precio de tu producto</p>
+        </article>
+        <img class="img_next" src="../static/img/icons/icon_next.png" alt="">
+    </div>
+    <div>
+        <figure>
+            <img src="../static/img/icons/icon_email.png" alt="Notificaciones">
+        </figure>
+        <article>
+            <p><strong>Recibe notificaciones</strong><br>en tu correo cada vez que detectemos un cambio en el precio</p>
+        </article>
+    </div>
+</section>
+<section class="monitor">
+    <form method="post" action="{% url 'execute' %}" class="page_url">
+        {% csrf_token %}
+        <input type="text" id="url_input" name="url" placeholder="Introduce la URL">
+        <button class="button_style " type="submit" id="capture">Capturar</button>
+    </form>
+    <div class="page">
+        <div id="loader" class="loader hidden_loader">
+            <img src="../static/img/gift/loader.gif" alt="">
+        </div>
+        {% block child_content %} {% endblock %}
+    </div>
+</section>
+{% endblock %}

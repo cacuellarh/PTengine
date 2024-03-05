@@ -1,0 +1,111 @@
+.contact_text {
+    margin: 5rem 17rem;
+}
+
+.contact_text h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 600;
+}
+
+.contact_text p {
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 300;
+}
+
+.form_container {
+    box-shadow: 0px 0px 18px 0px rgba(0, 0, 0, 0.3);
+    margin: 0 17rem 5rem;
+    border-radius: 8px;
+    padding: 2rem;
+}
+
+.form_container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form_container label {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.form_container input,
+.form_container textarea {
+    width: 100%; 
+    padding: .7rem; 
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.form_container input:hover, 
+.form_container input:focus, 
+.form_container textarea:hover, 
+.form_container textarea:focus {
+    border-color: var(--button_color);; 
+    box-shadow: 0 0 5px rgba(126, 13, 22, 0.7); 
+}
+
+.form_container input[type="submit"] {
+    width: 100%;
+    padding: .7rem; 
+    background-color: var(--button_color);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.form_container input[type="submit"]:hover {
+    background-color: var(--hover_color);
+}
+
+.form_container span {
+    margin-top: 1rem;
+    font-size: 1rem;
+}
+
+@media screen and (max-width: 990px) {
+    .contact_text {
+        margin: 3rem 8rem;
+    }
+    .form_container {
+        margin: 0 8rem 3rem;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .contact_text,
+    .form_container {
+        margin:  1rem;
+        padding: 1rem;
+    }
+
+    .contact_text h2 {
+        font-size: 1.5rem;
+    }
+    
+    .contact_text p {
+        font-size: 1rem;
+    }
+
+    .form_container input,
+    .form_container textarea {
+        width: 100%;
+        font-size: 1rem;
+        padding: 0.7rem;
+    }
+
+    .form_container input[type="submit"] {
+        font-size: 1rem;
+    }
+}

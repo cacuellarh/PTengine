@@ -1,0 +1,82 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+    <section class="wrapper_details">
+
+        <input type="hidden" value="{{img_details.id_image}}" id="id_image">
+        
+        <div class="dashboard">
+            <h5>Dashboard</h5>
+            <p>Feb 29 2024</p>
+        </div>
+
+        <div class="prices">
+
+            <div class="card_price">
+
+                <h6>Precio anterior</h6>
+                <strong><span class="cash">${{db_price}}.00</span></strong>
+            </div>
+
+            <div class="card_price">
+                <h6>Precio actual</h6>
+                <strong><span class="cash">${{current_price}}</span></strong>
+            </div>
+
+            <div class="card_price">
+                <h6>Promedio</h6>
+                <strong>{{avg}}</strong>
+            </div>
+
+            <div class="card_price">
+                <h6>Pronostico</h6>
+                <strong>12313213.123</strong>
+            </div>
+
+            <div class="card_price">
+                <h6>fghfghfg</h6>
+                <strong>12313213.123</strong>
+            </div>
+        </div>
+
+        <div class="gp">
+
+            <div class="graphic">
+                <div class="title">
+                    <h4>Overview</h4>
+                </div>
+                <div class="g_c">
+                    <canvas id="chart" width="500" >
+
+                    </canvas>
+                </div>
+            </div>
+
+            <div class="h_price">
+                <div class="title">
+                    <h4>Historial</h4>
+                </div>
+
+                <div class="h_data">
+                    <ol class="list_history">
+                        {% for p in h_prices %}
+                        <div>
+                            <img src="{% static 'img/icons/historia.png'%}" alt="">
+                            <li>{{p.fk_history_events__date}}</li>
+                            <li>Precio: <span class="cash">${{p.fk_history_events__fk_imagetrack__price}}.00</span></li>
+                            
+                        </div>
+                        
+                        {% endfor %}
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{% static 'JS/gp.js' %}"></script>
+    
+{% endblock %}

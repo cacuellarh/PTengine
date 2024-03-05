@@ -13,4 +13,10 @@ class Console:
     @staticmethod
     def success(message):
         
-        print(Fore.GREEN, message + Style.RESET_ALL)         
+        
+        print(Fore.GREEN, message + Style.RESET_ALL)
+    
+    @staticmethod    
+    def important(message):
+        
+        print(Fore.BLUE, message + Style.RESET_ALL)             

@@ -1,16 +1,30 @@
-//const base_url = "http://127.0.0.1:8000/api/"
+const base_url = "http://127.0.0.1:8000/api/"
 
-const base_url = "http://195.35.14.162:8002/api/"
+//const base_url = "http://195.35.14.162:8002/api/"
+
+//1 - Boton para cortar precio
 const btn = document.getElementById("btn_cropp")
+// 1.1 Modal confirmacion de precio
+const modal_price_confirm = document.getElementById("notification_wrapper_id")
+// 1.2 h4 mostrar precio escaneado
+const price_scan = document.getElementById("price_scan")
+// 1.3 h4 mostrar precio escaneado
+const btn_cancel_modalprice = document.getElementById("cancel_modalprice")
+// 1.4 h4 mostrar precio escaneado
+const btn_confirm_modalprice = document.getElementById("confirm_modalprice")
+
 const save_cut = document.getElementById("save_cut")
 const btn_send = document.getElementById("send_form")
 const btn_capture = document.getElementById("capture")
 const image = document.getElementById("image_capture")
 const email = document.getElementById("email")
 const frequency = document.getElementById("frequency")
+//Modal, Envio de token a email
 const modal_confirm = document.getElementById("modal_email_confirm")
 let data_form
 let price_check = false
+
+//Lista de validaciones
 let validations_form = {
 
     email_required : false,
@@ -37,7 +51,45 @@ const zoom_up = document.getElementById("zoom+")
 const zoom_down = document.getElementById("zoom-")
 const url_input = document.getElementById("url_")
 const email_valid = document.getElementById("email_valid")
+
+//loader
 const load = document.getElementById("loader");
+
+//funciones estado de loader
+
+function modal_loader_status(status){
+
+    if(status){
+
+        load.classList.remove("hidden_loader")
+    }else{
+
+        load.classList.add("hidden_loader")
+    }
+}
+
+
+//Modal confirmacion de precio
+function modal_state(status, price= undefined){
+
+    if(status){
+
+        modal_price_confirm.classList.remove("disabled")
+        price_scan.textContent = price
+    }else{
+
+        modal_price_confirm.classList.add("disabled")
+        price_scan.textContent = undefined
+    }
+}
+// boton cancelar -> cierra ventana
+btn_cancel_modalprice.addEventListener("click", ()=>{
+
+    modal_state(false)
+})
+
+//boton confirmar -> guarda precio en formulario para enviar
+
 
 //validar campo email
 email_valid.style.display="none"
@@ -77,7 +129,7 @@ btn.addEventListener("click", ()=>{
 
 btn_send.addEventListener("click", ()=>{
 
-    load.classList.remove("hidden_loader")
+    modal_loader_status(true)
 
     if(email.value != ""){
         validations_form.email_required = true
@@ -90,12 +142,10 @@ btn_send.addEventListener("click", ()=>{
     }else{
 
         alert("Por favor valide los campos")
+        modal_loader_status(false)
         
     } 
  
-
-    
-
 })
 
 
@@ -108,6 +158,8 @@ btn_capture.addEventListener("click", ()=>{
 
 function generate_metadata(){
 
+    //cargando loader -> abrir modal de confirmacion
+    modal_loader_status(true)
 
     var img_cut = cropper.getCroppedCanvas()
     console.log("url:; " + url_input.value)
@@ -115,8 +167,9 @@ function generate_metadata(){
     img_cut.toBlob((blob)=>{
         const form = new FormData()
         form.append("image", blob, "image_cut.png")
+        const csrftoken = getCookie('csrftoken');
 
-        fetch(base_url + "save_image",{method:"POST", body: form})
+        fetch(base_url + "save_image",{method:"POST", body: form, headers: {'X-CSRFToken': csrftoken}})
             .then(res => {
                 
                 return res.json()
@@ -130,25 +183,29 @@ function generate_metadata(){
                     url : url_input.value
                 }
 
-                if(confirm("El precio correcto seleccionado es : $" + res_view.price.price + "?")){
+                modal_loader_status(false)
+                modal_state(true, res_view.price.price)
+
+                //Se checkea precio en lista de requerimientos y se valida que sea numero
+                btn_confirm_modalprice.addEventListener("click", ()=>{
 
                     validations_form.price_check = true
                     console.log(res_view.price.price)
                     if(!isNaN(res_view.price.price)){
-
+                
                         data_form = res_view
                         validations_form.price_as_number = true
-                    }else{
 
+                    }else{
+                
                         alert("El area seleccionada no contiene un numero valido.")
                         validations_form.price_as_number = false
                     }
+                    modal_state(false)
                     
-                }else{
-                    price_check = false
-                    validations_form.price_check = false
-                }
-        
+                })
+                
+
             })
             .catch(error =>{
                 console.error(error)
@@ -194,7 +251,8 @@ function send_api(){
     form_metadata.append("email", email.value)
     form_metadata.append("frequency_fk", frequency.value)
 
-    fetch(base_url +"save_image_db",{method:"POST", body: form_metadata})
+    const csrftoken = getCookie('csrftoken');
+    fetch(base_url +"save_image_db",{method:"POST", body: form_metadata, headers:{'X-CSRFToken': csrftoken }})
             .then(res => {
                 return res.json()
             })
@@ -215,4 +273,20 @@ function send_api(){
                 console.error(error)
             })
     
+}
+
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            // Buscar el token CSRF en las cookies
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
 }

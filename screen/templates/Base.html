@@ -1,18 +1,26 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <a href="http://127.0.0.1:8000/api/tracker_price"><title>Price Tracker</title></a>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <link  href="../static/cropperjs/dist/cropper.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../static/Css/site.css">
-    <link rel="stylesheet" href="../static/Css/modal_confirm.css">
+    <link  href="{% static 'cropperjs/dist/cropper.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'Css/about_us.css' %}">
+    <link rel="stylesheet" href="{% static 'Css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'Css/contact.css' %}">
+    <link rel="stylesheet" href="{% static 'Css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'Css/modal.css' %}">
+    <link rel="stylesheet" href="{% static 'Css/modal_confirm.css' %}">
+    <link rel="stylesheet" href="{% static 'Css/privacy_terms.css' %}">
+    <link rel="stylesheet" href="{% static 'Css/ScreenView.css' %}">
+    <link rel="stylesheet" href="{% static 'Css/Token_confirm.css' %}">
+    <link rel="stylesheet" href="{% static 'Css/details.css' %}">
+    <title>Track My Price</title>
 </head>
 <body>
-    
     <header>
         <div class="toggle">
             <label class="menu_toggle">
@@ -22,20 +30,39 @@
             </label> 
         </div>
         <div>
-            <a href="http://127.0.0.1:8000/api/tracker_price"><h1>Price Tracker</h1></a>
+            <a href="http://127.0.0.1:8000/api/tracker_price"><h1>Track My Price</h1></a>
         </div>
         <nav>
             <ul>
-                <li><a href="#">Soporte</a></li>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="{% url 'about_us'%}">Nosotros</a></li>
+                <li><a href="{% url 'contact'%}">Contacto</a></li>
             </ul>
         </nav>
     </header>
     <section class="menu_container">
         <ul>
-            <li>Soporte</li>
+            <li>Inicio</li>
+            <li>Nosotros</li>
+            <li>Contacto</li>
         </ul>
     </section>
-    <section class="container">
+    <main>
+        <!-- Modal confirmación precio -->
+        <div class="notification_wrapper disabled" id="notification_wrapper_id">
+            <div class="notification_s">
+                <img src="../static/img/icons/icon_price.png" alt="Url">
+                <div class="body_notification">
+                    <h2>¿El precio correcto seleccionado es: </h2>
+                    <h3 id="price_scan"></h3>
+                </div>
+                <div class="footer_notification">
+                    <button id="cancel_modalprice">Cancelar</button>
+                    <button id ="confirm_modalprice">Confirmar</button>
+                </div>    
+            </div>
+        </div>
+        <!-- Modal confirmación envió ed token -->
         <div class="modal_email_confirm disabled" id="modal_email_confirm"> 
             <div class="card_modal">
                 <h2>¡Gracias por utilizar Tracker Price!</h2>
@@ -44,78 +71,21 @@
                 <a href="{% url 'main_menu' %}">Volver al inicio</a>
             </div>   
         </div>
-
-        <div class="description">
-            <h2>Monitoreamos cambios en los precios de tus productos favoritos</h2>
-            <h3>... para que, cuando cambien, ¡puedas comprarlos al mejor precio!"</h3>
-        </div>
-        <div class="monitor">
-            <form method="post" action="{% url 'execute' %}" class="page_url">
-                {% csrf_token %}
-                <input type="text" id="url_input" name="url" placeholder="Enter URL">
-                <button class="button_style " type="submit" id="capture">Capturar</button>
-            </form>
-            <div class="page">
-                <div id="loader" class="loader hidden_loader">
-                    <img src="../static/img/gift/loader.gif" alt="">
-                </div>
-                {% block content %}{% endblock %} 
-            </div>
-        </div>
-        <div class="card">
-            <div>
-                <figure>
-                    <img src="../static/img/icons/icon_url.png" alt="Url">
-                </figure>
-                <article>
-                    <p><strong>Introduce la dirección URL</strong><br>del sitio web donde se encuentra el producto que deseas monitorear.</p>
-                </article>
-            </div>
-            <div>
-                <figure>
-                    <img src="../static/img/icons/icon_select.png" alt="Seleccione área">
-                </figure>
-                <article>
-                    <p><strong>Selecciona un área</strong><br>del precio del producto que deseas monitorear</p>
-                </article>
-            </div>
-            <div>
-                <figure>
-                    <img src="../static/img/icons/icon_calendar.png" alt="Frecuencia">
-                </figure>
-                <article>
-                    <p><strong>Establece la frecuencia</strong><br>Odiamos el spam, por ellos tú decides por cuanto tiempo quieres que te notifiquemos</p>
-                </article>
-            </div>
-            <div>
-                <figure>
-                    <img src="../static/img/icons/icon_email.png" alt="Notificaciones">
-                </figure>
-                <article>
-                    <p><strong>Recibe notificaciones</strong><br>en tu correo cada vez que detectemos un cambio en el precio</p>
-                </article>
-            </div>
-        </div>
-
-        
-    </section>
-
-    
+        {% block content %}{% endblock %} 
+    </main>
     <footer>
         <!-- Contenido del pie de página con el año actual -->
-        <p>&copy; <span id="year"></span> Price Tracker Inc.</p>
+        <p>&copy; <span id="year"></span> Track My Price</p>
         <div>
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms of Use</a>
+            <a href="#">Política de privacidad</a>
+            <a href="{% url 'terms' %}">Términos de uso</a>
         </div>
     </footer>
-
-    
-    <script src="../static/JS/form_valid.js"></script>
-    <script src="../static/JS/cropper.js"></script>
+    <script src="{% static 'JS/form_valid.js' %}"></script>
+    <script src="{% static 'JS/cropper.js' %}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js"></script>
     <script>
-       document.getElementById('year').innerText = new Date().getFullYear();
+        document.getElementById('year').innerText = new Date().getFullYear();
 
         document.addEventListener('DOMContentLoaded', function() {
             // Agregar event listener al botón de alternancia de menú
@@ -128,17 +98,16 @@
             document.addEventListener('click', function(event) {
                 var menuContainer = document.querySelector('.menu_container');
                 var menuToggle = document.querySelector('.menu_toggle');
-                
+
                 // Verificar si el clic no ocurrió dentro de .menu_container o .menu_toggle
                 if (!menuContainer.contains(event.target) && !menuToggle.contains(event.target)) {
                     // Quitar la clase 'menu_container_move' si está presente
                     menuContainer.classList.remove('menu_container_move');
                     // Quitar la clase 'active' del botón de alternancia de menú si está presente
                     menuToggle.classList.remove('active');
-        }
-    });
-});
-    </script>
-    
+                }
+            });
+        });
+    </script> 
 </body>
 </html>

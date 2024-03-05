@@ -1,9 +1,6 @@
-{% extends 'Base.html' %}
-
-{% block content %}
-
-
-<div class="cut_seccion">
+{% extends 'main.html' %}
+{% block child_content %}
+<section class="cut_seccion">
     <img src="../static/img/{{img_name}}.png" alt="" id="image_capture">
     <div class="btn-cropp">
         <button id="moveY-T"><img src="../static/img/icons/icon_up_arrow.png" alt="Up"></button>
@@ -13,19 +10,19 @@
         <button id="zoom+"><img src="../static/img/icons/icon_plus.png" alt="+"></button>
         <button id="zoom-"><img src="../static/img/icons/icon_minus.png" alt="-"></button>
     </div>
-</div>
-<div class="confirm_selection">
+</section>
+<section class="confirm_selection">
     <button id="btn_cropp">Confirmar selección</button>
-</div>
-<div id="emailForm">
+</section>
+<section id="emailForm">
     <div class="alert_email">
         <div class="Send">
             <label for="email">Enviar cambio a:</label>
             <input type="email" name="email" id="email" placeholder="me@example.com" required>
-            <span class="err_form" id="email_valid">*Error: La direccion de correo es invalida*</span>
+            <span class="err_form" id="email_valid">*Error: La dirección de correo es invalida*</span>
         </div>
         <div class="frequency">
-            <label for="frequency">Tiempo de monitoreo:</label>
+            <label for="frequency">Duración del monitoreo:</label>
             <select id="frequency" name="frequency" required>
                 {% for fre in frequency %}
                     <option value="{{ fre.id_frequency}}"> {{ fre.frecuency}}</option>
@@ -35,10 +32,7 @@
     </div>
     <input id="url_" type="hidden"  value="{{url}}">
     <button class="button_send"  id="send_form">Comenzar monitoreo gratuito</button>
-</div>
-
-
+</section>
 <script src="../static/cropperjs/dist/cropper.min.js"></script>
 <script src="../static/JS/cut_image.js"></script>
-
 {% endblock %}

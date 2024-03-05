@@ -29,7 +29,6 @@ class Email(Inotification):
         try:
             conexion_smtp = smtplib.SMTP(self.server_smtp, self.port_smtp)
             conexion_smtp.starttls()
-            print("en emailñ")
             # Iniciar sesión en el servidor SMTP
             conexion_smtp.login(self.user_smtp, self.password_smtp)
 
@@ -43,7 +42,7 @@ class Email(Inotification):
             message.attach(MIMEText('Notificacion de precio: {}'.format(self._body), 'html'))
             # Enviar el mensaje
             errs = conexion_smtp.sendmail(self.user_smtp, self._destiny, message.as_string())
-            Console.success(f"Correo enviado : {errs}")
+
 
         except Exception as e:
             Console.warning(f"Error al enviar correo de token: {e}")

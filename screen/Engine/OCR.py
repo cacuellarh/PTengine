@@ -2,18 +2,20 @@ import string
 import pytesseract
 from PIL import Image, ImageOps
 from ..Services.Console_info import Console
+from django.conf import settings
 
 
 class OCR:
     
-    #_temp_path = "C:\\Users\\lolo\\Desktop\\Programacion\\prueba micha_app\\bosquejo\\screen\\static\\temp\\"
+    _temp_path = settings.PATHS["tmp"]
+    tesseract_path = settings.PATHS["tesseract"]
     
-    _temp_path = "/usr/ptengine/PTengine/screen/static/temp/"
+    #_temp_path = "/usr/ptengine/PTengine/screen/static/temp/"
 
     def __init__(self) -> None:
         
-        pytesseract.pytesseract.tesseract_cmd = r'/usr/bin/tesseract'
-        #pytesseract.pytesseract.tesseract_cmd = r'C:\\Program Files\\Tesseract-OCR\Tesseract'  
+        #pytesseract.pytesseract.tesseract_cmd = r'/usr/bin/tesseract'
+        pytesseract.pytesseract.tesseract_cmd = settings.PATHS["tesseract"]
         
         Console.info("Iniciando OCR")
         

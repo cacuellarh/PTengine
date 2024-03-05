@@ -1,5 +1,6 @@
 from selenium import webdriver
 from ..Services.Console_info import Console
+from django.conf import settings
 import time
 import logging
 class ScreenShot:
@@ -12,13 +13,13 @@ class ScreenShot:
     
     ## WINDOWS MODE
     
-    #save_path_img = "C:\\Users\\lolo\\Desktop\\Programacion\\prueba micha_app\\bosquejo\\screen\\static\\img\\"
-    #save_path_temp = "C:\\Users\\lolo\\Desktop\\Programacion\\prueba micha_app\\bosquejo\\screen\\static\\temp\\"
+    save_path_img = settings.PATHS["img_folder"]
+    save_path_temp = settings.PATHS["tmp"]
     
     ## LINUX MODE
     
-    save_path_img = "/usr/ptengine/PTengine/screen/static/img/"
-    save_path_temp = "/usr/ptengine/PTengine/screen/static/temp/"
+    #save_path_img = "/usr/ptengine/PTengine/screen/static/img/"
+    #save_path_temp = "/usr/ptengine/PTengine/screen/static/temp/"
     
     def __init__(self) -> None:
         

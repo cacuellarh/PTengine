@@ -30,3 +30,24 @@ class ImageTrack(models.Model):
 
     def __str__(self):
         return f"ImageTrack {self.id_image}"
+    
+class History_events(models.Model):
+    id_event = models.AutoField(primary_key=True)
+    fk_imagetrack = models.ForeignKey(ImageTrack, on_delete=models.CASCADE)
+    date =    models.DateTimeField()
+    delete_soft = models.BooleanField(default= False)
+    status_scan =  models.BooleanField(default= False)     
+class History_prices(models.Model):
+    id_history_prices = models.AutoField(primary_key=True)
+    fk_history_events = models.ForeignKey(History_events, on_delete=models.CASCADE)
+    price_scan = models.FloatField()
+    delete_soft = models.BooleanField(default= False)
+
+class History_events_fails(models.Model):
+    id_history_events_fails = models.AutoField(primary_key=True)
+    fk_history_events = models.ForeignKey(History_events, on_delete=models.CASCADE)
+    img_route_err = models.CharField(max_length=300)
+    delete_soft = models.BooleanField(default= False)    
+
+ 
+    

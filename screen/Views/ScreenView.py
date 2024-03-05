@@ -35,7 +35,7 @@ class ScreenView(generics.ListAPIView):
     def get(self, request):
         
         self.session_app.create_sesion_key(request)
-        return render(request, "Base.html")
+        return render(request, "main.html")
     
     def post(self,request):
         client_on_exist : Client = None
@@ -51,14 +51,16 @@ class ScreenView(generics.ListAPIView):
                 client = self.client_repos.create({"email": email})
                 post["client_fk"] = client.id_client
                 image = self.img_repos.create(data=post)
-                email_token.delay(email,token_email)  
+                email_token.delay(email,token_email)
+                print("publicando tarea email")  
                       
             else:
                 
                 post["client_fk"] = client_on_exist.id_client
                 image = self.img_repos.create(data=post)
                 email_token.delay(email,token_email)
-
+                print("publicando tarea email") 
+                
             if image:
                 
                 return JsonResponse(ResponseServer(

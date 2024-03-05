@@ -1,14 +1,407 @@
-.cut_seccion {
-
-    overflow-y: scroll;
+/* ========== ResetCSS ========== */
+*,
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+font,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+tr,
+select,
+input {
+    appearance:inherit; 
+    -moz-appearance:inherit; 
+    -webkit-appearance:inherit; 
+    background:transparent; 
+    border:none; 
+    border-radius:0; 
+    box-sizing: border-box; 
+    margin:0; 
+    outline:0; 
+    padding:0; 
+    text-decoration:none;
+    list-style: none;
+    font-family: var(--main_font);
+    color: inherit;
 }
-.cut_seccion img{
 
-    display: block;
-    max-width:100% ;
+/* ========== Variables ========== */
+:root {
+    /* Tamaño objetos */
+    font-size: 15px;
+    /* ===== Variables de color ===== */
+    --menu-color: #3C0753;
+    --main_color: #030637;
+    --hover_color: #720455;
+    --thead_color : #074d701f;
+    --button_color : #910A67;
+    --footer_color : #f7f8fb;
+    --success: #3ab65c;
+    --error: #bf333b;
+    --info: #1898c0;
+    --warning: #bc8c12;
+    /* ===== Variables de fuentes ===== */
+    --main_font: 'Poppins', sans-serif;
+    --fuente-secundaria: "Times New Roman, serif";
 }
-.save_cut{
 
-    width: 0px;
-    height: 0px;
+/* ================================================================
+   ======================== Estilos header ========================
+   ================================================================ */
+    body > header {
+        width: 100%;
+        height: 4rem;
+        background-color: var(--menu-color);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0px 5rem;
+        position: fixed;
+        z-index: 10;
+        box-shadow: -1px 3px 15px 0px rgba(0, 0, 0, 0.5);
+    }
+
+    body > header div h1 {
+        font-size: 2rem;
+        color: #fff;
+        cursor: pointer;
+    }
+
+    body > header nav ul {
+        display: flex;
+        align-items: center;
+    }
+
+    body > header nav ul li {
+        font-size: 1.2rem;
+        color: #fff;
+        padding-left: 3rem;
+    }
+
+    body > header .button_style {
+        padding: 0.7rem 1.2rem;
+        background-color: var(--button_color);
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: .9rem;
+        transition: background-color 0.3s ease;
+    }
+
+    body > header .button_style:hover,
+    .confirm_selection button:hover,
+    #btn_cropp:hover {
+        background-color: var(--hover_color);
+    }
+
+    /* Estilos Menu Hamburguesa  */
+    .toggle {
+        display: none !important;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+    }    
+
+    .menu_toggle {
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px;
+        transition: all .3s ease;
+        gap: .3rem;
+    }
+
+    .menu_toggle .line {
+        position: relative;
+        width: 1.8rem;
+        height: .2rem;
+        background-color: white;
+        border-radius: 10px;
+    }
+
+    .menu_toggle .line:nth-child(1) {
+        top: 0;
+        transform: rotate(0);
+        transition: top .2s ease, transform .4s ease;
+    }
+
+    .menu_toggle .line:nth-child(2) {
+        opacity: 1;
+        visibility: visible;
+        transition: all .2s ease;
+    }
+
+    .menu_toggle .line:nth-child(3) {
+        top: 0;
+        transform: rotate(0);
+        transition: top .2s ease, transform .4s ease;
+    }
+
+    .menu_toggle.active .line:nth-child(1) {
+        top: .45rem;
+        transform: rotate(45deg);
+    }
+
+    .menu_toggle.active .line:nth-child(2) {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .menu_toggle.active .line:nth-child(3) {
+        top: -.55rem;
+        transform: rotate(-45deg);
+    }
+    /* Fin Estilos Menu Hamburguesa  */
+
+    /* Menu lateral */
+    .menu_container {
+        width: 0;
+        height: 100%;
+        background-color: var(--menu-color);
+        position: fixed;
+        top: 3rem;
+        left: 0;
+        color: #fff;
+        font-size: 1.2rem;
+        z-index: 5;
+        transition: width 0.3s ease;
+        overflow: hidden;
+    }
+
+    .menu_container ul {
+        padding: 1rem 2rem;
+        font-size: 1rem;
+    }
+
+    .menu_container ul li{
+        padding: 0.5rem 0;
+    }
+
+    .menu_container ul:hover {
+        background-color: var(--hover_color);
+    }
+    /* Fin Menu lateral */
+
+/* ================================================================
+   ========================= Estilos main =========================
+   ================================================================ */
+
+    /* Contenedor principal */
+    main{
+        padding-top: 4rem;
+    }
+
+/* ================================================================
+   ======================== Estilos footer ========================
+   ================================================================ */
+   footer {
+        background-color: var(--footer_color);
+        width: 100%;
+        height: 4rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0px 15rem;
+    }
+
+    footer p {
+        color: rgb(152 153 155);
+    }
+
+    footer div {
+        display: flex;
+    }
+
+    footer div a {
+        padding-left: 8rem;
+        color: var(--button_color);
+    }
+
+    footer div a:hover {
+        color: var(--hover_color);
+    }
+    
+/* ============================================================ */
+/* ======================== Responsive ======================== */
+/* ============================================================ */
+@media screen and (max-width: 1800px) {
+    :root {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 1550px) {
+    :root {
+        font-size: 13px;
+    }
+}
+
+@media screen and (max-width: 1290px) {
+    :root {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 1170px) {
+    :root {
+        font-size: 11px;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    :root {
+        font-size: 10px;
+    }
+}
+
+@media screen and (max-width: 990px) {
+    :root {
+        font-size: 11px;
+    }
+}
+
+@media screen and (max-width: 899px) {
+    :root {
+        font-size: 10px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    :root {
+        font-size: 9px;
+    }
+}
+
+@media screen and (max-width: 699px) {
+    :root {
+        font-size: 8px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    :root {
+        font-size: 19px;
+    }
+
+    main{
+        padding-top: 3rem;
+    }
+
+    body > header {
+        height: 3rem;
+        padding: 0px 1.5rem;
+    }
+
+    body > header nav ul {
+        display: none;
+    }
+
+    body > header div h1 {
+        font-size: 1.5rem;
+    }
+
+    .toggle {
+        display: block !important;
+    }   
+
+    .menu_container {
+        display: block;
+    }
+
+    .menu_container_move {
+        width: 12rem !important;
+    }
+
+    footer {
+        height: auto;
+        padding: 1rem;
+        flex-direction: column-reverse;
+    }
+
+    footer div {
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+
+    footer div a {
+        padding: 0 0 1rem 0;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    :root {
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    :root {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    :root {
+        font-size: 14px;
+    }
 }

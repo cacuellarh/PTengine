@@ -3,6 +3,7 @@ from screen.Services.Notification.SelectorNotification import SelectorNotificati
 from screen.Services.Auto_validate import Validate
 from screen.Services.Notification.SelectorNotification import SelectorNotification
 from django.core.serializers import deserialize
+from screen.Services.Console_info import Console
 
 # celery -A bosquejo worker -Q email_queue -l info
 
@@ -12,7 +13,16 @@ def validate(img):
     notify.select_notification("email")
     
     
-    html = ''' 
+    
+    validate = Validate()
+    for obj in deserialize("json", img):
+        ins = obj.object
+        Console.important(f"Iniciando scaneo proceso:{ins.id_image}")
+        prices = validate.aut_validate(ins)
+        current = prices["current_price"]
+        db = prices["db_price"]
+        html = '''
+         
     <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
         <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
         <head>
@@ -220,10 +230,12 @@ def validate(img):
             
         <!--[if mso]><style>.v-button {background: transparent !important;}</style><![endif]-->
         <div align="center">
+        
         <!--[if mso]><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="https://unlayer.com" style="height:40px; v-text-anchor:middle; width:275px;" arcsize="0%"  strokecolor="#000000" strokeweight="2px" fillcolor="#9131a0"><w:anchorlock/><center style="color:#ffffff;"><![endif]-->
-        <a href="https://unlayer.com" target="_blank" class="v-button v-size-width" style="box-sizing: border-box;display: inline-block;text-decoration: none;-webkit-text-size-adjust: none;text-align: center;color: #ffffff; background-color: #9131a0; border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px; width:48%; max-width:100%; overflow-wrap: break-word; word-break: break-word; word-wrap:break-word; mso-border-alt: none;border-top-color: #000000; border-top-style: solid; border-top-width: 2px; border-left-color: #000000; border-left-style: solid; border-left-width: 2px; border-right-color: #000000; border-right-style: solid; border-right-width: 2px; border-bottom-color: #000000; border-bottom-style: solid; border-bottom-width: 2px;font-size: 18px;">
+        <a href="http://127.0.0.1:8000/api/details_price/''' + str(ins.id_image)+ '''/''' + str(current) +'''" target="_blank" class="v-button v-size-width" style="box-sizing: border-box;display: inline-block;text-decoration: none;-webkit-text-size-adjust: none;text-align: center;color: #ffffff; background-color: #9131a0; border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px; width:48%; max-width:100%; overflow-wrap: break-word; word-break: break-word; word-wrap:break-word; mso-border-alt: none;border-top-color: #000000; border-top-style: solid; border-top-width: 2px; border-left-color: #000000; border-left-style: solid; border-left-width: 2px; border-right-color: #000000; border-right-style: solid; border-right-width: 2px; border-bottom-color: #000000; border-bottom-style: solid; border-bottom-width: 2px;font-size: 18px;">
             <span style="display:block;padding:10px 20px 8px;line-height:120%;">Entra aqui y consúltalo</span>
         </a>
+        
         <!--[if mso]></center></v:roundrect><![endif]-->
         </div>
 
@@ -292,12 +304,7 @@ def validate(img):
         </html>
 
     '''
-    validate = Validate()
-    for obj in deserialize("json", img):
-        ins = obj.object
-   
-        prices =  validate.aut_validate(ins)
-        current =prices["current_price"]
+        current = prices["current_price"]
         db = prices["db_price"]
         
         #if current != db:
@@ -309,13 +316,19 @@ def validate(img):
 @shared_task(queue="email_queue")
 
 def email_token(email,token_email):
-    
+    print("asdasdasdasdasd")
     notification = SelectorNotification()
     notification.select_notification("email")
     url = f"http://195.35.14.162:8002/api/token_confirm/{token_email}"
     #url = f"http://127.0.0.1:8000/api/token_confirm/{token_email}"
     notification.conf({"destiny": email, "body": url, "affair": "confirmacion de correo"})
     notification.send_notification()
-    print("enviando")
+    Console.warning("Correo enviado")
+    
+@shared_task(queue="p")
+
+def prueba():
+    
+    Console.warning("Correo enviado")    
     
         
