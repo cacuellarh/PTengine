@@ -232,7 +232,7 @@ def validate(img):
         <div align="center">
         
         <!--[if mso]><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="https://unlayer.com" style="height:40px; v-text-anchor:middle; width:275px;" arcsize="0%"  strokecolor="#000000" strokeweight="2px" fillcolor="#9131a0"><w:anchorlock/><center style="color:#ffffff;"><![endif]-->
-        <a href="http://127.0.0.1:8000/api/details_price/''' + str(ins.id_image)+ '''/''' + str(current) +'''" target="_blank" class="v-button v-size-width" style="box-sizing: border-box;display: inline-block;text-decoration: none;-webkit-text-size-adjust: none;text-align: center;color: #ffffff; background-color: #9131a0; border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px; width:48%; max-width:100%; overflow-wrap: break-word; word-break: break-word; word-wrap:break-word; mso-border-alt: none;border-top-color: #000000; border-top-style: solid; border-top-width: 2px; border-left-color: #000000; border-left-style: solid; border-left-width: 2px; border-right-color: #000000; border-right-style: solid; border-right-width: 2px; border-bottom-color: #000000; border-bottom-style: solid; border-bottom-width: 2px;font-size: 18px;">
+        <a href="http://195.35.14.162:8002/api/details_price/''' + str(ins.id_image)+ '''/''' + str(current) +'''" target="_blank" class="v-button v-size-width" style="box-sizing: border-box;display: inline-block;text-decoration: none;-webkit-text-size-adjust: none;text-align: center;color: #ffffff; background-color: #9131a0; border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px; width:48%; max-width:100%; overflow-wrap: break-word; word-break: break-word; word-wrap:break-word; mso-border-alt: none;border-top-color: #000000; border-top-style: solid; border-top-width: 2px; border-left-color: #000000; border-left-style: solid; border-left-width: 2px; border-right-color: #000000; border-right-style: solid; border-right-width: 2px; border-bottom-color: #000000; border-bottom-style: solid; border-bottom-width: 2px;font-size: 18px;">
             <span style="display:block;padding:10px 20px 8px;line-height:120%;">Entra aqui y consúltalo</span>
         </a>
         
@@ -319,9 +319,98 @@ def email_token(email,token_email):
     print("asdasdasdasdasd")
     notification = SelectorNotification()
     notification.select_notification("email")
-    url = f"http://195.35.14.162:8002/api/token_confirm/{token_email}"
+    html= ""
+    
+    html = '''
+            <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        
+    </head>
+    <body>
+    <style>
+        :root {
+        /* Tamaño objetos */
+        font-size: 15px;
+        /* ===== Variables de color ===== */
+        --menu-color: #3C0753;
+        --main_color: #030637;
+        --hover_color: #720455;
+        --thead_color : #074d701f;
+        --button_color : #910A67;
+        --footer_color : #f7f8fb;
+        --success: #3ab65c;
+        --error: #bf333b;
+        --info: #1898c0;
+        --warning: #bc8c12;
+        /* ===== Variables de fuentes ===== */
+        --main_font: 'Poppins', sans-serif;
+        --fuente-secundaria: "Times New Roman, serif";
+    }
+    .wrapper{
+
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: whitesmoke;
+    }
+
+    .card{
+
+        width: 33%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+        justify-content: center;
+        align-items: center;
+        gap: 3rem;
+    }
+
+    a{
+
+        background-color: #720455;
+        padding: 1rem;
+        color: white;
+        border-radius: 5px 5px;
+        font-family: var(--main_font);
+        cursor: pointer;
+        text-decoration: none;
+    }
+    h2{
+
+        font-family: var(--main_font);
+        font-size: 3rem;
+    }
+    p{
+        font-family: var(--main_font);
+        font-size: 2rem;
+    }
+    </style>  
+    
+    <div class="wrapper">
+        <div class="card">
+
+            <h2>Track my price</h2>
+
+            <p>¡Confirma tu token aqui!</p>
+
+            <a href="http://195.35.14.162:8002/api/token_confirm/'''+ {token_email}+'''">Confirmar token</a>
+
+            
+
+        </div>
+    </div>
+    </body>
+    </html>
+    '''
     #url = f"http://127.0.0.1:8000/api/token_confirm/{token_email}"
-    notification.conf({"destiny": email, "body": url, "affair": "confirmacion de correo"})
+    notification.conf({"destiny": email, "body": html, "affair": "confirmacion de correo"})
     notification.send_notification()
     Console.warning("Correo enviado")
     
