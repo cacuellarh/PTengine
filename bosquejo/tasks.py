@@ -5,6 +5,8 @@ from screen.Services.Notification.SelectorNotification import SelectorNotificati
 from django.core.serializers import deserialize
 from screen.Services.Console_info import Console
 from django.conf import settings
+from django.core.serializers import serialize
+from screen.DB.Repos.Image_repos import Image_repos
 
 # celery -A bosquejo worker -Q email_queue -l info
 base = settings.PATHS["base_url"]
@@ -414,10 +416,16 @@ def email_token(email,token_email):
     notification.send_notification()
     Console.warning("Correo enviado")
     
-@shared_task(queue="p")
+@shared_task()
+def execute_auto_task():
+    
+    img_repos = Image_repos()
+    img_all = img_repos.gel_all()
 
-def prueba():
-    
-    Console.warning("Correo enviado")    
-    
+    for img in img_all:
+        if img.notify_validate:
+            data = serialize("json", [img])
+            Console.info("Tarea publicada")
+            validate.delay(data)   
+
         
