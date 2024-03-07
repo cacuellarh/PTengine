@@ -74,12 +74,12 @@ CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'UTC'
 
 
-# CELERY_BEAT_SCHEDULE = {
-#     'enviar_correo_periodico': {
-#         'task': 'bosquejo.tasks.prueba',
-#         'schedule': 10.0,  # Ejecutar cada 60 segundos
-#     },
-# }
+CELERY_BEAT_SCHEDULE = {
+    'enviar_correo_periodico': {
+        'task': 'bosquejo.tasks.validate',
+        'schedule': 180,  # Ejecutar cada 60 segundos
+    },
+}
 ROOT_URLCONF = 'bosquejo.urls'
 
 TEMPLATES = [
