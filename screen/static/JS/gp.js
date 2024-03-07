@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
     load_conf()
     load_gp()
-    load_data()    
+    //load_data()    
 })
 
 function load_gp(){

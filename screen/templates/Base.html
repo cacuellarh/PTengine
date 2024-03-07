@@ -30,11 +30,11 @@
             </label> 
         </div>
         <div>
-            <a href="http://127.0.0.1:8000/api/tracker_price"><h1>Track My Price</h1></a>
+            <a href="{% url 'main_menu'%}"><h1>Track My Price</h1></a>
         </div>
         <nav>
             <ul>
-                <li><a href="#">Inicio</a></li>
+                <li><a href="{% url 'main_menu'%}">Inicio</a></li>
                 <li><a href="{% url 'about_us'%}">Nosotros</a></li>
                 <li><a href="{% url 'contact'%}">Contacto</a></li>
             </ul>

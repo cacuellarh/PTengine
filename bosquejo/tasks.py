@@ -4,15 +4,15 @@ from screen.Services.Auto_validate import Validate
 from screen.Services.Notification.SelectorNotification import SelectorNotification
 from django.core.serializers import deserialize
 from screen.Services.Console_info import Console
+from django.conf import settings
 
 # celery -A bosquejo worker -Q email_queue -l info
+base = settings.PATHS["base_url"]
 
 @shared_task(queue="validate_queue")
 def validate(img):
     notify = SelectorNotification()
     notify.select_notification("email")
-    
-    
     
     validate = Validate()
     for obj in deserialize("json", img):
@@ -232,7 +232,7 @@ def validate(img):
         <div align="center">
         
         <!--[if mso]><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="https://unlayer.com" style="height:40px; v-text-anchor:middle; width:275px;" arcsize="0%"  strokecolor="#000000" strokeweight="2px" fillcolor="#9131a0"><w:anchorlock/><center style="color:#ffffff;"><![endif]-->
-        <a href="http://195.35.14.162:8002/api/details_price/''' + str(ins.id_image)+ '''/''' + str(current) +'''" target="_blank" class="v-button v-size-width" style="box-sizing: border-box;display: inline-block;text-decoration: none;-webkit-text-size-adjust: none;text-align: center;color: #ffffff; background-color: #9131a0; border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px; width:48%; max-width:100%; overflow-wrap: break-word; word-break: break-word; word-wrap:break-word; mso-border-alt: none;border-top-color: #000000; border-top-style: solid; border-top-width: 2px; border-left-color: #000000; border-left-style: solid; border-left-width: 2px; border-right-color: #000000; border-right-style: solid; border-right-width: 2px; border-bottom-color: #000000; border-bottom-style: solid; border-bottom-width: 2px;font-size: 18px;">
+        <a href="'''+ str(base)+'''/details_price/''' + str(ins.id_image)+ '''/''' + str(current) +'''" target="_blank" class="v-button v-size-width" style="box-sizing: border-box;display: inline-block;text-decoration: none;-webkit-text-size-adjust: none;text-align: center;color: #ffffff; background-color: #9131a0; border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px; width:48%; max-width:100%; overflow-wrap: break-word; word-break: break-word; word-wrap:break-word; mso-border-alt: none;border-top-color: #000000; border-top-style: solid; border-top-width: 2px; border-left-color: #000000; border-left-style: solid; border-left-width: 2px; border-right-color: #000000; border-right-style: solid; border-right-width: 2px; border-bottom-color: #000000; border-bottom-style: solid; border-bottom-width: 2px;font-size: 18px;">
             <span style="display:block;padding:10px 20px 8px;line-height:120%;">Entra aqui y consúltalo</span>
         </a>
         
@@ -353,7 +353,7 @@ def email_token(email,token_email):
     .wrapper{
 
         width: 100%;
-        height: 100vh;
+        height: 22rem;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -372,7 +372,7 @@ def email_token(email,token_email):
         gap: 3rem;
     }
 
-    a{
+    .btn{
 
         background-color: #720455;
         padding: 1rem;
@@ -385,11 +385,11 @@ def email_token(email,token_email):
     h2{
 
         font-family: var(--main_font);
-        font-size: 3rem;
+        font-size: 2.2rem;
     }
     p{
         font-family: var(--main_font);
-        font-size: 2rem;
+        font-size: 1.5rem;
     }
     </style>  
     
@@ -400,7 +400,7 @@ def email_token(email,token_email):
 
             <p>¡Confirma tu token aqui!</p>
 
-            <a href="http://195.35.14.162:8002/api/token_confirm/'''+ {token_email}+'''">Confirmar token</a>
+            <a class="btn" href="'''+ str(base)+'''/token_confirm/'''+ str(token_email)+'''">Confirmar token</a>
 
             
 

@@ -32,7 +32,7 @@ class LogRepos():
     def get_history_prices(self, id):
         
         result = History_prices.objects.filter(
-        fk_history_events__fk_imagetrack_id=38
+        fk_history_events__fk_imagetrack_id=id
     ).values('price_scan', 'fk_history_events__fk_imagetrack__price', 'fk_history_events__date')
         print(result)
         return result

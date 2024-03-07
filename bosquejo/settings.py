@@ -17,7 +17,7 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # PATHS = {
-#     "base_url" : 'http://127.0.0.1:8000/api/',
+#     "base_url" : 'http://127.0.0.1:8000/',
 #     "tmp" : 'C:\\Users\\lolo\\Desktop\\Programacion\\prueba micha_app\\bosquejo\\screen\\static\\temp\\',
 #     "img_folder" : 'C:\\Users\\lolo\\Desktop\\Programacion\\prueba micha_app\\bosquejo\\screen\\static\\img\\',
 #     "error" : 'C:\\Users\\lolo\\Desktop\\Programacion\\prueba micha_app\\bosquejo\\screen\\static\\err_img\\',
@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # }
 
 PATHS = {
-    "base_url" : 'http://195.35.14.162:8002/api/',
+    "base_url" : 'http://trackmyprice.co/',
     "tmp" : '/usr/ptengine/PTengine/screen/static/temp/',
     "img_folder" : '/usr/ptengine/PTengine/screen/static/img/',
     "error" : '/usr/ptengine/PTengine/screen/static/err_img/',

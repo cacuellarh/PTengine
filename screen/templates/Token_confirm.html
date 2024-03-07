@@ -1,19 +1,18 @@
 
-<!-- <!DOCTYPE html>
+{% load static%}
+<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+        <link rel="stylesheet" href="{% static 'Css/Token_confirm.css'%}">
         <title>Track My Price</title>
         <style>
-   </style>
+        </style>
     </head>
-    <body> -->
+    <body>
         
-        {% extends 'Base.html' %}
-        {% block content %}
-        {% load static %}    
+   
     <div class="modal_email_confirm"> 
         <div class="card_confirm">
             <img src="{% static 'img/icons/comprobado.png '%}" alt="Url">
@@ -22,6 +21,6 @@
             <a href="{% url 'main_menu' %}">Ir a Track My Price</a>
         </div>
     </div>
-    {% endblock %}
-<!-- </body>
-</html> -->
+
+</body>
+</html>

@@ -22,10 +22,12 @@ class User:
             img = self.image_repos.filter("id_image", id_img)
             self.prices = self.log_repos.get_history_prices(id_img)
             total = 0
-            elements = 0
+            elements = 1
             #arreglar
+            
             for price in self.prices:
                 print(price)
+                print("hola")
                 total+= price["fk_history_events__fk_imagetrack__price"]
                 elements+= 1
             
