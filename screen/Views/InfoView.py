@@ -19,4 +19,10 @@ class Info():
         
         def get(self, request):
             
-            return render(request,"terms.html")         
+            return render(request,"terms.html")
+    
+    class Privacy(generics.ListAPIView):
+        
+        def get(self, request):
+            
+            return render(request,"privacy.html")                 

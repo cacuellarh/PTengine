@@ -24,5 +24,6 @@ urlpatterns = [
     
     path('about_us', Info.About.as_view(), name="about_us"),
     path('contact', Info.Contact.as_view(), name="contact"),
-    path('termns', Info.Terms.as_view(), name="terms")
+    path('termns', Info.Terms.as_view(), name="terms"),
+    path('privacy', Info.Privacy.as_view(), name="privacy")
 ]

@@ -7,6 +7,7 @@ from screen.Services.Console_info import Console
 from django.conf import settings
 from django.core.serializers import serialize
 from screen.DB.Repos.Image_repos import Image_repos
+import logging
 
 # celery -A bosquejo worker -Q email_queue -l info
 base = settings.PATHS["base_url"]
@@ -415,17 +416,22 @@ def email_token(email,token_email):
     notification.conf({"destiny": email, "body": html, "affair": "confirmacion de correo"})
     notification.send_notification()
     Console.warning("Correo enviado")
-    
+
+logger = logging.getLogger(__name__)    
 @shared_task()
 def execute_auto_task():
     
-    img_repos = Image_repos()
-    img_all = img_repos.gel_all()
+    try:
+        img_repos = Image_repos()
+        img_all = img_repos.gel_all()
 
-    for img in img_all:
-        if img.notify_validate:
-            data = serialize("json", [img])
-            Console.info("Tarea publicada")
-            validate.delay(data)   
+        for img in img_all:
+            if img.notify_validate:
+                data = serialize("json", [img])
+                Console.info("Tarea publicada")
+                validate.delay(data)
+    except Exception as e:
+        
+        logger.exception(f"Error al ejecutar y publicar tareas de validacion: {e}")               
 
         

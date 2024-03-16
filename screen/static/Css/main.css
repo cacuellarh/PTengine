@@ -238,7 +238,7 @@
 
 @media screen and (max-width: 576px) {
     .description {
-        padding: 2rem;
+        padding: 2rem 2rem 1rem;
     }
 
     .description h2 {
@@ -287,7 +287,7 @@
 
     .card {
         display: flex;
-        padding: 5rem;
+        padding: 3rem 5rem;
         width: 100%;
         flex-direction: column;
         gap: 2rem;
