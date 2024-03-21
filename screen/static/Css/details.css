@@ -129,3 +129,8 @@
     color: rgb(7, 202, 7);
     padding-left: 0.5rem;
 }
+.a_my_product a{
+
+    font-family: var(--main_font);
+    color: var(--main_font);
+}

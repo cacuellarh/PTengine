@@ -53,7 +53,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'screen'
+    'screen',
+    'django.contrib.humanize'
 ]
 
 
@@ -74,11 +75,28 @@ CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'UTC'
 
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'handlers': {
+#         'console': {
+#             'level': 'DEBUG',  # Puedes ajustar este nivel según tu necesidad
+#             'class': 'logging.StreamHandler',
+#         },
+#     },
+#     'loggers': {
+#         'celery': {
+#             'handlers': ['console'],
+#             'level': 'DEBUG',  # Puedes ajustar este nivel según tu necesidad
+#             'propagate': False,
+#         },
+#     },
+# }
 
 CELERY_BEAT_SCHEDULE = {
     'enviar_correo_periodico': {
         'task': 'bosquejo.tasks.execute_auto_task',
-        'schedule': 20,  # Ejecutar cada 60 segundos
+        'schedule': 50,  #28800
     },
 }
 ROOT_URLCONF = 'bosquejo.urls'

@@ -1,6 +1,6 @@
 
 {% extends 'base.html' %}
-
+{% load humanize %} 
 {% block content %}
 {% load static %}
     <section class="wrapper_details">
@@ -17,17 +17,17 @@
             <div class="card_price">
 
                 <h6>Precio anterior</h6>
-                <strong><span class="cash">${{db_price}}.00</span></strong>
+                <strong><span class="cash">${{db_price|floatformat:"-2"}}</span></strong>
             </div>
 
             <div class="card_price">
                 <h6>Precio actual</h6>
-                <strong><span class="cash">${{current_price}}</span></strong>
+                <strong><span class="cash">${{current_price|floatformat:"-2"}}</span></strong>
             </div>
 
             <div class="card_price">
                 <h6>Promedio</h6>
-                <strong>{{avg}}</strong>
+                <strong>${{avg |floatformat:"-2"}}</strong>
             </div>
 
             <div class="card_price">
@@ -36,8 +36,8 @@
             </div>
 
             <div class="card_price">
-                <h6>fghfghfg</h6>
-                <strong>12313213.123</strong>
+                <h6>Consultar URL</h6>
+                <strong class="a_my_product"><a href="">Ir a mi producto</a></strong>
             </div>
         </div>
 

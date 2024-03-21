@@ -13,13 +13,3 @@ app.config_from_object('django.conf:settings', namespace='CELERY')
 app.autodiscover_tasks()
 
 
-# @app.task(bind=True, ignore_result=True)
-# def debug_task(self):
-#     print(f'Request: {self.request!r}')
-
-# app.conf.beat_schedule = {
-#     'mi-tarea-cada-10-segundos': {
-#         'task': 'bosquejo.tasks.prueba',
-#         'schedule': 85.0,
-#     },
-# }

@@ -24,6 +24,7 @@ def validate(img):
         prices = validate.aut_validate(ins)
         current = prices["current_price"]
         db = prices["db_price"]
+        
         html = '''
          
     <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -434,4 +435,3 @@ def execute_auto_task():
         
         logger.exception(f"Error al ejecutar y publicar tareas de validacion: {e}")               
 
-        

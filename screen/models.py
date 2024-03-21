@@ -1,6 +1,6 @@
 from email.policy import default
 from django.db import models
-
+import uuid
 class Frequency(models.Model):
     
     id_frequency = models.AutoField(primary_key=True)
@@ -12,7 +12,7 @@ class Client(models.Model):
     name = models.CharField(max_length=50, default=" ")  
     
 class ImageTrack(models.Model):
-    id_image = models.AutoField(primary_key=True)
+    id_image = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     price = models.IntegerField()
     x = models.DecimalField(max_digits=30, decimal_places=20)
     y = models.DecimalField(max_digits=30, decimal_places=20)
