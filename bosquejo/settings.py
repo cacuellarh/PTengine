@@ -31,7 +31,7 @@ PATHS = {
     "img_folder" : '/usr/ptengine/PTengine/screen/static/img/',
     "error" : '/usr/ptengine/PTengine/screen/static/err_img/',
     "tesseract" : '/usr/bin/tesseract',
-    "ImageRoutes" : "http://127.0.0.1:8000/static/img/"
+    "ImageRoutes" : "https://trackmyprice.co/static/img/"
 }
 
 # Quick-start development settings - unsuitable for production
