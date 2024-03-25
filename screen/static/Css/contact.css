@@ -21,16 +21,21 @@
     padding: 2rem;
 }
 
+.modal_container form,
 .form_container form {
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
+.modal_container form label,
 .form_container label {
     font-size: 1rem;
     margin-bottom: 0.5rem;
 }
 
+.modal_container form input,
+.modal_container form textarea,
 .form_container input,
 .form_container textarea {
     width: 100%; 
@@ -41,6 +46,10 @@
     margin-bottom: 1rem;
 }
 
+.modal_container form input:hover, 
+.modal_container form input:focus, 
+.modal_container form textarea:hover, 
+.modal_container form textarea:focus,
 .form_container input:hover, 
 .form_container input:focus, 
 .form_container textarea:hover, 
@@ -49,6 +58,7 @@
     box-shadow: 0 0 5px rgba(126, 13, 22, 0.7); 
 }
 
+.modal_container form input[type="submit"],
 .form_container input[type="submit"] {
     width: 100%;
     padding: .7rem; 
@@ -65,10 +75,12 @@
     margin-top: 1rem;
 }
 
+.modal_container form input[type="submit"]:hover,
 .form_container input[type="submit"]:hover {
     background-color: var(--hover_color);
 }
 
+.modal_container form  span,
 .form_container span {
     margin-top: 1rem;
     font-size: 1rem;
@@ -98,6 +110,8 @@
         font-size: 1rem;
     }
 
+    .modal_container form input,
+    .modal_container form textarea,
     .form_container input,
     .form_container textarea {
         width: 100%;
@@ -105,7 +119,13 @@
         padding: 0.7rem;
     }
 
+    .modal_container form input[type="submit"],
     .form_container input[type="submit"] {
         font-size: 1rem;
+    }
+
+    .modal_container form  span,
+    .form_container span {
+        font-size: 0.8rem;
     }
 }

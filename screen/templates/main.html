@@ -1,4 +1,5 @@
 {% extends 'Base.html' %}
+{% load static %}
 {% block content %}
 <section class="description">
     <h2>Monitoreamos cambios en los precios de tus productos favoritos</h2>
@@ -49,7 +50,19 @@
     </form>
     <div class="page">
         <div id="loader" class="loader hidden_loader">
-            <img src="../static/img/gift/loader.gif" alt="">
+            <img src="{% static 'img/logo_white.png' %}" alt="Loader">
+            <div class="loader_text">
+                <p class="text" style="--i:1">L</p>
+                <p class="text" style="--i:2">o</p>
+                <p class="text" style="--i:3">a</p>
+                <p class="text" style="--i:4">d</p>
+                <p class="text" style="--i:5">i</p>
+                <p class="text" style="--i:6">n</p>
+                <p class="text" style="--i:7">g</p>
+                <p class="text" style="--i:8">.</p>
+                <p class="text" style="--i:9">.</p>
+                <p class="text" style="--i:10">.</p>
+            </div>
         </div>
         {% block child_content %} {% endblock %}
     </div>

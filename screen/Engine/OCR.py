@@ -30,7 +30,7 @@ class OCR:
             img_to_binary.save(f"{self._temp_path}binary.png")
             
             ## Configuracion de tesseract, lista blanca de caracteres a buscar y segmentacion de 1 linea    
-            price = pytesseract.image_to_string(img_to_binary, config='--psm 6 -c tessedit_char_whitelist=0123456789')
+            price = pytesseract.image_to_string(img_to_binary, config='--psm 6 -c tessedit_char_whitelist=0123456789.')
             # print("BLANCO el precio es :" + price)
             Console.info(f"Imagen convertida a string directamente : {price}")
         

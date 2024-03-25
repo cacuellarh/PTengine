@@ -1,4 +1,4 @@
-.notification_wrapper{
+.modal_window {
     position: fixed;
     width: 100%;
     height: 100%;
@@ -10,42 +10,75 @@
     z-index: 1;
     top: 0;
     left: 0;
+    margin-top: 2rem;
 }
 
-.disabled{
+.disabled {
     display: none;
 }
 
-.notification_s{
-    width: 50rem;
+.modal_window .modal_container {
+    width: 35rem;
     height: auto;
     border-radius: 5px;
     overflow: hidden;
     background-color: #fff;
-    padding: 1rem;
+    padding: 2rem;
     display: flex;
     align-items: center;
     flex-direction: column;
     color: #000;
+    gap: 1rem;
+    position: relative;
 }
 
-.body_notification{
-    width: 100%;
-    padding: 1rem 0;
+/* .modal_window .modal_container > :first-child {
+    margin-left: auto;
+} */
+
+.modal_window .modal_container_medium {
+    width: 50rem !important;
+}
+
+.modal_window .modal_container img {
+    width: 4rem;
+    height: auto;
+}
+
+.modal_window .modal_container h2 {
+    font-size: 2rem;
+    text-align: center;
+}
+
+.modal_window .modal_container h3 {
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.modal_window .modal_container p {
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.modal_window .modal_container p.text {
+    font-size: 1.1rem;
+}
+
+.modal_window .modal_container a {
+    background-color: #3C0753;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    padding: 0.7rem 1.2rem;
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
 }
 
-.body_notification h2,
-.body_notification h3 {
-    font-size: 2rem;
-    text-align: center;
-    font-weight: 500;
-}
-
-.footer_notification{
+.modal_window .modal_container .button_container{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -53,32 +86,43 @@
     gap: 3rem;
 }
 
-.footer_notification button {
-    background-color: #910A67;
+.modal_window .modal_container .button_container button {
     color: #fff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: 600;
     transition: background-color 0.3s ease;
-    width: 12rem;
-    padding: 1rem 0;
+    width: 7rem;
+    padding: 0.6rem 0;
     display: flex;
     justify-content: center;
 }
 
-.footer_notification button:first-child {
-    background-color: var(--error);
+.modal_window .modal_container .button_container button:first-child {
+    background-color: gray;
 }
 
-.footer_notification button:last-child {
-    background-color: var(--success);
+.modal_window .modal_container .button_container button:first-child:hover {
+    background-color: rgb(87, 86, 86);
 }
 
-.notification_s img {
-    width: 4.5rem;
+.modal_window .modal_container .button_container button:last-child {
+    background-color: var(--menu-color); 
+}
+
+.modal_window .modal_container .button_container button:last-child:hover {
+    background-color: var(--hover_color); 
+}
+
+.modal_window .modal_container .close {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    width: 2.5rem;
     height: auto;
+    cursor: pointer;
 }
 
 /* ============================================================ */
@@ -86,33 +130,56 @@
 /* ============================================================ */
 
 @media screen and (max-width: 576px) {
-    .notification_s {
-        width: 85%;
+    .modal_window .modal_container {
+        width: 85% !important;
+        padding: 1rem;
+        gap: 0.5rem;
     }
 
-    .notification_s h2,
-    .notification_s h3 {
-        font-size: 1.2rem;
-    }
-
-    .notification_s img {
+    .modal_window .modal_container img {
         width: 3rem;
     }
 
-    .notification_s a {
-        font-size: .8rem;
-        width: 8rem;
-        padding: 0.5rem 0;
+    .modal_window .modal_container h2 {
+        font-size: 1.5rem;
     }
 
-    .footer_notification button {
+    .modal_window .modal_container h3 {
+        font-size: 1.3rem;
+    }
+
+    .modal_window .modal_container p {
+        font-size: 1rem;
+    }
+
+    .modal_window .modal_container .button_container{ 
+        justify-content: space-evenly;
+        gap: unset;
+    }
+    .modal_window .modal_container .button_container button {
         font-size: 1rem;
         width: 6rem;
         padding: 0.5rem 0;
     }
 
-    .footer_notification{
-        justify-content: space-evenly;
-        gap: unset;
+    .modal_window .modal_container a {
+        font-size: 1rem;
+    }
+
+    .modal_window .modal_container .close {
+        top: 0.5rem;
+        right: 0.5rem;
+        width: 1.5rem;
+    }
+
+    .form_title {
+        font-size: 1.2rem !important;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .modal_window .modal_container {
+        padding: 1rem;
+
     }
 }

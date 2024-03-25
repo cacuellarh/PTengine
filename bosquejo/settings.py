@@ -21,7 +21,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 #     "tmp" : 'C:\\Users\\lolo\\Desktop\\Programacion\\prueba micha_app\\bosquejo\\screen\\static\\temp\\',
 #     "img_folder" : 'C:\\Users\\lolo\\Desktop\\Programacion\\prueba micha_app\\bosquejo\\screen\\static\\img\\',
 #     "error" : 'C:\\Users\\lolo\\Desktop\\Programacion\\prueba micha_app\\bosquejo\\screen\\static\\err_img\\',
-#     "tesseract" : 'C:\\Program Files\\Tesseract-OCR\Tesseract'
+#     "tesseract" : 'C:\\Program Files\\Tesseract-OCR\Tesseract',
+#     "ImageRoutes" : "http://127.0.0.1:8000/static/img/"
 # }
 
 PATHS = {
@@ -29,7 +30,8 @@ PATHS = {
     "tmp" : '/usr/ptengine/PTengine/screen/static/temp/',
     "img_folder" : '/usr/ptengine/PTengine/screen/static/img/',
     "error" : '/usr/ptengine/PTengine/screen/static/err_img/',
-    "tesseract" : '/usr/bin/tesseract'
+    "tesseract" : '/usr/bin/tesseract',
+    "ImageRoutes" : "http://127.0.0.1:8000/static/img/"
 }
 
 # Quick-start development settings - unsuitable for production

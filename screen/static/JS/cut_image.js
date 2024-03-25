@@ -36,6 +36,7 @@ let validations_form = {
 const cropper = new  Cropper(image, {
     aspectRatio: 0,  // Proporción de aspecto (puedes ajustar según tus necesidades)
     viewMode: 1,
+    zoomOnWheel: false
 
 })
 
@@ -75,7 +76,7 @@ function modal_state(status, price= undefined){
     if(status){
 
         modal_price_confirm.classList.remove("disabled")
-        price_scan.textContent = price
+        price_scan.textContent = "$"+price;
     }else{
 
         modal_price_confirm.classList.add("disabled")
@@ -95,6 +96,7 @@ btn_cancel_modalprice.addEventListener("click", ()=>{
 email_valid.style.display="none"
 email.addEventListener("focusout", ()=>{
     input_email_valid()
+    
 })
 moveYT.addEventListener("click", ()=>{
     cropper.move(0,13)
@@ -137,6 +139,7 @@ btn_send.addEventListener("click", ()=>{
         validations_form.email_required = false
     }
 
+    console.log(validations_form)
     if(validations_form.email_check && validations_form.email_required && validations_form.price_as_number && validations_form.price_check){
         send_api()
     }else{
@@ -216,12 +219,9 @@ function generate_metadata(){
 
 function input_email_valid(){
 
-    let email = document.getElementById("email");
-    let email_ = email.value;
-    console.log(email_);
     let regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-    if(regex.test(email_)){
+    if(regex.test(email.value)){
         console.log("correo valido");
         email_valid.style.display="none";
         validations_form.email_check = true;

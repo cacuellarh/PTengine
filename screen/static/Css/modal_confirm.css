@@ -21,34 +21,36 @@
     border-radius: 5px;
     overflow: hidden;
     background-color: #fff;
-    padding: 1rem;
+    padding: 2rem;
     display: flex;
     align-items: center;
     flex-direction: column;
     color: #000;
+    gap: 1rem;
+}
+
+.card_modal img {
+    height: 4rem;
 }
 
 .card_modal h2 {
-    font-size: 3rem;
+    font-size: 2rem;
     text-align: center;
-    margin: 0 0 1rem;
 }
 
 .card_modal h3 {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     text-align: center;
-    margin: 0 0 1rem;
 }
 
 .card_modal p {
-    font-size: 1rem;
+    font-size: 1.1rem;
     text-align: center;
-    margin: 0 0 1rem;
 }
 
 .card_modal a,
 .card_confirm a {
-    background-color: #910A67;
+    background-color: #3C0753;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -62,6 +64,10 @@
     justify-content: center;
 }
 
+.card_modal a:hover {
+    background-color: var(--hover_color);
+}
+
 .disabled{
     display: none;
 }
@@ -69,25 +75,21 @@
 .card_confirm h1 {
     font-size: 2.5rem;
     text-align: center;
-    margin: 0 0 1rem;
 }
 
 .card_confirm img {
     width: 4rem;
     height: auto;
-    margin: 0 0 1rem;
 }
 
 .card_confirm img {
     width: 4rem;
     height: auto;
-    margin: 0 0 1rem;
 }
 
 .card_confirm p {
     font-size: 1.2rem;
     text-align: center;
-    margin: 0 0 1rem;
 }
 
 /* ============================================================ */

@@ -1,9 +1,10 @@
 from selenium import webdriver
+from bosquejo.Domain.Contracts import ISeniumScreenService
 from ..Services.Console_info import Console
 from django.conf import settings
 import time
 import logging
-class ScreenShot:
+class ScreenShot():
 
     url = ""
     options : webdriver 
@@ -22,9 +23,14 @@ class ScreenShot:
     #save_path_temp = "/usr/ptengine/PTengine/screen/static/temp/"
     
     def __init__(self) -> None:
+        self._ConfigSelenium()
+        
+
+    def _ConfigSelenium(self):
         
         logging.getLogger('selenium').setLevel(logging.WARNING)
         self.options = webdriver.ChromeOptions()
+
         self.options.add_argument('--headless')
         self.options.add_argument('--disable-software-rasterizer')
         self.options.add_argument('--no-sandbox')
@@ -40,7 +46,7 @@ class ScreenShot:
         self.options.add_argument('--disable-logging')
         self.options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.6167.140 Safari/537.3")
         self.boswer = webdriver.Chrome(options=self.options)
-
+        
     def _calculate_height(self):
         try:
           
@@ -67,7 +73,7 @@ class ScreenShot:
             self.options.add_argument(f'--window-size=1080,{self.height}')
             self.boswer = webdriver.Chrome(options=self.options)
             self.boswer.get(self.url)
-            time.sleep(10)
+            time.sleep(5)
 
             if action == "save":
                 self.boswer.save_screenshot(f"{self.save_path_img}{file_name}.png")
