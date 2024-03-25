@@ -516,6 +516,7 @@ def email_token(email,token_email):
             color: #3C0753;
             text-decoration: underline;
             margin-bottom: 1rem;
+            width:100%;
         }
         @media screen and (max-width: 1800px) {
             :root {
