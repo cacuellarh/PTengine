@@ -16,23 +16,23 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-PATHS = {
-    "base_url" : 'http://127.0.0.1:8000/',
-    "tmp" : 'C:\\Users\\lolo\\Desktop\\tmp\\PTengine\\screen\\static\\temp\\',
-    "img_folder" : 'C:\\Users\\lolo\\Desktop\\tmp\\PTengine\\screen\\static\\img\\',
-    "error" : 'C:\\Users\\lolo\\Desktop\\tmp\\PTengine\\screen\\static\\err_img\\',
-    "tesseract" : 'C:\\Program Files\\Tesseract-OCR\Tesseract',
-    "ImageRoutes" : "http://127.0.0.1:8000/static/img/"
-}
-
 # PATHS = {
-#     "base_url" : 'http://trackmyprice.co/',
-#     "tmp" : '/usr/ptengine/PTengine/screen/static/temp/',
-#     "img_folder" : '/usr/ptengine/PTengine/screen/static/img/',
-#     "error" : '/usr/ptengine/PTengine/screen/static/err_img/',
-#     "tesseract" : '/usr/bin/tesseract',
-#     "ImageRoutes" : "https://trackmyprice.co/static/img/"
+#     "base_url" : 'http://127.0.0.1:8000/',
+#     "tmp" : 'C:\\Users\\lolo\\Desktop\\tmp\\PTengine\\screen\\static\\temp\\',
+#     "img_folder" : 'C:\\Users\\lolo\\Desktop\\tmp\\PTengine\\screen\\static\\img\\',
+#     "error" : 'C:\\Users\\lolo\\Desktop\\tmp\\PTengine\\screen\\static\\err_img\\',
+#     "tesseract" : 'C:\\Program Files\\Tesseract-OCR\Tesseract',
+#     "ImageRoutes" : "http://127.0.0.1:8000/static/img/"
 # }
+
+PATHS = {
+    "base_url" : 'http://trackmyprice.co/',
+    "tmp" : '/usr/ptengine/PTengine/screen/static/temp/',
+    "img_folder" : '/usr/ptengine/PTengine/screen/static/img/',
+    "error" : '/usr/ptengine/PTengine/screen/static/err_img/',
+    "tesseract" : '/usr/bin/tesseract',
+    "ImageRoutes" : "https://trackmyprice.co/static/img/"
+}
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/

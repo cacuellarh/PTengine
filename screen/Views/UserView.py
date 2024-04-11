@@ -25,7 +25,7 @@ class User:
             total = 0
             elements = 1
             PriceDifference = priceCurrentInt - img.price
-            print(f"holaaaaaaa{PriceDifference}")
+
             for price in self.prices:
                 total+= price["fk_history_events__fk_imagetrack__price"]
                 elements+= 1
