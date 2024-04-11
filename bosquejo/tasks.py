@@ -28,7 +28,7 @@ def validate(img):
         if db["current_price"] != db["db_price"]:
             html = '''
             
-        [1:53 p. m., 25/3/2024] Vixtor: <!DOCTYPE html>
+    <!DOCTYPE html>
     <html lang="es">
     <head>
         <meta charset="UTF-8">
