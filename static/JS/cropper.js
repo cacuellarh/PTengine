@@ -7,3 +7,4 @@ setTimeout(function() {
     });
 
 }, 500); // Ajusta el tiempo según sea necesario
+

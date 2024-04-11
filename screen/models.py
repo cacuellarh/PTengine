@@ -47,7 +47,12 @@ class History_events_fails(models.Model):
     id_history_events_fails = models.AutoField(primary_key=True)
     fk_history_events = models.ForeignKey(History_events, on_delete=models.CASCADE)
     img_route_err = models.CharField(max_length=300)
-    delete_soft = models.BooleanField(default= False)    
-
+    delete_soft = models.BooleanField(default= False)
+    
+class ElementsXpaths(models.Model):
+    id_ElementsXpaths = models.AutoField(primary_key=True),
+    domain = models.CharField(max_length=200, default=None)
+    xpath = models.CharField(max_length=200, default=None)
+    type_element = models.CharField(max_length=200, default=None)
  
     

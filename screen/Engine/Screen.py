@@ -1,4 +1,5 @@
 from selenium import webdriver
+from screen.Services.selenium_services.SeleniumCloseAds import SeleniumCloseAds
 from bosquejo.Domain.Contracts import ISeniumScreenService
 from ..Services.Console_info import Console
 from django.conf import settings
@@ -25,7 +26,6 @@ class ScreenShot():
     def __init__(self) -> None:
         self._ConfigSelenium()
         
-
     def _ConfigSelenium(self):
         
         logging.getLogger('selenium').setLevel(logging.WARNING)
@@ -70,10 +70,12 @@ class ScreenShot():
             self.url = url_    
             self._calculate_height()
 
-            self.options.add_argument(f'--window-size=1080,{self.height}')
+            self.options.add_argument(f'--window-size=720,{self.height}')
             self.boswer = webdriver.Chrome(options=self.options)
             self.boswer.get(self.url)
-            time.sleep(5)
+            seleniumServices = SeleniumCloseAds(self.boswer)
+            seleniumServices.FindUrl(self.url)
+            time.sleep(10)
 
             if action == "save":
                 self.boswer.save_screenshot(f"{self.save_path_img}{file_name}.png")

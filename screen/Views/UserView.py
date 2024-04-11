@@ -18,28 +18,27 @@ class User:
             self.prices = None
             
         def get(self,request, id_img, price_current):
-                  
+            
+            priceCurrentInt = float(price_current)      
             img = self.image_repos.filter("id_image", id_img)
             self.prices = self.log_repos.get_history_prices(id_img)
             total = 0
             elements = 1
-            #arreglar
-            
+            PriceDifference = priceCurrentInt - img.price
+            print(f"holaaaaaaa{PriceDifference}")
             for price in self.prices:
-                print(price)
-                print("hola")
                 total+= price["fk_history_events__fk_imagetrack__price"]
                 elements+= 1
-            
-            avg = total / elements
+        
              
             return render(request, "user_check_price.html", 
                 {
                               "img_details": img,
                               "h_prices" : self.prices,
                               "current_price": price_current,
-                               "db_price": img.price,
-                               "avg" : avg
+                              "db_price": img.price,
+                              "differencePrice" : PriceDifference,
+                              "urlImage" : img.url                             
                 })
             
     class ApiDetails(generics.ListAPIView):

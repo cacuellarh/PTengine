@@ -1,9 +1,9 @@
 
-{% extends 'base.html' %}
+{% extends 'Base.html' %}
 {% load humanize %} 
 {% block content %}
 {% load static %}
-    <section class="wrapper_details">
+    <!-- <section class="wrapper_details">
 
         <input type="hidden" value="{{img_details.id_image}}" id="id_image">
         
@@ -77,6 +77,29 @@
 
     </section>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="{% static 'JS/gp.js' %}"></script>
+    <script src="{% static 'JS/gp.js' %}"></script> -->
     
+    <section class="dashboard ">
+        <h2>Detalles del Monitoreo</h2>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Animi nesciunt voluptate, dignissimos similique ducimus alias totam quam. Dicta a at possimus veritatis autem enim quisquam pariatur! Ad quasi deserunt earum, rerum, modi debitis necessitatibus asperiores aliquid corporis expedita, saepe enim ducimus laudantium est vitae a perspiciatis qui assumenda dolorem voluptate.</p>
+        <div class="card_container">
+            <div class="card">
+                <img src="{% static 'img/icons/ico_graph_red.png'%}" alt="">
+                <span>Precio Anterior</span>
+                <span>${{db_price|floatformat:"-2"}}</span>
+            </div>
+            <div class="card">
+                <img src="{% static 'img/icons/ico_graph_green.png'%}" alt="">
+                <span>Precio Actual</span>
+                <span>${{current_price|floatformat:"-2"}}</span>
+            </div>
+            <div class="card">
+                <img src="{% static 'img/icons/ico_price_down.png'%}" alt="">
+                <span>Ahorro</span>
+                <span>${{differencePrice |floatformat:"-2"}}</span>
+            </div>
+        </div>
+        <a href="{{urlImage}}">Ir a producto</a>
+    </section>
+
 {% endblock %}
