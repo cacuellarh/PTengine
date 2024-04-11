@@ -34,7 +34,7 @@ class ScreenShot():
         self.options.add_argument('--headless')
         self.options.add_argument('--disable-software-rasterizer')
         self.options.add_argument('--no-sandbox')
-        self.options.add_argument('--window-size=720,380')
+        self.options.add_argument('--window-size=1080,380')
         self.options.add_argument("--hide-scrollbars")
         self.options.add_argument('--disable-gpu')
         self.options.add_argument('--ignore-certificate-errors')
@@ -70,7 +70,7 @@ class ScreenShot():
             self.url = url_    
             self._calculate_height()
 
-            self.options.add_argument(f'--window-size=720,{self.height}')
+            self.options.add_argument(f'--window-size=1080,{self.height}')
             self.boswer = webdriver.Chrome(options=self.options)
             self.boswer.get(self.url)
             seleniumServices = SeleniumCloseAds(self.boswer)

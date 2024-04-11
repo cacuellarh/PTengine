@@ -12,7 +12,7 @@ class SeleniumCloseAds:
         self.repository = XpathRepository()
         self.driver =  driver
         
-    def FindUrl(self, url):
+    def FindUrl(self, url, options = None):
         pages: ElementsXpaths = self.repository.get_all()
         for page  in pages:
             if page.domain in url:
@@ -25,3 +25,7 @@ class SeleniumCloseAds:
                     print("Elemento no encontrado")
                 return  
         print("No se encontró ninguna página coincidente en la URL")  
+    
+    def ZoomPriceElement(self, element):
+        
+        self.driver.execute_script("arguments[0].style.fontSize = '30px';", element)          

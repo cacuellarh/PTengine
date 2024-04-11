@@ -54,5 +54,3 @@ class ElementsXpaths(models.Model):
     domain = models.CharField(max_length=200, default=None)
     xpath = models.CharField(max_length=200, default=None)
     type_element = models.CharField(max_length=200, default=None)
- 
-    
