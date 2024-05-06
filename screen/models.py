@@ -54,3 +54,11 @@ class ElementsXpaths(models.Model):
     domain = models.CharField(max_length=200, default=None)
     xpath = models.CharField(max_length=200, default=None)
     type_element = models.CharField(max_length=200, default=None)
+
+class Error_form (models.Model):
+    id_error = models.AutoField(primary_key=True)
+    date_log_error = models.DateTimeField()
+    email_error = models.EmailField()
+    comment_error = models.CharField(max_length=500)
+    image_error = models.CharField(max_length=200)
+

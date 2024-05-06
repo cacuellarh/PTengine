@@ -4,7 +4,7 @@ from .Views.TokenView import Token
 from .Views.UserView import User
 from .Views.InfoView import Info
 from rest_framework.authtoken import views
-
+from .Views.ErrorFormView import Error
 urlpatterns = [
     
     path('', ScreenView.as_view(), name="main_menu"),
@@ -25,5 +25,8 @@ urlpatterns = [
     path('about_us', Info.About.as_view(), name="about_us"),
     path('contact', Info.Contact.as_view(), name="contact"),
     path('termns', Info.Terms.as_view(), name="terms"),
-    path('privacy', Info.Privacy.as_view(), name="privacy")
+    path('privacy', Info.Privacy.as_view(), name="privacy"),
+
+
+    path('error_form', Error.Error_form.as_view(), name="error_form")
 ]
