@@ -1,9 +1,9 @@
 import string
 import pytesseract
-from PIL import Image, ImageOps
+from PIL import Image, ImageOps, ImageFilter
 from ..Services.Console_info import Console
 from django.conf import settings
-
+import cv2
 
 class OCR:
     
@@ -23,30 +23,25 @@ class OCR:
         
     def convert(self, img_path):
         
+        custom_config = r'--psm 6 -c tessedit_char_whitelist=0123456789'
         with Image.open(img_path) as img:
-        
+            img_to_gray = img.convert("L")  
+            img_to_binary = img_to_gray.point(lambda p: p > 128 and 255)
+            img_filtered = img_to_binary.filter(ImageFilter.MedianFilter())
+            img_scaled = img_filtered.resize((img_filtered.width * 2, img_filtered.height * 2))
+            img_scaled.save(f"{self._temp_path}binary.png")
+            
+            price = pytesseract.image_to_string(img_scaled, config=custom_config)
+
+            Console.info(f"Precio obtenido : {price}")
+
+        if price == "":
             img_to_gray = img.convert("L")  
             img_to_binary = img_to_gray.point(lambda p: p > 128 and 255)
             img_to_binary.save(f"{self._temp_path}binary.png")
-            
-            ## Configuracion de tesseract, lista blanca de caracteres a buscar y segmentacion de 1 linea    
-            price = pytesseract.image_to_string(img_to_binary, config='--psm 6 -c tessedit_char_whitelist=0123456789.')
-            # print("BLANCO el precio es :" + price)
+             
+            price = pytesseract.image_to_string(img_to_binary, config=custom_config)
             Console.info(f"Imagen convertida a string directamente : {price}")
-        
-        if price == "":
-
-            Console.warning("Error al convertir directamente")
-            with Image.open(img_path) as img:
-            
-                img_to_gray = img.convert("L")  
-                img_invert = ImageOps.invert(img_to_gray)
-                img_to_binary = img_invert.point(lambda p: p > 128 and 255)
-                img_to_binary.save(f"{self._temp_path}invert.png")      
-                price = pytesseract.image_to_string(img_to_binary)
-                # print("INVERTIDO el precio es :" + price)
-                Console.info("Imagen convertida a string con inversion : {price}")
-        
         try:
                    
             return self._clean_string(price)

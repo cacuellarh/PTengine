@@ -16,343 +16,341 @@ ImageRoutinPath = settings.PATHS["ImageRoutes"]
 def validate(img):
     notify = SelectorNotification()
     notify.select_notification("email")
-    
+    html = " "
     validate = Validate()
     for obj in deserialize("json", img):
         ins = obj.object
         Console.important(f"Iniciando scaneo proceso:{ins.id_image}")
         prices = validate.aut_validate(ins)
-        current = prices["current_price"]
-        db = prices["db_price"]
-        
-        if db["current_price"] != db["db_price"]:
+    
+        # Verificar si prices es None antes de acceder a sus elementos
+        if prices is not None:
+            current = prices.get("current_price")
+            db = prices.get("db_price")
+                
+            Console.info(f"{current}, {db}")
             html = '''
-            
-    <!DOCTYPE html>
-    <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Notificación de cambio de precio</title>
-        <style type="text/css">
-            *,
-            html,
-            body,
-            div,
-            span,
-            applet,
-            object,
-            iframe,
-            h1,
-            h2,
-            h3,
-            h4,
-            h5,
-            h6,
-            p,
-            blockquote,
-            pre,
-            a,
-            abbr,
-            acronym,
-            address,
-            big,
-            cite,
-            code,
-            del,
-            dfn,
-            em,
-            font,
-            img,
-            ins,
-            kbd,
-            q,
-            s,
-            samp,
-            small,
-            strike,
-            strong,
-            sub,
-            tt,
-            var,
-        …
-    [1:54 p. m., 25/3/2024] Vixtor: <script type="text/javascript">
-            document.getElementById('year').innerText = new Date().getFullYear();
-        </script>
-    [1:55 p. m., 25/3/2024] Vixtor: logo_dark_purple
-    [2:09 p. m., 25/3/2024] Vixtor: <!DOCTYPE html>
-    <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <link rel="preconnect" href="https://fonts.googleapis.com">
-            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-            <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-            <link rel="stylesheet" href="../static/Css/Token_confirm.css">
-            <link rel="stylesheet" href="/Token_confirm.css">
-            <title>TrackMyPrice</title>
-            <style>
-    </style>
-        </head>
-        <body>
-        <div class="modal_email_confir…
-    [2:11 p. m., 25/3/2024] Vixtor: <!DOCTYPE html>
-    <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Notificación de cambio de precio</title>
-        <style type="text/css">
-            *,
-            html,
-            body,
-            div,
-            span,
-            applet,
-            object,
-            iframe,
-            h1,
-            h2,
-            h3,
-            h4,
-            h5,
-            h6,
-            p,
-            blockquote,
-            pre,
-            a,
-            abbr,
-            acronym,
-            address,
-            big,
-            cite,
-            code,
-            del,
-            dfn,
-            em,
-            font,
-            img,
-            ins,
-            kbd,
-            q,
-            s,
-            samp,
-            small,
-            strike,
-            strong,
-            sub,
-            tt,
-            var,
-            b,
-            u,
-            i,
-            center,
-            dl,
-            dt,
-            dd,
-            ol,
-            ul,
-            li,
-            fieldset,
-            form,
-            label,
-            legend,
-            table,
-            caption,
-            tbody,
-            tfoot,
-            thead,
-            tr,
-            th,
-            td,
-            tr,
-            select,
-            input {
-                appearance:inherit; 
-                -moz-appearance:inherit; 
-                -webkit-appearance:inherit; 
-                background:transparent; 
-                border:none; 
-                border-radius:0; 
-                box-sizing: border-box; 
-                margin:0; 
-                outline:0; 
-                padding:0; 
-                text-decoration:none;
-                list-style: none;
-                font-family: var(--main_font);
-                color: inherit;
-            }
-            :root {
-                /* Tamaño objetos */
-                font-size: 15px;
-                /* ===== Variables de fuentes ===== */
-                --main_font: 'Poppins', sans-serif;
-            }
-            body {
-                font-family: var(--main_font);
-                background-color: #f0f0f0;        }
-            .main {
-                width: 50rem;
-                margin: 0 auto;
-            }
-            .container {
-                padding: 2rem;
-                background-color: #ffffff;
-                border-radius: 5px;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
-            .info {
-                padding: 2rem;
-            }
-            h1 {
-                font-size: 2rem;
-                text-align: center;
-                margin-bottom: 1rem;
-            }
-            p {
-                font-size: 1.1rem;
-                margin-bottom: 1rem;
-            }
-            img {
-                height: 3.5rem;
-            }
-            .container a {
-                padding: 0.7rem 1.2rem;
-                background-color: #3C0753;
-                color: #fff;
-                border: none;
-                border-radius: 5px;
-                cursor: pointer;
-                font-size: 1rem;
-                transition: background-color 0.3s ease;
-            }
-            .container a:hover {
-                background-color: #720455;
-            }
-            .info p,
-            .info a {
-                color: gray;
-                margin-bottom: 1rem;
-                font-size: 1rem;
-            }
-            .info p:last-child {
-                margin-top: 1rem;
-            }
-            .info a {
-                text-decoration: underline;
-            }
-            @media screen and (max-width: 1800px) {
-                :root {
-                    font-size: 14px;
-                }
-            }
+        
+            <!DOCTYPE html>
+            <html lang="es">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+                <title>Notificación de cambio de precio</title>
+                <style type="text/css">
+                    *,
+                    html,
+                    body,
+                    div,
+                    span,
+                    applet,
+                    object,
+                    iframe,
+                    h1,
+                    h2,
+                    h3,
+                    h4,
+                    h5,
+                    h6,
+                    p,
+                    blockquote,
+                    pre,
+                    a,
+                    abbr,
+                    acronym,
+                    address,
+                    big,
+                    cite,
+                    code,
+                    del,
+                    dfn,
+                    em,
+                    font,
+                    img,
+                    ins,
+                    kbd,
+                    q,
+                    s,
+                    samp,
+                    small,
+                    strike,
+                    strong,
+                    sub,
+                    tt,
+                    var,
+                …
+            [1:54 p. m., 25/3/2024] Vixtor: <script type="text/javascript">
+                    document.getElementById('year').innerText = new Date().getFullYear();
+                </script>
+            [1:55 p. m., 25/3/2024] Vixtor: logo_dark_purple
+            [2:09 p. m., 25/3/2024] Vixtor: <!DOCTYPE html>
+            <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <link rel="preconnect" href="https://fonts.googleapis.com">
+                    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+                    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+                    <link rel="stylesheet" href="../static/Css/Token_confirm.css">
+                    <link rel="stylesheet" href="/Token_confirm.css">
+                    <title>TrackMyPrice</title>
+                    <style>
+            </style>
+                </head>
+                <body>
+                <div class="modal_email_confir…
+            [2:11 p. m., 25/3/2024] Vixtor: <!DOCTYPE html>
+            <html lang="es">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Notificación de cambio de precio</title>
+                <style type="text/css">
+                    *,
+                    html,
+                    body,
+                    div,
+                    span,
+                    applet,
+                    object,
+                    iframe,
+                    h1,
+                    h2,
+                    h3,
+                    h4,
+                    h5,
+                    h6,
+                    p,
+                    blockquote,
+                    pre,
+                    a,
+                    abbr,
+                    acronym,
+                    address,
+                    big,
+                    cite,
+                    code,
+                    del,
+                    dfn,
+                    em,
+                    font,
+                    img,
+                    ins,
+                    kbd,
+                    q,
+                    s,
+                    samp,
+                    small,
+                    strike,
+                    strong,
+                    sub,
+                    tt,
+                    var,
+                    b,
+                    u,
+                    i,
+                    center,
+                    dl,
+                    dt,
+                    dd,
+                    ol,
+                    ul,
+                    li,
+                    fieldset,
+                    form,
+                    label,
+                    legend,
+                    table,
+                    caption,
+                    tbody,
+                    tfoot,
+                    thead,
+                    tr,
+                    th,
+                    td,
+                    tr,
+                    select,
+                    input {
+                        appearance:inherit; 
+                        -moz-appearance:inherit; 
+                        -webkit-appearance:inherit; 
+                        background:transparent; 
+                        border:none; 
+                        border-radius:0; 
+                        box-sizing: border-box; 
+                        margin:0; 
+                        outline:0; 
+                        padding:0; 
+                        text-decoration:none;
+                        list-style: none;
+                        font-family: var(--main_font);
+                        color: inherit;
+                    }
+                    :root {
+                        /* Tamaño objetos */
+                        font-size: 15px;
+                        /* ===== Variables de fuentes ===== */
+                        --main_font: 'Poppins', sans-serif;
+                    }
+                    body {
+                        font-family: var(--main_font);
+                        background-color: #f0f0f0;        }
+                    .main {
+                        width: 50rem;
+                        margin: 0 auto;
+                    }
+                    .container {
+                        padding: 2rem;
+                        background-color: #ffffff;
+                        border-radius: 5px;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                    }
+                    .info {
+                        padding: 2rem;
+                    }
+                    h1 {
+                        font-size: 2rem;
+                        text-align: center;
+                        margin-bottom: 1rem;
+                    }
+                    p {
+                        font-size: 1.1rem;
+                        margin-bottom: 1rem;
+                    }
+                    img {
+                        height: 3.5rem;
+                    }
+                    .container a {
+                        padding: 0.7rem 1.2rem;
+                        background-color: #3C0753;
+                        color: #fff;
+                        border: none;
+                        border-radius: 5px;
+                        cursor: pointer;
+                        font-size: 1rem;
+                        transition: background-color 0.3s ease;
+                    }
+                    .container a:hover {
+                        background-color: #720455;
+                    }
+                    .info p,
+                    .info a {
+                        color: gray;
+                        margin-bottom: 1rem;
+                        font-size: 1rem;
+                    }
+                    .info p:last-child {
+                        margin-top: 1rem;
+                    }
+                    .info a {
+                        text-decoration: underline;
+                    }
+                    @media screen and (max-width: 1800px) {
+                        :root {
+                            font-size: 14px;
+                        }
+                    }
 
-            @media screen and (max-width: 1550px) {
-                :root {
-                    font-size: 13px;
-                }
-            }
+                    @media screen and (max-width: 1550px) {
+                        :root {
+                            font-size: 13px;
+                        }
+                    }
 
-            @media screen and (max-width: 1290px) {
-                :root {
-                    font-size: 12px;
-                }
-            }
+                    @media screen and (max-width: 1290px) {
+                        :root {
+                            font-size: 12px;
+                        }
+                    }
 
-            @media screen and (max-width: 1170px) {
-                :root {
-                    font-size: 11px;
-                }
-            }
+                    @media screen and (max-width: 1170px) {
+                        :root {
+                            font-size: 11px;
+                        }
+                    }
 
-            @media screen and (max-width: 1024px) {
-                :root {
-                    font-size: 10px;
-                }
-            }
+                    @media screen and (max-width: 1024px) {
+                        :root {
+                            font-size: 10px;
+                        }
+                    }
 
-            @media screen and (max-width: 990px) {
-                :root {
-                    font-size: 11px;
-                }
-            }
-            @media screen and (max-width: 899px) {
-                :root {
-                    font-size: 10px;
-                }
-            }
-            @media screen and (max-width: 768px) {
-                :root {
-                    font-size: 9px;
-                }
-            }
-            @media screen and (max-width: 699px) {
-                :root {
-                    font-size: 8px;
-                }
-            }
-            @media screen and (max-width: 576px) {
-                :root {
-                    font-size: 14px;
-                }
-                .main {
-                    width: 100%;
-                    margin: 0 !important;
-                }
-            }
-            @media screen and (max-width: 500px) {
-                :root { 
-                    font-size: 13px;
-                }
-            }
-            @media screen and (max-width: 450px) {
-                :root {
-                    font-size: 11px;
-                }
-            }
-            @media screen and (max-width: 375px) {
-                :root {
-                    font-size: 9px;
-                }
-            }
-        </style>
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-    </head>
-    <body>
-        <div class="main">
-            <div class="container">
-                <div class="image">
-                    <img src="'''+ ImageRoutinPath+ 'logo_dark_purple.png' '''" alt="TrackMyPrice">
+                    @media screen and (max-width: 990px) {
+                        :root {
+                            font-size: 11px;
+                        }
+                    }
+                    @media screen and (max-width: 899px) {
+                        :root {
+                            font-size: 10px;
+                        }
+                    }
+                    @media screen and (max-width: 768px) {
+                        :root {
+                            font-size: 9px;
+                        }
+                    }
+                    @media screen and (max-width: 699px) {
+                        :root {
+                            font-size: 8px;
+                        }
+                    }
+                    @media screen and (max-width: 576px) {
+                        :root {
+                            font-size: 14px;
+                        }
+                        .main {
+                            width: 100%;
+                            margin: 0 !important;
+                        }
+                    }
+                    @media screen and (max-width: 500px) {
+                        :root { 
+                            font-size: 13px;
+                        }
+                    }
+                    @media screen and (max-width: 450px) {
+                        :root {
+                            font-size: 11px;
+                        }
+                    }
+                    @media screen and (max-width: 375px) {
+                        :root {
+                            font-size: 9px;
+                        }
+                    }
+                </style>
+                <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+            </head>
+            <body>
+                <div class="main">
+                    <div class="container">
+                        <div class="image">
+                            <img src="'''+ ImageRoutinPath+ 'logo_dark_purple.png' '''" alt="TrackMyPrice">
+                        </div>
+                        <h1>¡Hemos detectado un cambio en el precio de tu producto!</h1>
+                        <p>Para ver los detalles y consultar el nuevo precio, haz clic en el siguiente botón:</p>
+                        <a href="'''+ str(base)+'''/details_price/''' + str(ins.id_image)+ '''/''' + str(current) +'''" target="_blank">Consultar precio</a>
+                    </div>
+                    <div class="info">
+                        <p>Has recibido este email porque estás registrado en TrackMyPrice. Consulta nuestra <a href="https://trackmyprice.co/privacy" target="_blank">política de privacidad</a> para más información.</p>
+                        <p>&copy; <span id="year"></span> TrackMyPrice.</p>
+                    </div>
                 </div>
-                <h1>¡Hemos detectado un cambio en el precio de tu producto!</h1>
-                <p>Para ver los detalles y consultar el nuevo precio, haz clic en el siguiente botón:</p>
-                <a href="'''+ str(base)+'''/details_price/''' + str(ins.id_image)+ '''/''' + str(current) +'''" target="_blank">Consultar precio</a>
-            </div>
-            <div class="info">
-                <p>Has recibido este email porque estás registrado en TrackMyPrice. Consulta nuestra <a href="https://trackmyprice.co/privacy" target="_blank">política de privacidad</a> para más información.</p>
-                <p>&copy; <span id="year"></span> TrackMyPrice.</p>
-            </div>
-        </div>
-        <script type="text/javascript">
-            document.getElementById('year').innerText = new Date().getFullYear();
-        </script>
-    </body>
-    </html>
+                <script type="text/javascript">
+                    document.getElementById('year').innerText = new Date().getFullYear();
+                </script>
+            </body>
+            </html>
 
-        '''
-            current = prices["current_price"]
-            db = prices["db_price"]
-            
-            #if current != db:
-            notify.conf({"destiny": ins.client_fk.email,
-                        "body": html})
-                #print(f"precio actual:{current} , precio db; {db}")
-            notify.send_notification()
-        else:
-            Console.info("EL PRECIO ES EL MISMO")
+                '''
+    
+        notify.conf({"destiny": ins.client_fk.email,
+                    "body": html})
+        notify.send_notification()
+
             
 @shared_task(queue="email_queue")
 

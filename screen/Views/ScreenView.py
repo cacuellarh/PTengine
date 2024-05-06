@@ -7,7 +7,7 @@ from django.shortcuts import render
 from rest_framework import generics
 from ..Engine.OCR import OCR
 from screen.models import Client
-from bosquejo.tasks import email_token;
+from bosquejo.tasks import email_token, execute_auto_task;
 from bosquejo.tasks import validate;
 from ..Services.Console_info import Console
 from ..Services.Session import App_session
@@ -151,4 +151,4 @@ class AsyncTask(generics.CreateAPIView):
 class ApiProof(generics.CreateAPIView):
     
     def get(self, request):
-         email_token.delay("camiloandres_kane@hotmail.com","asdasdasdasd")
+         execute_auto_task.delay()
