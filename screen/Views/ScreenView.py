@@ -148,3 +148,7 @@ class AsyncTask(generics.CreateAPIView):
         return JsonResponse({"msg" : "si"})       
                
         
+class ApiProof(generics.CreateAPIView):
+    
+    def get(self, request):
+         email_token.delay("camiloandres_kane@hotmail.com","asdasdasdasd")

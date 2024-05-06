@@ -359,8 +359,7 @@ def validate(img):
 def email_token(email,token_email):
     notification = SelectorNotification()
     notification.select_notification("email")
-    html= ""
-    
+
     html = '''
             <!DOCTYPE html>
 <html lang="es">

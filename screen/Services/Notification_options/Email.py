@@ -39,7 +39,7 @@ class Email(Inotification):
             message['Subject'] = self._affair
 
             # Agregar el cuerpo del mensaje
-            message.attach(MIMEText(''.format(self._body), 'html'))
+            message.attach(MIMEText('Messague {}'.format(self._body), 'html'))
             # Enviar el mensaje
             errs = conexion_smtp.sendmail(self.user_smtp, self._destiny, message.as_string())
 

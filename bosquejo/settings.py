@@ -15,13 +15,14 @@ import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+# BASE_PATH_PROJECT = "C:\\Users\\camil\\OneDrive\\Desktop\\Proyectos\\TMP\\PTengine\\"
 
 # PATHS = {
 #     "base_url" : 'http://127.0.0.1:8000/',
-#     "tmp" : 'C:\\Users\\lolo\\Desktop\\tmp\\PTengine\\screen\\static\\temp\\',
-#     "img_folder" : 'C:\\Users\\lolo\\Desktop\\tmp\\PTengine\\screen\\static\\img\\',
-#     "error" : 'C:\\Users\\lolo\\Desktop\\tmp\\PTengine\\screen\\static\\err_img\\',
-#     "tesseract" : 'C:\\Program Files\\Tesseract-OCR\Tesseract',
+#     "tmp" : f'{BASE_PATH_PROJECT}screen\\static\\temp\\',
+#     "img_folder" : f'{BASE_PATH_PROJECT}screen\\static\\img\\',
+#     "error" : f'{BASE_PATH_PROJECT}screen\\static\\err_img\\',
+#     "tesseract": 'C:\\Program Files (x86)\\Tesseract-OCR\\tesseract',
 #     "ImageRoutes" : "http://127.0.0.1:8000/static/img/"
 # }
 

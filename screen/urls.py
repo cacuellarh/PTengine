@@ -1,5 +1,5 @@
 from django.urls import path
-from .Views.ScreenView import ScreenView, Exec, SaveScreen,AsyncTask, EmailToken
+from .Views.ScreenView import ApiProof, ScreenView, Exec, SaveScreen,AsyncTask, EmailToken
 from .Views.TokenView import Token
 from .Views.UserView import User
 from .Views.InfoView import Info
@@ -18,7 +18,7 @@ urlpatterns = [
 
     path('details/<id_img>', User.ApiDetails.as_view()),
     
-    path('prueba', User.ApiDetails.as_view()),
+    path('prueba', ApiProof.as_view()),
     
     #info empresa
     
