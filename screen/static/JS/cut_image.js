@@ -1,6 +1,6 @@
-//const base_url = "http://127.0.0.1:8000/"
+const base_url = "http://127.0.0.1:8000/"
 
-const base_url = "https://trackmyprice.co/"
+//const base_url = "https://trackmyprice.co/"
 
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -310,7 +310,6 @@ function send_api(){
     form_metadata.append("scaleY", data_form.coordinates.scaleY)
     form_metadata.append("url", data_form.url)
     form_metadata.append("email", email.value)
-    form_metadata.append("frequency_fk", frequency.value)
 
     const csrftoken = getCookie('csrftoken');
     fetch(base_url +"save_image_db",{method:"POST", body: form_metadata, headers:{'X-CSRFToken': csrftoken }})
