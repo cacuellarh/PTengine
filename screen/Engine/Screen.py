@@ -30,7 +30,7 @@ class ScreenShot():
         logging.getLogger('selenium').setLevel(logging.WARNING)
         self.options = webdriver.ChromeOptions()
 
-        #self.options.add_argument('--headless')
+        self.options.add_argument('--headless')
         #self.options.add_argument('--disable-software-rasterizer')
         self.options.add_argument('--no-sandbox')
         self.options.add_argument('--window-size=1080,380')
