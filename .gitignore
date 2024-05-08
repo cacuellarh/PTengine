@@ -1,2 +1,5 @@
 # Ignore all __pycache__ directories
 __pycache__/
+static/err_img/
+static/temp/
+static/img/

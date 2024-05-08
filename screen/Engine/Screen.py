@@ -24,31 +24,30 @@ class ScreenShot():
     #save_path_img = "/usr/ptengine/PTengine/screen/static/img/"
     #save_path_temp = "/usr/ptengine/PTengine/screen/static/temp/"
     
-    def __init__(self) -> None:
-        self._ConfigSelenium()
         
     def _ConfigSelenium(self):
         
         logging.getLogger('selenium').setLevel(logging.WARNING)
         self.options = webdriver.ChromeOptions()
 
-        self.options.add_argument('--headless')
-        self.options.add_argument('--disable-software-rasterizer')
+        #self.options.add_argument('--headless')
+        #self.options.add_argument('--disable-software-rasterizer')
         self.options.add_argument('--no-sandbox')
         self.options.add_argument('--window-size=1080,380')
         self.options.add_argument("--hide-scrollbars")
         self.options.add_argument('--disable-gpu')
         self.options.add_argument('--ignore-certificate-errors')
-        self.options.add_argument('--disable-dev-shm-usage')
+        #self.options.add_argument('--disable-dev-shm-usage')
         self.options.add_argument('--disable-extensions')
         self.options.add_argument('--disable-infobars')
         self.options.add_argument('--disable-notifications')
-        self.options.add_argument('--disable-popup-blocking')
+        #self.options.add_argument('--disable-popup-blocking')
         self.options.add_argument('--disable-logging')
-        self.options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.6167.140 Safari/537.3")
+        #self.options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.6167.140 Safari/537.3")
         self.browser = webdriver.Chrome(options=self.options)
         
     def _calculate_height(self):
+        self._ConfigSelenium()
         try:
           
             self.browser.get(self.url)
@@ -64,6 +63,9 @@ class ScreenShot():
             
         except Exception as e:
             Console.warning(f"Error al calcular la altura: {str(e)}")
+        finally:
+            self._CloseAllWindows()
+            self.browser.quit()
 
     def take_screen(self, url_, action, file_name):
         try:
@@ -79,7 +81,7 @@ class ScreenShot():
             self.browser.get(self.url)
             seleniumServices = SeleniumCloseAds(self.browser)
             seleniumServices.FindUrl(self.url)
-            time.sleep(10)
+            # time.sleep(10)
 
             if action == "save":
                 self.browser.save_screenshot(f"{self.save_path_img}{file_name}.png")
@@ -90,9 +92,14 @@ class ScreenShot():
                 Console.success("Screen guardado")          
         except Exception as e:
             Console.warning(f"Error al tomar la captura de pantalla: {str(e)}")
+        finally:
+            self._CloseAllWindows()
             self.browser.quit()
 
-        self.browser.quit()
-            
+    def _CloseAllWindows(self):
+
+        for windowsHandle in self.browser.window_handles:
+            self.browser.switch_to.window(windowsHandle)   
+            self.browser.close()
             
        

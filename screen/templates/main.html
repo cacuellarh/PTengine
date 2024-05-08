@@ -45,8 +45,8 @@
 <section class="monitor">
     <form method="post" action="{% url 'execute' %}" class="page_url">
         {% csrf_token %}
-        <input type="text" id="url_input" name="url" placeholder="Introduce la URL">
-        <button class="button_style " type="submit" id="capture" required="required">Capturar</button>
+        <input type="text" id="url_input" name="url" placeholder="Introduce la URL" required="required">
+        <button class="button_style " type="submit" id="capture">Capturar</button>
     </form>
     <div class="page">
         <div id="loader" class="loader hidden_loader">

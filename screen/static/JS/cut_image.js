@@ -2,6 +2,28 @@
 
 const base_url = "https://trackmyprice.co/"
 
+
+document.addEventListener("DOMContentLoaded", function() {
+    // Selecciona la imagen y el contenedor
+    const image = document.getElementById("image_capture");
+    const container = document.querySelector(".cut_seccion");
+
+    // Espera a que se cargue completamente la imagen
+    image.onload = function() {
+
+        const cropper = new Cropper(image, {
+            aspectRatio: 1,  // Proporción de aspecto (puedes ajustar según tus necesidades)
+            viewMode: 0,
+            zoomOnWheel: true,
+            guides: false
+        });
+
+        cropper.setCropBoxData({
+            width: 20,
+            height: 20
+        });
+    };
+});
 //1 - Boton para cortar precio
 const btn = document.getElementById("btn_cropp")
 // 1.1 Modal confirmacion de precio
@@ -34,14 +56,11 @@ let validations_form = {
 }
 const cropper = new  Cropper(image, {
     aspectRatio: 0,  // Proporción de aspecto (puedes ajustar según tus necesidades)
-    viewMode: 1,
+    viewMode: 3,
     zoomOnWheel: false
 
 })
-cropper.setCropBoxData({
-    width: 20,
-    height: 20
-});
+
 const moveYT = document.getElementById("moveY-T")
 const moveYB = document.getElementById("moveY-B")
 const moveXL = document.getElementById("moveX-L")
@@ -96,13 +115,57 @@ email.addEventListener("focusout", ()=>{
     input_email_valid()
     
 })
-moveYT.addEventListener("click", ()=>{
-    cropper.move(0,13)
-})
-moveYB.addEventListener("click", ()=>{
-    cropper.move(0,-13)
-})
+let moveYTPressed = false;
+let moveYBPressed = false;
+let speed = 26
+// Manejador para el evento mousedown del botón moveYT
+moveYT.addEventListener("mousedown", () => {
+    moveYTPressed = true;
 
+    // Llama a la función para mover hacia arriba repetidamente
+    moveUpRepeatedly();
+});
+///////////////////////////////////////////////////////////////////
+// Manejador para el evento mouseup del botón moveYT
+moveYT.addEventListener("mouseup", () => {
+    moveYTPressed = false;
+    speed = 26
+});
+
+// Manejador para el evento mousedown del botón moveYB
+moveYB.addEventListener("mousedown", () => {
+    moveYBPressed = true;
+
+    // Llama a la función para mover hacia abajo repetidamente
+    moveDownRepeatedly();
+});
+
+// Manejador para el evento mouseup del botón moveYB
+moveYB.addEventListener("mouseup", () => {
+    moveYBPressed = false;
+    speed = 26
+});
+
+// Función para mover hacia arriba repetidamente mientras el botón moveYT está presionado
+function moveUpRepeatedly() {
+    if (moveYTPressed) {      
+        cropper.move(0, speed); // Mueve hacia arriba
+        speed++
+        console.log("subiendo a velocidad" + speed)
+        setTimeout(moveUpRepeatedly, 100); // Llama a la función nuevamente después de 100ms
+    }
+}
+
+// Función para mover hacia abajo repetidamente mientras el botón moveYB está presionado
+function moveDownRepeatedly() {
+    if (moveYBPressed) {
+        cropper.move(0, -speed); // Mueve hacia abajo
+        speed++
+        console.log("bajando a velocidad " + speed)
+        setTimeout(moveDownRepeatedly, 100); // Llama a la función nuevamente después de 100ms
+    }
+}
+///////////////////////////////////////////////////////////////////
 moveXL.addEventListener("click", ()=>{
     cropper.move(12,0)
 })
