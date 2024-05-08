@@ -346,11 +346,13 @@ def validate(img):
             </html>
 
                 '''
-    
-        notify.conf({"destiny": ins.client_fk.email,
-                    "body": html})
-        notify.send_notification()
-
+        
+            notify.conf({"destiny": ins.client_fk.email,
+                        "body": html,
+                        "affair" : "Notificacion cambio de precio"
+                        })
+            notify.send_notification()
+        Console.warning("No se obtuvo un precio correcto")
             
 @shared_task(queue="email_queue")
 

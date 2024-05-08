@@ -32,14 +32,12 @@ let validations_form = {
     price_check : false,
     price_as_number : false
 }
-
 const cropper = new  Cropper(image, {
     aspectRatio: 0,  // Proporción de aspecto (puedes ajustar según tus necesidades)
     viewMode: 1,
     zoomOnWheel: false
 
 })
-
 cropper.setCropBoxData({
     width: 20,
     height: 20

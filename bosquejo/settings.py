@@ -99,7 +99,7 @@ CELERY_TIMEZONE = 'UTC'
 CELERY_BEAT_SCHEDULE = {
     'enviar_correo_periodico': {
         'task': 'bosquejo.tasks.execute_auto_task',
-        'schedule': 1200,  #28800
+        'schedule': 50  #28800
     },
 }
 ROOT_URLCONF = 'bosquejo.urls'

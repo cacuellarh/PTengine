@@ -7,60 +7,35 @@ import cv2
 
 class OCR:
     
-    _temp_path = settings.PATHS["tmp"]
-    tesseract_path = settings.PATHS["tesseract"]
-    
+    #Configuracion de flags para tesseract
+    custom_config :string = r'--psm 6 --oem 3 -c tessedit_char_whitelist=0123456789 outputbase digits'
     #_temp_path = "/usr/ptengine/PTengine/screen/static/temp/"
 
-    def __init__(self) -> None:
+    def __init__(self, temporalPath:string, tesseractPath:string) -> None:
         
-        #pytesseract.pytesseract.tesseract_cmd = r'/usr/bin/tesseract'
-        pytesseract.pytesseract.tesseract_cmd = settings.PATHS["tesseract"]
-        
+        pytesseract.pytesseract.tesseract_cmd = tesseractPath
+        self._temp_path = temporalPath
         Console.info("Iniciando OCR")
         
-        
-        
-    def convert(self, img_path):
-        
-        custom_config = r'--psm 6 -c tessedit_char_whitelist=0123456789'
-        with Image.open(img_path) as img:
-            img_to_gray = img.convert("L")  
-            img_to_binary = img_to_gray.point(lambda p: p > 128 and 255)
-            img_filtered = img_to_binary.filter(ImageFilter.MedianFilter())
-            img_scaled = img_filtered.resize((img_filtered.width * 2, img_filtered.height * 2))
-            img_scaled.save(f"{self._temp_path}binary.png")
-            
-            price = pytesseract.image_to_string(img_scaled, config=custom_config)
-
-            Console.info(f"Precio obtenido : {price}")
-
-        if price == "":
-            img_to_gray = img.convert("L")  
-            img_to_binary = img_to_gray.point(lambda p: p > 128 and 255)
-            img_to_binary.save(f"{self._temp_path}binary.png")
-             
-            price = pytesseract.image_to_string(img_to_binary, config=custom_config)
-            Console.info(f"Imagen convertida a string directamente : {price}")
-        try:
-                   
-            return self._clean_string(price)
-        
-        except Exception as e:
-            
-            Console.warning("No se puedo convetir {price} a numeros")
-            
-            
-    def _clean_string(self, string : string):
-        
-        delete_chars = " .,$"
-        clean_string = string
-        for char in delete_chars:
-            clean_string = clean_string.replace(char, '')
-        
-        prince_float = float(clean_string)
-        
-        return prince_float
+    def PreprocessImage(self,image_path):
+        # Cargar la imagen usando OpenCV
+        image = cv2.imread(image_path)
+        # Convertir la imagen a escala de grises
+        gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+        # Aplicar umbral adaptativo para resaltar los números
+        _, threshold_image = cv2.threshold(gray_image, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+        return threshold_image
+    
+    def convert(self,image_path : string) -> float:
+        # Preprocesar la imagen
+        processed_image = self.PreprocessImage(image_path)
+        # Convertir la imagen procesada a un objeto Image de PIL
+        pil_image = Image.fromarray(processed_image)
+        # Utilizar Tesseract para extraer el texto de la imagen
+        extracted_text = pytesseract.image_to_string(pil_image, config=self.custom_config)
+        Console.info(f"Precio obtenido {extracted_text}")
+        cleanText = extracted_text.strip()
+        return float(cleanText)    
     
     def validate_number(self, path_img_cut) -> bool:
         
@@ -78,17 +53,10 @@ class OCR:
                
                Console.warning(f"El precio convertido no es un numero{price_convert}")
                return {"status" : False, "price" : price_convert}
-    
-    def validate_consistency(self, price_convert, price_db):
-        price_c = price_convert["price"]
-        margin_factor = 0.2
-        margin = price_c  * margin_factor
-        
-        if abs(price_db - price_c) <= margin:
-            
-            Console.info(f"Consistencia de precios correcta db : {price_db}, convert: {price_c }, margen: {margin}")
-            return True
-        else:
-            
-            Console.warning(f"Consistencia de precios Incorrecta db : {price_db}, convert: {price_c }, margen: {margin}")
-            return False
+           
+    def ChangueConfigurationFlag(self, flagConfiguration:string)-> None:
+
+        self.custom_config = flagConfiguration
+
+    def ShowCurrentFlagConfiguration(self)-> None:
+        print(self.custom_config )

@@ -1,4 +1,3 @@
-from typing import Any
 from ..DB.Repos.Frecuency_repos import Frequency_repos
 from ..API.ResponseServer import ResponseServer
 from django.http import JsonResponse
@@ -16,8 +15,8 @@ from screen.Services.Email_token import Email_token
 from screen.DB.Repos.Client_repos import Client_repos
 from screen.DB.Repos.Image_repos import Image_repos
 from django.core.serializers import serialize
-import json
-
+from django.shortcuts import redirect
+from django.conf import settings
 class ScreenView(generics.ListAPIView):    
     screen : ScreenShot
     session_app : App_session
@@ -83,7 +82,11 @@ class Exec(generics.CreateAPIView):
     def __init__(self):
         
         self.screen = ScreenShot()
-        
+    def get(self, request):
+
+        if request.method == "GET":
+            return redirect("main_menu")  
+          
     def post(self, request):
         
         if request.method == "POST":
@@ -95,12 +98,14 @@ class Exec(generics.CreateAPIView):
             
             return  render(request, "ScreenView.html", {"url" : url_form , "img_name" : file_id, "frequency" : Frequency_repos.get_all()})
 
+        
+         
 class SaveScreen(generics.CreateAPIView):
     
     ocr : OCR  
     
     def __init__(self) -> None:
-        self.ocr = OCR()
+        self.ocr = OCR(settings.PATHS["tmp"], settings.PATHS["tesseract"])
          
     def post(self, request):
         

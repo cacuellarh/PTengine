@@ -24,7 +24,7 @@ class Validate:
         
         #corregir DI
         self.screen = ScreenShot()
-        self.ocr = OCR()
+        self.ocr = OCR(settings.PATHS["tmp"], settings.PATHS["tesseract"])
         self.log_repos = LogRepos()
         self.event = History_events
         
