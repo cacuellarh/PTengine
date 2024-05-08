@@ -1,6 +1,8 @@
 from email.policy import default
 from django.db import models
 import uuid
+from django.utils import timezone
+from screen.Utils.CurrentDateColombia.DateConfig import SetCurrentTimeCo
 class Frequency(models.Model):
     
     id_frequency = models.AutoField(primary_key=True)
@@ -26,7 +28,8 @@ class ImageTrack(models.Model):
     frequency_fk = models.ForeignKey(Frequency, on_delete=models.CASCADE, default=1)
     client_fk = models.ForeignKey(Client, on_delete=models.CASCADE, default=1)
     notify_validate = models.BooleanField(default= False)
-    email_token =  models.CharField(max_length=100, default=None)  
+    email_token =  models.CharField(max_length=100, default=None) 
+    DateTimeTrack = models.DateTimeField(default=SetCurrentTimeCo.SetTimeCo(timezone.now())) 
 
     def __str__(self):
         return f"ImageTrack {self.id_image}"
