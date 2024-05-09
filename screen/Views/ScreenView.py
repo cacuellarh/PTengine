@@ -17,6 +17,9 @@ from screen.DB.Repos.Image_repos import Image_repos
 from django.core.serializers import serialize
 from django.shortcuts import redirect
 from django.conf import settings
+from TrackMyPrice.Core.Application.Contracts.SeleniumContracts import *
+
+
 class ScreenView(generics.ListAPIView):    
     screen : ScreenShot
     session_app : App_session
@@ -102,10 +105,10 @@ class Exec(generics.CreateAPIView):
          
 class SaveScreen(generics.CreateAPIView):
     
-    ocr : OCR  
+    __TesseractConvert : OCR  
     
-    def __init__(self) -> None:
-        self.ocr = OCR(settings.PATHS["tmp"], settings.PATHS["tesseract"])
+    def __init__(self, tesseractConvert :  IConvertImgToFloat) -> None:
+        SaveScreen.__TesseractConvert = tesseractConvert
          
     def post(self, request):
         

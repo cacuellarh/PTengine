@@ -1,6 +1,5 @@
 from selenium import webdriver
 from screen.Services.selenium_services.SeleniumCloseAds import SeleniumCloseAds
-from bosquejo.Domain.Contracts import ISeniumScreenService
 from ..Services.Console_info import Console
 from django.conf import settings
 import time

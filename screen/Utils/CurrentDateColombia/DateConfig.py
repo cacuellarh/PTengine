@@ -7,6 +7,6 @@ class SetCurrentTimeCo:
     def SetTimeCo(date : datetime) -> datetime:
         newDate = date - timedelta(hours=SetCurrentTimeCo.__TimeDifference)
         return newDate
-    
+    @staticmethod
     def SetTimeDifference(self,timeDifference:int)->None:
         SetCurrentTimeCo.__TimeDifference = timeDifference
