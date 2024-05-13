@@ -24,7 +24,7 @@ class User:
             self.prices = self.log_repos.get_history_prices(id_img)
             total = 0
             elements = 1
-            PriceDifference = priceCurrentInt - img.price
+            PriceDifference = img.price - priceCurrentInt
 
             for price in self.prices:
                 total+= price["fk_history_events__fk_imagetrack__price"]
