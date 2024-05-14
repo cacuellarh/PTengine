@@ -367,254 +367,29 @@ def email_token(email,token_email):
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Notificación de cambio de precio</title>
-    <style type="text/css">
-        *,
-        html,
-        body,
-        div,
-        span,
-        applet,
-        object,
-        iframe,
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6,
-        p,
-        blockquote,
-        pre,
-        a,
-        abbr,
-        acronym,
-        address,
-        big,
-        cite,
-        code,
-        del,
-        dfn,
-        em,
-        font,
-        img,
-        ins,
-        kbd,
-        q,
-        s,
-        samp,
-        small,
-        strike,
-        strong,
-        sub,
-        tt,
-        var,
-        b,
-        u,
-        i,
-        center,
-        dl,
-        dt,
-        dd,
-        ol,
-        ul,
-        li,
-        fieldset,
-        form,
-        label,
-        legend,
-        table,
-        caption,
-        tbody,
-        tfoot,
-        thead,
-        tr,
-        th,
-        td,
-        tr,
-        select,
-        input {
-            appearance:inherit; 
-            -moz-appearance:inherit; 
-            -webkit-appearance:inherit; 
-            background:transparent; 
-            border:none; 
-            border-radius:0; 
-            box-sizing: border-box; 
-            margin:0; 
-            outline:0; 
-            padding:0; 
-            text-decoration:none;
-            list-style: none;
-            font-family: var(--main_font);
-            color: inherit;
-        }
-        :root {
-            /* Tamaño objetos */
-            font-size: 15px;
-            /* ===== Variables de fuentes ===== */
-            --main_font: 'Poppins', sans-serif;
-        }
-        body {
-            font-family: var(--main_font);
-            background-color: #f0f0f0;        }
-        .main {
-            width: 50rem;
-            margin: 0 auto;
-        }
-        .container {
-            padding: 2rem;
-            background-color: #ffffff;
-            border-radius: 5px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .info {
-            padding: 2rem;
-        }
-        h1 {
-            font-size: 2rem;
-            text-align: center;
-            margin-bottom: 1rem;
-        }
-        p {
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
-        }
-        p:last-child {
-            margin: 0 !important;
-        }
-        img {
-            height: 3.5rem;
-        }
-        .container .btn {
-            padding: 0.7rem 1.2rem;
-            background-color: #3C0753;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: background-color 0.3s ease;
-            margin-bottom: 1rem;
-        }
-        .container .btn:hover {
-            background-color: #720455;
-        }
-        .info p,
-        .info a {
-            color: gray;
-            margin-bottom: 1rem;
-            font-size: 1rem;
-            margin-bottom: 1rem;
-        }
-        .info p:last-child {
-            margin-top: 1rem;
-        }
-        .info a {
-            text-decoration: underline;
-        }
-        .link {
-            color: #3C0753;
-            text-decoration: underline;
-            margin-bottom: 1rem;
-            width:100%;
-        }
-        @media screen and (max-width: 1800px) {
-            :root {
-                font-size: 14px;
-            }
-        }
-
-        @media screen and (max-width: 1550px) {
-            :root {
-                font-size: 13px;
-            }
-        }
-
-        @media screen and (max-width: 1290px) {
-            :root {
-                font-size: 12px;
-            }
-        }
-
-        @media screen and (max-width: 1170px) {
-            :root {
-                font-size: 11px;
-            }
-        }
-
-        @media screen and (max-width: 1024px) {
-            :root {
-                font-size: 10px;
-            }
-        }
-
-        @media screen and (max-width: 990px) {
-            :root {
-                font-size: 11px;
-            }
-        }
-        @media screen and (max-width: 899px) {
-            :root {
-                font-size: 10px;
-            }
-        }
-        @media screen and (max-width: 768px) {
-            :root {
-                font-size: 9px;
-            }
-        }
-        @media screen and (max-width: 699px) {
-            :root {
-                font-size: 8px;
-            }
-        }
-        @media screen and (max-width: 576px) {
-            :root {
-                font-size: 14px;
-            }
-            .main {
-                width: 100%;
-                margin: 0 !important;
-            }
-        }
-        @media screen and (max-width: 500px) {
-            :root { 
-                font-size: 13px;
-            }
-        }
-        @media screen and (max-width: 450px) {
-            :root {
-                font-size: 11px;
-            }
-        }
-        @media screen and (max-width: 375px) {
-            :root {
-                font-size: 9px;
-            }
-        }
-    </style>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="main">
-        <div class="container">
-            <div class="image">
+    <table style="width:100%; max-width:600px; margin:auto; background-color:#ffffff; border-radius:5px;">
+        <tr>
+            <td style="text-align:center; padding:20px;">
                 <img src="'''+ ImageRoutinPath+ 'logo_dark_purple.png' '''" alt="TrackMyPrice">
-            </div>
-            <h1>Verifica tu email para comenzar a usar TrackMyPrice</h1>
-            <p>¡Hola! Para comenzar el monitoreo, por favor verifica tu dirección de email.</p>
-            <a class="btn" href="'''+ str(base)+'''/token_confirm/'''+ str(token_email)+'''" target="_blank">Verifica tu email</a>
-            <p><strong>¿No puedes ver el botón?  </strong>Copia y pega este enlace en tu navegador:</p>
-            <a class="link" href="'''+ str(base)+'''/token_confirm/'''+ str(token_email)+'''">'''+ str(base)+'''/token_confirm/'''+ str(token_email)+'''</a>
-            <p>Si tienes preguntas o necesitas asistencia de nuestro equipo de Soporte, por favor <a class="link" href="https://trackmyprice.co/contact">contáctanos</a>.</p>
-        </div>
-        <div class="info">
-            <p>Has recibido este email porque estás registrado en TrackMyPrice. Consulta nuestra <a href="https://trackmyprice.co/privacy" target="_blank">política de privacidad</a> para más información.</p>
-            <p>&copy; <span id="year"></span> TrackMyPrice.</p>
-        </div>
-    </div>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:center; padding:20px;">
+                <h1>Verifica tu email para comenzar a usar TrackMyPrice</h1>
+                <p>¡Hola! Para comenzar el monitoreo, por favor verifica tu dirección de email.</p>
+                <a href="'''+ str(base)+'''/token_confirm/'''+ str(token_email)+'''" style="display:inline-block; padding:10px 20px; background-color:#3C0753; color:#fff; text-decoration:none; border-radius:5px;">Verifica tu email</a>
+                <p>Si tienes preguntas o necesitas asistencia de nuestro equipo de Soporte, por favor <a href="https://trackmyprice.co/contact" style="color:#3C0753; text-decoration:underline;">contáctanos</a>.</p>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:center; padding:20px;">
+                <p>Has recibido este email porque estás registrado en TrackMyPrice. Consulta nuestra <a href="https://trackmyprice.co/privacy" style="color:#3C0753; text-decoration:underline;" target="_blank">política de privacidad</a> para más información.</p>
+                <p>&copy; <span id="year"></span> TrackMyPrice.</p>
+            </td>
+        </tr>
+    </table>
     <script type="text/javascript">
         document.getElementById('year').innerText = new Date().getFullYear();
     </script>

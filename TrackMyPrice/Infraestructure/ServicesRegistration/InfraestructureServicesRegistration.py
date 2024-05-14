@@ -1,8 +1,8 @@
 from injector import Binder
-from injector import Injector
+from ..Utils.ImageTools.Preprocess import PreprocessImage, IPreproccesImage
+from ..Utils.Tesseract.TesseractScan import TesseractScanToFloat, IConvertImgToFloat
 
-from ..Utils.ImageTools.Preprocess import PreprocessImage,IPreproccesImage
-def InfraestructureServicesInject(binder : Binder):
+def InfraestructureServicesInject(binder: Binder):
     binder.bind(IPreproccesImage, to=PreprocessImage)
-
-DI_INJECTOR = Injector(InfraestructureServicesInject)    
+    binder.bind(IConvertImgToFloat, to=TesseractScanToFloat)
+    return binder

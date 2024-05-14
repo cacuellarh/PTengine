@@ -105,10 +105,10 @@ class Exec(generics.CreateAPIView):
          
 class SaveScreen(generics.CreateAPIView):
     
-    __TesseractConvert : OCR  
+    __TesseractConvert : IConvertImgToFloat  
     
-    def __init__(self, tesseractConvert :  IConvertImgToFloat) -> None:
-        SaveScreen.__TesseractConvert = tesseractConvert
+    def __init__(self) -> None:
+        SaveScreen.__TesseractConvert = settings.DI_INJECTOR.get(IConvertImgToFloat)
          
     def post(self, request):
         
@@ -123,7 +123,7 @@ class SaveScreen(generics.CreateAPIView):
                     for part in file.chunks():
                         destiny.write(part)                        
         
-        price = self.ocr.convert("c:\\p\\aaaa.png")
+        price = self.__TesseractConvert.Convert("c:\\p\\aaaa.png")
         
         return JsonResponse(ResponseServer(
             

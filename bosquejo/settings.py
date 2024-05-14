@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
+from injector import Injector
+from TrackMyPrice.Core.Application.ServicesInjector.ApplicationServicesRegistration import GetServicesApplications
+from TrackMyPrice.Infraestructure.ServicesRegistration.InfraestructureServicesRegistration import InfraestructureServicesInject
+DI_INJECTOR = Injector(InfraestructureServicesInject)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,6 +29,8 @@ PATHS = {
     "tesseract": 'C:\\Program Files (x86)\\Tesseract-OCR\\tesseract',
     "ImageRoutes" : "http://127.0.0.1:8000/static/img/"
 }
+
+TESSERACT_FLAGS = r"--psm 6 --oem 3 -c tessedit_char_whitelist=0123456789 outputbase digits"
 
 # PATHS = {
 #     "base_url" : 'http://trackmyprice.co/',
