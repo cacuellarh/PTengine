@@ -3,7 +3,7 @@ from abc import ABC, abstractmethod
 class IConvertImgToFloat(ABC):
 
     @abstractmethod    
-    def Convert(self,image_path : str) -> float:
+    def Convert(self,imagePath : str) -> float:
         pass
 
 class IPreproccesImage(ABC):

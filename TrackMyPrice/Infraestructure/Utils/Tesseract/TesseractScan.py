@@ -1,21 +1,21 @@
 from TrackMyPrice.Core.Application.Contracts.SeleniumContracts import * 
 from PIL import Image
 import pytesseract
-from TrackMyPrice.Infraestructure.ServicesRegistration.InfraestructureServicesRegistration import DI_INJECTOR
+from django.conf import settings
 from TrackMyPrice.Core.Application.Models.Request.TesseractRequest import TesseractScanRequest
 
 class TesseractScanToFloat(IConvertImgToFloat):
 
-    def __init__(self, tesseractConfiguration: TesseractScanRequest)-> None:
-        self.__preprocessorImages = DI_INJECTOR.get(IPreproccesImage)
-        pytesseract.pytesseract.tesseract_cmd = tesseractConfiguration.tesseractPath
-        self.__tesseractConfiguration = tesseractConfiguration
+    def __init__(self)-> None:
+        self.__preprocessorImages = settings.DI_INJECTOR.get(IPreproccesImage)
+        pytesseract.pytesseract.tesseract_cmd = settings.PATHS["tesseract"]
+        self.__tesseractConfiguration = settings.TESSERACT_FLAGS
         
     def Convert(self,imagePath : str) -> float:
 
-        processed_image = self.__preprocessorImages.PreprocessImage(imagePath,pathSave=self.__tesseractConfiguration.preprocessorFileSaveTest)
+        processed_image = self.__preprocessorImages.PreprocessImage(imagePath)
         pil_image = Image.fromarray(processed_image)
-        extracted_text = pytesseract.image_to_string(pil_image, config=self.__tesseractConfiguration.tesseractFlagsConfiguration)
+        extracted_text = pytesseract.image_to_string(pil_image, config=self.__tesseractConfiguration)
         print(f"Informacion extraida: {extracted_text}")
         cleanText = extracted_text.strip()
 
