@@ -29,8 +29,7 @@ class User:
             for price in self.prices:
                 total+= price["fk_history_events__fk_imagetrack__price"]
                 elements+= 1
-        
-             
+  
             return render(request, "user_check_price.html", 
                 {
                               "img_details": img,
