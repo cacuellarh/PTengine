@@ -1,11 +1,10 @@
-from ..DB.Repos.Frecuency_repos import Frequency_repos
 from ..API.ResponseServer import ResponseServer
 from django.http import JsonResponse
 from ..Engine.Screen import ScreenShot
 from django.shortcuts import render
 from rest_framework import generics
 from ..Engine.OCR import OCR
-from screen.models import Client
+from screen.models import Client, ImageTrack
 from bosquejo.tasks import email_token, execute_auto_task;
 from bosquejo.tasks import validate;
 from ..Services.Console_info import Console
@@ -18,7 +17,7 @@ from django.core.serializers import serialize
 from django.shortcuts import redirect
 from django.conf import settings
 from TrackMyPrice.Core.Application.Contracts.SeleniumContracts import *
-
+from TrackMyPrice.Infraestructure.Persistence.BaseRepository import BaseRepository
 
 class ScreenView(generics.ListAPIView):    
     screen : ScreenShot
@@ -33,10 +32,13 @@ class ScreenView(generics.ListAPIView):
         self.token = Email_token()
         self.img_repos = Image_repos()
         self.client_repos = Client_repos()
-        
+      
     def get(self, request):
         
         self.session_app.create_sesion_key(request)
+        
+        # p = ImageTrackFormCreator()
+        # p.prueba()
         return render(request, "main.html")
     
     def post(self,request):
@@ -53,14 +55,14 @@ class ScreenView(generics.ListAPIView):
                 client = self.client_repos.create({"email": email})
                 post["client_fk"] = client.id_client
                 image = self.img_repos.create(data=post)
-                email_token.delay(email,token_email)
+                email_token.delay(email,token_email,request.POST.get("ImageTrackDescription"))
                 print("publicando tarea email")  
                       
             else:
                 
                 post["client_fk"] = client_on_exist.id_client
                 image = self.img_repos.create(data=post)
-                email_token.delay(email,token_email)
+                email_token.delay(email,token_email, request.POST.get("ImageTrackDescription"))
                 print("publicando tarea email") 
                 
             if image:
@@ -99,7 +101,7 @@ class Exec(generics.CreateAPIView):
             #Usando screen, para tomar la captura con selenium segun la URL insertada.
             self.screen.take_screen(url_= url_form, action="save", file_name=file_id)
             
-            return  render(request, "ScreenView.html", {"url" : url_form , "img_name" : file_id, "frequency" : Frequency_repos.get_all()})
+            return  render(request, "ScreenView.html", {"url" : url_form , "img_name" : file_id})
 
         
          
