@@ -1,12 +1,7 @@
-from email.policy import default
 from django.db import models
 import uuid
 from django.utils import timezone
 from screen.Utils.CurrentDateColombia.DateConfig import SetCurrentTimeCo
-class Frequency(models.Model):
-    
-    id_frequency = models.AutoField(primary_key=True)
-    frecuency = models.CharField(max_length=50)
 class Client(models.Model):
     
     id_client = models.AutoField(primary_key=True)
@@ -15,17 +10,14 @@ class Client(models.Model):
     
 class ImageTrack(models.Model):
     id_image = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    price = models.IntegerField()
+    price = models.DecimalField(max_digits=12,decimal_places=3)
     x = models.DecimalField(max_digits=30, decimal_places=20)
     y = models.DecimalField(max_digits=30, decimal_places=20)
     width = models.DecimalField(max_digits=30, decimal_places=20)
     height = models.DecimalField(max_digits=30, decimal_places=20)
-    rotate = models.DecimalField(max_digits=30, decimal_places=20)
-    scaleX = models.DecimalField(max_digits=30, decimal_places=20)
-    scaleY = models.DecimalField(max_digits=30, decimal_places=20)
+    ImageTrackDescription = models.CharField(max_length=100, default=None)
     url = models.CharField(max_length=500)
     delete_soft = models.BooleanField(default= False)
-    frequency_fk = models.ForeignKey(Frequency, on_delete=models.CASCADE, default=1)
     client_fk = models.ForeignKey(Client, on_delete=models.CASCADE, default=1)
     notify_validate = models.BooleanField(default= False)
     email_token =  models.CharField(max_length=100, default=None) 

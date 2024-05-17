@@ -13,9 +13,10 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import os
 from injector import Injector
-from TrackMyPrice.Core.Application.ServicesInjector.ApplicationServicesRegistration import GetServicesApplications
+from TrackMyPrice.Core.Application.ServicesInjector.ApplicationServicesRegistration import ApplicationServicesInject
 from TrackMyPrice.Infraestructure.ServicesRegistration.InfraestructureServicesRegistration import InfraestructureServicesInject
 DI_INJECTOR = Injector(InfraestructureServicesInject)
+DI_APLICATION = Injector(ApplicationServicesInject)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -105,7 +106,7 @@ CELERY_TIMEZONE = 'UTC'
 CELERY_BEAT_SCHEDULE = {
     'enviar_correo_periodico': {
         'task': 'bosquejo.tasks.execute_auto_task',
-        'schedule': 2000  #28800
+        'schedule': 60  #28800
     },
 }
 ROOT_URLCONF = 'bosquejo.urls'

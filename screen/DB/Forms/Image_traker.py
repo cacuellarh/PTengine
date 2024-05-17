@@ -4,7 +4,7 @@ from screen.models import ImageTrack
 class ImageForm(forms.ModelForm):
     class Meta:
         model = ImageTrack
-        fields = ['price', 'x', 'y','width','height','rotate','scaleX','scaleY','url', 'client_fk','email_token']
+        fields = ['price', 'x', 'y','width','height','ImageTrackDescription','url', 'client_fk','email_token']
 
         
         

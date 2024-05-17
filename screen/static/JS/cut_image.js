@@ -1,5 +1,4 @@
 //const base_url = "http://127.0.0.1:8000/"
-
 const base_url = "https://trackmyprice.co/"
 
 
@@ -41,6 +40,7 @@ const btn_capture = document.getElementById("capture")
 const image = document.getElementById("image_capture")
 const email = document.getElementById("email")
 const frequency = document.getElementById("frequency")
+let description = document.getElementById("description")
 //Modal, Envio de token a email
 const modal_confirm = document.getElementById("modal_email_confirm")
 let data_form
@@ -305,9 +305,7 @@ function send_api(){
     form_metadata.append("y", data_form.coordinates.y)
     form_metadata.append("width", data_form.coordinates.width)
     form_metadata.append("height", data_form.coordinates.height)
-    form_metadata.append("rotate", data_form.coordinates.rotate)
-    form_metadata.append("scaleX", data_form.coordinates.scaleX)
-    form_metadata.append("scaleY", data_form.coordinates.scaleY)
+    form_metadata.append("ImageTrackDescription", description.value)
     form_metadata.append("url", data_form.url)
     form_metadata.append("email", email.value)
 
