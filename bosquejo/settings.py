@@ -20,7 +20,7 @@ DI_APLICATION = Injector(ApplicationServicesInject)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-BASE_PATH_PROJECT = "C:\\Users\\camil\\OneDrive\\Desktop\\Proyectos\\TMP\\PTengine\\"
+# BASE_PATH_PROJECT = "C:\\Users\\camil\\OneDrive\\Desktop\\Proyectos\\TMP\\PTengine\\"
 
 # PATHS = {
 #     "base_url" : 'http://127.0.0.1:8000/',
@@ -34,7 +34,7 @@ BASE_PATH_PROJECT = "C:\\Users\\camil\\OneDrive\\Desktop\\Proyectos\\TMP\\PTengi
 TESSERACT_FLAGS = r"--psm 6 --oem 3 -c tessedit_char_whitelist=0123456789 outputbase digits"
 
 PATHS = {
-    "base_url" : 'http://trackmyprice.co/',
+    "base_url" : 'https://trackmyprice.co/',
     "tmp" : '/usr/ptengine/PTengine/screen/static/temp/',
     "img_folder" : '/usr/ptengine/PTengine/screen/static/img/',
     "error" : '/usr/ptengine/PTengine/screen/static/err_img/',

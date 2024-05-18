@@ -1,9 +1,9 @@
 from abc import ABC, abstractmethod
-
+from decimal import Decimal
 class IConvertImgToFloat(ABC):
 
     @abstractmethod    
-    def Convert(self,imagePath : str) -> float:
+    def Convert(self,imagePath : str) -> Decimal:
         pass
 
 class IPreproccesImage(ABC):

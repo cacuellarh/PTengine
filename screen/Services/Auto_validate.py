@@ -1,3 +1,4 @@
+from TrackMyPrice.Core.Application.Contracts.SeleniumContracts import IConvertImgToFloat
 from ..models import History_events
 from ..Engine.OCR import OCR
 from ..Engine.Screen import ScreenShot
@@ -17,7 +18,7 @@ class Validate:
     _temp_path = settings.PATHS["tmp"]
     _error_path = settings.PATHS["error"]
     #_temp_path = "/usr/ptengine/PTengine/screen/static/temp/"
-    ocr : OCR  
+    __TesseractConvert : IConvertImgToFloat 
     
     #INICIALIZACION DE ATRIBUTOS
     def __init__(self):
@@ -27,6 +28,7 @@ class Validate:
         self.ocr = OCR(settings.PATHS["tmp"], settings.PATHS["tesseract"])
         self.log_repos = LogRepos()
         self.event = History_events
+        self.__TesseractConvert = settings.DI_INJECTOR.get(IConvertImgToFloat)
         
     #Metodo para guardar evento a realizar
       
@@ -67,7 +69,7 @@ class Validate:
                 #if self.ocr.validate_consistency(price_check, img.price): #!IMPORTANTE, SE REALIZA CERCANIA DEL NUMERO CONVERTIDO CONTRA EL NUMERO GUARDADO
                                                                           #ESTO CON EL FIN DE EVITAR QUE CUALQUIER NUMERO QUE SE ESCANEE SEA APROVADO COMO UN CAMBIO DE PRECIO
   
-                    price_found = self.ocr.convert(ruta_salida)
+                    price_found = self.__TesseractConvert.Convert(ruta_salida)
                     #Si el valor si es un precio valido se guarda en el historial de precios
                     self.log_repos.save_history_prices(self.event, price_found)
                     self.log_repos.update_status_event(self.event)
