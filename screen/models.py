@@ -16,7 +16,7 @@ class ImageTrack(models.Model):
     width = models.DecimalField(max_digits=30, decimal_places=20)
     height = models.DecimalField(max_digits=30, decimal_places=20)
     ImageTrackDescription = models.CharField(max_length=100, default=None)
-    url = models.CharField(max_length=500)
+    url = models.CharField(max_length=1000)
     delete_soft = models.BooleanField(default= False)
     client_fk = models.ForeignKey(Client, on_delete=models.CASCADE, default=1)
     notify_validate = models.BooleanField(default= False)

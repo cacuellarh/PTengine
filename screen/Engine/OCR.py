@@ -44,7 +44,7 @@ class OCR(IConvertImgToFloat, IPreproccesImage):
            img_to_binary = img.point(lambda p: p > 128 and 255)
            img_to_binary.save(path_img)
            
-           price_convert = self.convert(path_img)
+           price_convert = self.Convert(path_img)
            
            if isinstance(price_convert, (int, float)):
                Console.success(f"Precio convertido analizado, si es un numero valido {price_convert}")

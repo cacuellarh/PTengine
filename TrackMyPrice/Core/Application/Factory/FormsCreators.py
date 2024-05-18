@@ -7,3 +7,8 @@ class ImageTrackFormCreator(IFormCreator):
 
     def CreateForm()-> forms.ModelForm:
         return ImageForm
+
+class ErrorFormCreator(IFormCreator):
+
+    def CreateForm()-> forms.ModelForm:
+        return Error
