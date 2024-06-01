@@ -3,8 +3,8 @@ from .Views.ScreenView import ApiProof, ScreenView, Exec, SaveScreen,AsyncTask, 
 from .Views.TokenView import Token
 from .Views.UserView import User
 from .Views.InfoView import Info
-from rest_framework.authtoken import views
 from .Views.ErrorFormView import Error
+from .Views.ContactFormView import Contact
 urlpatterns = [
     
     path('', ScreenView.as_view(), name="main_menu"),
@@ -28,5 +28,8 @@ urlpatterns = [
     path('privacy', Info.Privacy.as_view(), name="privacy"),
 
 
-    path('error_form', Error.Error_form.as_view(), name="error_form")
+    path('error_form', Error.Error_form.as_view(), name="error_form"),
+    path('contact_form', Contact.Contact_form.as_view(), name="contact_form"),
+
+    path('unsubscribe/<id_image>', User.UserUnsubscribe.as_view(), name="unsubscribe")
 ]

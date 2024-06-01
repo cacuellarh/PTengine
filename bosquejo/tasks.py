@@ -140,7 +140,7 @@ def validate(img):
         table {
             background-color: #ffffff;
             border-radius: 5px;
-            padding: 2rem 2rem 3rem;
+            padding: 2rem;
         }
 
         table tr {
@@ -162,7 +162,7 @@ def validate(img):
         td a {
             padding: 0.7rem 1.2rem;
             background-color: #3C0753;
-            color: #fff;
+            color: #fff !important;
             border: none;
             border-radius: 5px;
             cursor: pointer;
@@ -186,6 +186,24 @@ def validate(img):
         }
         .info a {
             text-decoration: underline;
+        }
+        .unsubscribe {
+            font-size: 0.7rem;
+            padding-top: 1.5rem;
+            color: gray;
+        }
+        .unsubscribe a{ 
+            padding: unset;
+            background-color: unset;
+            color: gray !important;
+            border: none;
+            border-radius: unset;
+            font-size: 0.7rem;
+            text-decoration: underline;
+        }
+        .unsubscribe a:hover {
+            background-color: unset !important;
+            color: #3C0753;     
         }
         @media screen and (max-width: 1800px) {
             :root {
@@ -269,7 +287,7 @@ def validate(img):
         <div class="main">
             <table>
                 <tr>
-                    <img src="'''+ ImageRoutinPath+ 'logo_dark_purple.png' '''" alt="TrackMyPrice">
+                    <td><img src="'''+ ImageRoutinPath+ 'logo_dark_purple.png' '''" alt="TrackMyPrice"></td>
                 </tr>
                 <tr>
                     <td><h1>¡Hemos detectado un cambio en el precio de tu producto "'''+ str(ins.ImageTrackDescription) +'''"!</h1></td>
@@ -280,6 +298,9 @@ def validate(img):
                 <tr>
                     <td><a href="'''+ str(base)+'''/details_price/''' + str(ins.id_image)+ '''/''' + str(current) +'''" target="_blank">Consultar precio</a></td>
                 </tr>
+                <tr>
+                    <td class="unsubscribe">Puedes desuscribirte dando click <a href="'''+ str(base)+'''/unsubscribe/'''+ str(ins.id_image)+'''">aquí</a></td>
+                </tr>
             </table>
             <div class="info">
                 <p>Has recibido este email porque estás registrado en TrackMyPrice. Consulta nuestra <a href="https://trackmyprice.co/privacy" target="_blank">política de privacidad</a> para más información.</p>
@@ -289,7 +310,7 @@ def validate(img):
     </div>
     <script type="text/javascript">
         document.getElementById('year').innerText = new Date().getFullYear();
-    </script>
+    </script> 
 </body>
 </html>
 

@@ -8,21 +8,21 @@
     </p>
 </article>
 <section class="form_container">
-    <form id="contact-form" action="#" method="POST">
+    <form id="contact-form" action="{% url 'contact_form' %}" method="POST">
         <label for="name">*Nombre:</label>
-        <input type="text" id="name" name="name" required>
+        <input type="text" id="name" name="name_contact" required>
   
         <label for="email">*Correo Electrónico:</label>
-        <input type="email" id="email" name="email" required>
+        <input type="email" id="email" name="email_contact" required>
   
         <label for="phone">Teléfono:</label>
-        <input type="tel" id="phone" name="phone">
+        <input type="tel" id="phone" name="phone_contact" pattern=".{7,15}">
   
         <label for="company">Empresa/Organización:</label>
-        <input type="text" id="company" name="company">
+        <input type="text" id="company" name="company_contact">
   
         <label for="message">*Mensaje:</label>
-        <textarea id="message" name="message" rows="4" required></textarea>
+        <textarea id="message" name="message_contact" rows="4" required></textarea>
   
         <input type="submit" value="Enviar">
         <span>Los campos marcados con (*) son obligatorios.</span>
