@@ -13,16 +13,5 @@ class Contact:
                 form = ContactForm(request.POST)
                 if form.is_valid():
                     form.save()
-                    print("as")
-                    return JsonResponse(ResponseServer(
-                    
-                        Status= True,
-                        Message = "Registro completado con exíto",
-                        Data = {}
-                    ).to_dict())
-                else:
-                    for field, errors in form.errors.items():
-                           form = ContactForm()
-                           print(f"{field},{errors}")
-            
+
             return render(request, "main.html")

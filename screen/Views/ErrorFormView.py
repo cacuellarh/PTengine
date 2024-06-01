@@ -11,20 +11,12 @@ class Error:
         def post(self,request):
             print(f"{request.POST}, {request.FILES}")
             if request.method == 'POST':
-                print(request.POST) 
+                
                 form = ErrorForm(request.POST, request.FILES)
                 if form.is_valid():
                     form.save()
-                    return JsonResponse(ResponseServer(
-                    
-                        Status= True,
-                        Message = "Registro completado con exíto",
-                        Data = {}
-                    ).to_dict())
-                else:
-                    for field, errors in form.errors.items():
-                           form = ErrorForm()
-                           print(f"{field},{errors}")
-                           
+
             return render(request, "main.html")
+                           
+            
                 
