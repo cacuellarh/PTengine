@@ -146,7 +146,6 @@ function moveUpRepeatedly() {
   if (moveYTPressed) {
     cropper.move(0, speed); // Mueve hacia arriba
     speed++;
-    console.log("subiendo a velocidad" + speed);
     setTimeout(moveUpRepeatedly, 100); // Llama a la función nuevamente después de 100ms
   }
 }
@@ -156,7 +155,6 @@ function moveDownRepeatedly() {
   if (moveYBPressed) {
     cropper.move(0, -speed); // Mueve hacia abajo
     speed++;
-    console.log("bajando a velocidad " + speed);
     setTimeout(moveDownRepeatedly, 100); // Llama a la función nuevamente después de 100ms
   }
 }
@@ -190,7 +188,6 @@ btn_send.addEventListener("click", () => {
     validations_form.email_required = false;
   }
 
-  console.log(validations_form);
   if (
     validations_form.email_check &&
     validations_form.email_required &&
@@ -214,7 +211,6 @@ function generate_metadata() {
   modal_loader_status(true);
 
   var img_cut = cropper.getCroppedCanvas();
-  console.log("url:; " + url_input.value);
 
   img_cut.toBlob((blob) => {
     const form = new FormData();
@@ -242,7 +238,6 @@ function generate_metadata() {
         //Se checkea precio en lista de requerimientos y se valida que sea numero
         btn_confirm_modalprice.addEventListener("click", () => {
           validations_form.price_check = true;
-          console.log(res_view.price.price);
           if (!isNaN(res_view.price.price)) {
             data_form = res_view;
             validations_form.price_as_number = true;
@@ -263,12 +258,10 @@ function input_email_valid() {
   let regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
   if (regex.test(email.value)) {
-    console.log("correo valido");
     email_valid.style.display = "none";
     validations_form.email_check = true;
     return true;
   } else {
-    console.log("correo invalido");
     email_valid.style.display = "block";
     validations_form.email_check = false;
     return false;

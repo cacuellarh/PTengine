@@ -1,0 +1,114 @@
+.container_about_us {
+    display: flex;
+    width: 100%;
+    height: calc(100vh - 8rem);
+}
+
+.container_about_us .about_us,
+.container_about_us .about_us_img {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container_about_us .about_us {
+    flex-direction: column;
+    padding: 0 4rem 0 15rem;
+    align-items: flex-start !important;
+}
+
+.container_about_us .about_us h2{
+    font-size: 1.5rem;
+    font-weight: 500;
+    padding: 0.5rem 0;
+    letter-spacing: 0.2rem;
+}
+
+.container_about_us .about_us h3 {
+    font-size: 3.2rem;
+    font-weight: 500;
+    padding: 0.5rem 0 1rem;
+    line-height: 3.8rem;
+}
+
+.container_about_us .about_us p{
+    font-size: 1.2rem;
+    font-weight: 300;
+    line-height: 2rem;
+}
+
+.container_about_us .about_us_img {
+    padding: 0 15rem 0 4rem;
+}
+
+.container_about_us .about_us_img img {
+    width: 20rem;
+    height: auto;
+}
+
+@media screen and (max-width: 1550px) {
+    .container_about_us .about_us {
+        padding: 0 2rem 0 10rem;
+    }
+    
+    .container_about_us .about_us_img {
+        padding: 0 10rem 0 2rem;
+    }
+}
+
+@media screen and (max-width: 990px) {
+    .container_about_us {
+        height: unset;
+        padding: 3rem 0;
+    }
+
+    .container_about_us .about_us {
+        padding: 0 2rem 0 7rem;
+    }
+
+    .container_about_us .about_us_img {
+        padding: 0 7rem 0 2rem;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .container_about_us {
+        flex-direction: column-reverse;
+        padding: 0;
+    }
+
+    .container_about_us .about_us,
+    .container_about_us .about_us_img {
+        width: 100%;
+    }
+
+    .container_about_us .about_us h2{
+        font-size: 1rem;
+        letter-spacing: 0.1rem;
+    }
+    
+    .container_about_us .about_us h3 {
+        font-size: 1.8rem;
+        line-height: 2.3rem;
+    }
+    
+    .container_about_us .about_us p{
+        font-size: 0.8rem;
+        font-weight: 300;
+        line-height: 1.5rem;
+    }
+
+    .container_about_us .about_us {
+        padding: 2rem;
+    }
+
+    .container_about_us .about_us_img {
+        padding: 2rem;
+    }
+
+    .container_about_us .about_us_img img {
+        width: 10rem;
+        height: auto;
+    }
+}
