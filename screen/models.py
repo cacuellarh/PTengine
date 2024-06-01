@@ -52,8 +52,15 @@ class ElementsXpaths(models.Model):
 
 class Error_form (models.Model):
     id_error = models.AutoField(primary_key=True)
-    date_log_error = models.DateTimeField()
+    date_log_error = models.DateTimeField(default=SetCurrentTimeCo.SetTimeCo(timezone.now()))
     email_error = models.EmailField()
     comment_error = models.CharField(max_length=500)
-    image_error = models.CharField(max_length=200)
+    image_error = models.FileField(max_length=500, upload_to="screen/static/ErrorFormImg")
 
+class Contact_form (models.Model):
+    id_contact_form = models.AutoField(primary_key=True)
+    name_contact = models.CharField(max_length=40, default=None)
+    email_contact = models.EmailField(null=None)
+    phone_contact = models.CharField(max_length=15)
+    company_contact = models.CharField(max_length=10)
+    message_contact = models.CharField(max_length=1000)

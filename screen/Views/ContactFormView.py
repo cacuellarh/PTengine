@@ -1,17 +1,15 @@
 from django.http import JsonResponse
 from rest_framework import generics
 from screen.API.ResponseServer import ResponseServer
-from screen.models import Error_form
-from screen.DB.Forms.ErrorForm import ErrorForm
+from screen.DB.Forms.ContactForm import ContactForm
 
-class Error:
+class Contact:
 
-    class Error_form (generics.ListAPIView):
+    class Contact_form (generics.ListAPIView):
         def post(self,request):
-            print(f"{request.POST}, {request.FILES}")
             if request.method == 'POST':
                 print(request.POST) 
-                form = ErrorForm(request.POST, request.FILES)
+                form = ContactForm(request.POST)
                 if form.is_valid():
                     form.save()
                     return JsonResponse(ResponseServer(
@@ -22,7 +20,7 @@ class Error:
                     ).to_dict())
                 else:
                     for field, errors in form.errors.items():
-                           form = ErrorForm()
+                           form = ContactForm()
                            print(f"{field},{errors}")
             return JsonResponse(ResponseServer(
             
@@ -30,4 +28,3 @@ class Error:
                 Message = "Error al procesar el registro",
                 Data = {}
             ).to_dict())
-                

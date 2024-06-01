@@ -5,6 +5,8 @@ from screen.DB.Repos.Image_repos import Image_repos
 from django.http import JsonResponse
 from screen.DB.Repos.Log_repos import LogRepos
 from screen.API.ResponseServer import ResponseServer
+from decimal import Decimal
+from screen.models import ImageTrack
 
 class User:
     prices = None
@@ -19,7 +21,7 @@ class User:
             
         def get(self,request, id_img, price_current):
             
-            priceCurrentInt = float(price_current)      
+            priceCurrentInt = Decimal(price_current)      
             img = self.image_repos.filter("id_image", id_img)
             self.prices = self.log_repos.get_history_prices(id_img)
             total = 0
@@ -59,3 +61,21 @@ class User:
                     Data= self.prices
                 ).to_dict()
             )
+        
+    class UserUnsubscribe(generics.ListAPIView):
+
+        def get(self, request, id_image):
+
+            try:
+
+                img = ImageTrack.objects.get(id_image = id_image)
+                img.notify_validate = False
+
+                img.save()
+
+            except Exception as e:
+
+                print(f"Error al obtener id de imagen : {e}")
+
+            return render(request,"unsubscribe.html")
+            
