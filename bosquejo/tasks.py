@@ -588,7 +588,7 @@ def email_token(email,token_email, productDescription : str):
     <div class="main">
         <table>
             <tr>
-                <td><img src="'''+ ImageRoutinPath+ 'logo_dark_purple.png' '''" alt="TrackMyPrice"></td>
+                <td><img class="logo" src="'''+ ImageRoutinPath+ 'logo_dark_purple.png' '''" alt="TrackMyPrice"></td>
             </tr>
             <tr>
                 <td><h1>Verifica tu email para comenzar a usar TrackMyPrice</h1></td>
