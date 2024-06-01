@@ -1,0 +1,273 @@
+/* ========== ResetCSS ========== */
+*,
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+font,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+tr,
+select,
+input {
+    appearance:inherit; 
+    -moz-appearance:inherit; 
+    -webkit-appearance:inherit; 
+    background:transparent; 
+    border:none; 
+    border-radius:0; 
+    box-sizing: border-box; 
+    margin:0; 
+    outline:0; 
+    padding:0; 
+    text-decoration:none;
+    list-style: none;
+    font-family: var(--main_font);
+    color: inherit;
+}
+
+/* ========== Variables ========== */
+:root {
+    /* Tamaño objetos */
+    font-size: 15px;
+    /* ===== Variables de color ===== */
+    --menu-color: #3C0753;
+    --main_color: #030637;
+    --hover_color: #720455;
+    --thead_color : #074d701f;
+    --button_color : #910A67;
+    --footer_color : #f7f8fb;
+    --success: #3ab65c;
+    --error: #bf333b;
+    --info: #1898c0;
+    --warning: #bc8c12;
+    /* ===== Variables de fuentes ===== */
+    --main_font: 'Poppins', sans-serif;
+    --fuente-secundaria: "Times New Roman, serif";
+}
+
+
+body {
+    font-family: var(--main_font);
+}
+
+.modal_email_confirm{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color:  rgba(0, 0, 0, 0.5);
+    color: aliceblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    top: 0;
+    left: 0;
+}
+
+.card_confirm {
+    width: 50rem;
+    height: auto;
+    border-radius: 5px;
+    overflow: hidden;
+    background-color: #fff;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    color: #000;
+}
+
+.card_confirm a {
+    padding: 0.7rem 1.2rem;
+    background-color: var(--menu-color);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.card_confirm a:hover {
+    background-color: var(--hover_color); 
+}
+
+.disabled{
+    display: none;
+}
+
+.card_confirm h1 {
+    font-size: 2rem;
+    text-align: center;
+    margin: 0 0 1rem;
+}
+
+.card_confirm img {
+    width: 7rem;
+    height: auto;
+    margin: 0 0 1rem;
+}
+
+.card_confirm p {
+    font-size: 1.1rem;
+    text-align: center;
+    margin: 0 0 1rem;
+}
+
+
+/* ============================================================ */
+/* ======================== Responsive ======================== */
+/* ============================================================ */
+@media screen and (max-width: 1800px) {
+    :root {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 1550px) {
+    :root {
+        font-size: 13px;
+    }
+}
+
+@media screen and (max-width: 1290px) {
+    :root {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 1170px) {
+    :root {
+        font-size: 11px;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    :root {
+        font-size: 10px;
+    }
+}
+
+@media screen and (max-width: 990px) {
+    :root {
+        font-size: 11px;
+    }
+}
+
+@media screen and (max-width: 899px) {
+    :root {
+        font-size: 10px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    :root {
+        font-size: 9px;
+    }
+}
+
+@media screen and (max-width: 699px) {
+    :root {
+        font-size: 8px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    :root {
+        font-size: 19px;
+    }
+
+    
+    .card_confirm {
+        width: 85%;
+    }
+
+    .card_confirm h1 {
+        font-size: 1.5rem;
+    }
+
+    .card_confirm p {
+        font-size: 1rem;
+    }
+
+    .card_confirm img {
+        width: 3rem;
+    }
+
+    .card_confirm a {
+        font-size: .8rem;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    :root {
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    :root {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    :root {
+        font-size: 14px;
+    }
+}
