@@ -81,7 +81,7 @@
                     <textarea id="comment_error" name="comment_error" rows="4" required placeholder="Tus sugerencias o reporte de errores"></textarea>
                     
                     <label for="image_error">Adjunta imagen:</label>
-                    <input type="file" id="image_error" name="image_error" accept="image/png, image/jpeg, image/jpg, image/gif">
+                    <input type="file" id="image_error" name="image_error" accept="image/png, image/jpeg, image/jpg, image/gif" required>
                     <input type="submit" value="Enviar">
                     <span>Los campos marcados con (*) son obligatorios.</span>
                 </form>
@@ -94,7 +94,7 @@
         <p>&copy; <span id="year"></span> TrackMyPrice</p>
         <div>
             <a href="{% url 'privacy' %}">Política de privacidad</a>
-            <a href="{% url 'terms' %}">Términos de uso</a>
+            <!-- <a href="{% url 'terms' %}">Términos de uso</a> -->
             <span id="openModalForm">Ayúdanos a mejorar</span>
         </div>
     </footer>

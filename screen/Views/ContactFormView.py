@@ -2,6 +2,7 @@ from django.http import JsonResponse
 from rest_framework import generics
 from screen.API.ResponseServer import ResponseServer
 from screen.DB.Forms.ContactForm import ContactForm
+from django.shortcuts import render
 
 class Contact:
 
@@ -12,6 +13,7 @@ class Contact:
                 form = ContactForm(request.POST)
                 if form.is_valid():
                     form.save()
+                    print("as")
                     return JsonResponse(ResponseServer(
                     
                         Status= True,
@@ -22,9 +24,5 @@ class Contact:
                     for field, errors in form.errors.items():
                            form = ContactForm()
                            print(f"{field},{errors}")
-            return JsonResponse(ResponseServer(
             
-                Status= False,
-                Message = "Error al procesar el registro",
-                Data = {}
-            ).to_dict())
+            return render(request, "main.html")

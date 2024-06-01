@@ -1,4 +1,5 @@
 from django.http import JsonResponse
+from django.shortcuts import render
 from rest_framework import generics
 from screen.API.ResponseServer import ResponseServer
 from screen.models import Error_form
@@ -24,10 +25,6 @@ class Error:
                     for field, errors in form.errors.items():
                            form = ErrorForm()
                            print(f"{field},{errors}")
-            return JsonResponse(ResponseServer(
-            
-                Status= False,
-                Message = "Error al procesar el registro",
-                Data = {}
-            ).to_dict())
+                           
+            return render(request, "main.html")
                 
