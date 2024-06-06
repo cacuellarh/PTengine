@@ -1,5 +1,10 @@
+from django.http import JsonResponse
 from rest_framework import generics
 from django.shortcuts import render
+from django.conf import settings
+from typing import cast
+from TrackMyPrice.Core.Application.UseCases.ImageTrack.ScannedImage_UseCases import ScannedImageCreateUseCase
+from TrackMyPrice.Infraestructure.Persistence.ImageTrackRepository import ScannedImageRepository
 
 class Info():
     
@@ -25,4 +30,14 @@ class Info():
         
         def get(self, request):
             
-            return render(request,"privacy.html")                 
+            return render(request,"privacy.html")
+
+    class Prueba(generics.ListAPIView):
+        def post(self, request):
+            
+            use = ScannedImageCreateUseCase()
+
+            res = use.Execute(request)
+
+            return JsonResponse(res.ToDict())
+            

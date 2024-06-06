@@ -1,10 +1,11 @@
-from TrackMyPrice.Core.Application.Contracts.Repository.BaseRepository import IBaseRepository
+from TrackMyPrice.Core.Application.Contracts.Repository.IBaseRepository import IBaseRepository
 from django.db import models
 from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned
 from TrackMyPrice.Core.Application.Models.Response.Response import RepositoryResponse
 from TrackMyPrice.Core.Application.Contracts.Factories.FormFactories.FormFactory import IFormFactory
 from TrackMyPrice.Core.Application.Models.Request.ApiResponse import ResponseDetails
 from django.conf import settings
+from django.core.serializers import serialize
 
 class BaseRepository(IBaseRepository):
 
@@ -44,8 +45,8 @@ class BaseRepository(IBaseRepository):
             insertData = currentForm(data)
 
             if insertData.is_valid():
-                insertData.save()
-                return self.__MakeResponse(ResponseDetails(True, 200, "Success"))
+                save = insertData.save()
+                return self.__MakeResponse(ResponseDetails(True, 200, "Success", save))
             else:
                 return self.__MakeResponse(ResponseDetails(False, 412,f"Validation error, Model:{self.model.__class__.__name__} ", insertData.errors))
             

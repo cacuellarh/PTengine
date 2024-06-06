@@ -1,7 +1,7 @@
 from screen.models import ImageTrack
-from TrackMyPrice.Core.Application.Contracts.Repository.IimageTrackRepository import IimageTrackRepository
+from TrackMyPrice.Core.Application.Contracts.Repository.IScannedImageRepository import IScannedImageRepository
 
-class ImageTrackRepository(IimageTrackRepository):
+class ScannedImageRepository(IScannedImageRepository):
 
     def __init__(self) -> None:
         super().__init__(ImageTrack)

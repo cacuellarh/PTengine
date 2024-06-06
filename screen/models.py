@@ -1,5 +1,6 @@
 from django.db import models
 import uuid
+from django.forms import model_to_dict
 from django.utils import timezone
 from screen.Utils.CurrentDateColombia.DateConfig import SetCurrentTimeCo
 class Client(models.Model):
@@ -23,8 +24,10 @@ class ImageTrack(models.Model):
     email_token =  models.CharField(max_length=100, default=None) 
     DateTimeTrack = models.DateTimeField(default=SetCurrentTimeCo.SetTimeCo(timezone.now())) 
 
-    def __str__(self):
-        return f"ImageTrack {self.id_image}"
+    def to_dict(self):
+        data = model_to_dict(self, exclude=["client_fk"])  # Excluye la clave foránea
+        data['client_fk'] = self.client_fk.id_client  # Agrega manualmente el ID del cliente
+        return data
     
 class History_events(models.Model):
     id_event = models.AutoField(primary_key=True)

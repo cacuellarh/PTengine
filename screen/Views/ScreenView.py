@@ -19,6 +19,7 @@ from django.conf import settings
 from TrackMyPrice.Core.Application.Contracts.SeleniumContracts import *
 from TrackMyPrice.Infraestructure.Persistence.BaseRepository import BaseRepository
 
+
 class ScreenView(generics.ListAPIView):    
     screen : ScreenShot
     session_app : App_session
@@ -36,9 +37,7 @@ class ScreenView(generics.ListAPIView):
     def get(self, request):
         
         self.session_app.create_sesion_key(request)
-        
-        # p = ImageTrackFormCreator()
-        # p.prueba()
+
         return render(request, "main.html")
     
     def post(self,request):
