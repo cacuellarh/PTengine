@@ -26,6 +26,7 @@ class User:
             self.prices = self.log_repos.get_history_prices(id_img)
             total = 0
             elements = 1
+            print(f"precio actual{priceCurrentInt}, precio de base {img.price}")
             PriceDifference = img.price - priceCurrentInt
 
             for price in self.prices:

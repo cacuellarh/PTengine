@@ -18,7 +18,7 @@ urlpatterns = [
 
     path('details/<id_img>', User.ApiDetails.as_view()),
     
-    path('prueba', ApiProof.as_view()),
+    path('prueba', Info.Prueba.as_view()),
     
     #info empresa
     

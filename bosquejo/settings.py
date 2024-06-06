@@ -15,6 +15,7 @@ import os
 from injector import Injector
 from TrackMyPrice.Core.Application.ServicesInjector.ApplicationServicesRegistration import ApplicationServicesInject
 from TrackMyPrice.Infraestructure.ServicesRegistration.InfraestructureServicesRegistration import InfraestructureServicesInject
+
 DI_INJECTOR = Injector(InfraestructureServicesInject)
 DI_APLICATION = Injector(ApplicationServicesInject)
 
@@ -187,3 +188,4 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
