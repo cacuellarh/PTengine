@@ -3,7 +3,8 @@ from rest_framework import generics
 from django.shortcuts import render
 from django.conf import settings
 from typing import cast
-from TrackMyPrice.Core.Application.UseCases.ImageTrack.ScannedImage_UseCases import ScannedImageCreateUseCase
+from TrackMyPrice.Core.Application.Factory.WriteUseCase_Builder import WriteUseCaseBuilder
+from TrackMyPrice.Core.Application.UseCases.WriteUseCases.ScannedImage_UseCases import ScannedImageCreateUseCase
 from TrackMyPrice.Infraestructure.Persistence.ImageTrackRepository import ScannedImageRepository
 
 class Info():
@@ -35,9 +36,10 @@ class Info():
     class Prueba(generics.ListAPIView):
         def post(self, request):
             
-            use = ScannedImageCreateUseCase()
+            WriteUseCaseBuilder.BuildWriteUseCases()
+            # use = ScannedImageCreateUseCase()
 
-            res = use.Execute(request)
+            # res = use.Execute(request)
 
-            return JsonResponse(res.ToDict())
+            # return JsonResponse(res.ToDict())
             
