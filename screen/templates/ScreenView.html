@@ -1,5 +1,6 @@
 {% extends 'main.html' %}
 {% block child_content %}
+{% load static %}
 <section class="cut_seccion">
     <img src="../static/img/{{img_name}}.png" alt="" id="image_capture">
     <div class="btn-cropp">
@@ -14,22 +15,24 @@
 <section class="confirm_selection">
     <button id="btn_cropp">Confirmar selección</button>
 </section>
-<section id="emailForm">
-    <div class="alert_email">
-        <div class="Send">
-            <label for="description">Nombre del producto:</label>
-            <input type="text" name="description" id="description" placeholder="Ejemplo: Zapatillas deportivas, Televisor de 50 pulgadas" required>
-
-            <label for="email">Enviar cambio a:</label>
-            <input type="email" name="email" id="email" placeholder="ejemplo@correo.com" required>
-            <span class="err_form" id="email_valid">*Error: La dirección de correo es invalida*</span>
+<div class="modal_window disabled" id="product_form"> 
+    <div class="modal_container modal_container_medium">
+        <img id="close_product_form" class="close" src="{% static '/img/icons/icon_close.png' %}" alt="close">
+        <h2 class="form_title">Registro de Producto</h2>
+        <div class="alert_email">
+            <div class="Send">
+                <label for="description">Nombre del producto:</label>
+                <input type="text" name="description" id="description" placeholder="Ejemplo: Zapatillas deportivas, Televisor de 50 pulgadas" required>
+    
+                <label for="email">Enviar cambio a:</label>
+                <input type="email" name="email" id="email" placeholder="ejemplo@correo.com" required>
+                <span class="err_form" id="email_valid">*Error: La dirección de correo es invalida*</span>
+            </div>
         </div>
+        <input id="url_" type="hidden"  value="{{url}}">
+        <button class="button_send"  id="send_form">Comenzar monitoreo gratuito</button>
     </div>
-    <input id="url_" type="hidden"  value="{{url}}">
-    <button class="button_send"  id="send_form">Comenzar monitoreo gratuito</button>
-
-</section>
-
+</div>
 <script src="../static/cropperjs/dist/cropper.min.js"></script>
-<script src="../static/JS/cut_image.js"></script>
+<script  src="../static/JS/cut_image.js"></script>
 {% endblock %}

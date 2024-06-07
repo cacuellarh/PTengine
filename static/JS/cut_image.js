@@ -1,4 +1,7 @@
+import { closeModalProductForm } from "../JS/modal";
+
 const base_url = "http://127.0.0.1:8000/";
+
 //const base_url = "https://trackmyprice.co/";
 
 // document.addEventListener("DOMContentLoaded", function () {
@@ -32,7 +35,6 @@ const price_scan = document.getElementById("price_scan");
 const btn_cancel_modalprice = document.getElementById("cancel_modalprice");
 // 1.4 h4 mostrar precio escaneado
 const btn_confirm_modalprice = document.getElementById("confirm_modalprice");
-
 const save_cut = document.getElementById("save_cut");
 const btn_send = document.getElementById("send_form");
 const btn_capture = document.getElementById("capture");
@@ -241,11 +243,13 @@ function generate_metadata() {
           if (!isNaN(res_view.price.price)) {
             data_form = res_view;
             validations_form.price_as_number = true;
+            // open.modaLT(true)
           } else {
             alert("El area seleccionada no contiene un numero valido.");
             validations_form.price_as_number = false;
           }
-          modal_state(false);
+          modal_state(false)
+          closeModalProductForm()
         });
       })
       .catch((error) => {

@@ -1,5 +1,7 @@
-//const base_url = "http://127.0.0.1:8000/";
-const base_url = "https://trackmyprice.co/";
+
+const base_url = "http://127.0.0.1:8000/";
+
+//const base_url = "https://trackmyprice.co/";
 
 // document.addEventListener("DOMContentLoaded", function () {
 //   // Selecciona la imagen y el contenedor
@@ -245,7 +247,8 @@ function generate_metadata() {
             alert("El area seleccionada no contiene un numero valido.");
             validations_form.price_as_number = false;
           }
-          modal_state(false);
+          modal_state(false)
+        
         });
       })
       .catch((error) => {
@@ -297,6 +300,10 @@ function send_api() {
         modal_confirm.classList.add("disabled");
         load.classList.add("hidden_loader");
       }
+      var productForm = document.getElementById('product_form');
+          if (productForm !== null) {
+              productForm.classList.add('disabled');
+          }
     })
     .catch((error) => {
       console.error(error);

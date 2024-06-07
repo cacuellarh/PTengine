@@ -83,6 +83,7 @@
 .monitor .alert_email {
     display: flex;
     gap: 1rem;
+    width: 100%;
 }
 
 .monitor .alert_email div {
@@ -95,7 +96,7 @@
 }
 
 .monitor .alert_email .Send {
-    width: 80%;
+    width: 100% !important;
     margin: 0;
 }
 
@@ -276,7 +277,7 @@
     }
     
     .monitor {
-        margin: 0 1rem;
+        margin: 0 1rem 2rem;
         padding: 1rem;
     }
 
