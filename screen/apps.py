@@ -1,6 +1,7 @@
 from django.apps import AppConfig
 
 from TrackMyPrice.Core.Application.Factory.Repository_builder import RepositoryBuilder
+from TrackMyPrice.Core.Application.Factory.WriteUseCase_Builder import WriteUseCaseBuilder
 
 
 class ScreenConfig(AppConfig):
@@ -9,5 +10,5 @@ class ScreenConfig(AppConfig):
 
     def ready(self) -> None:
         RepositoryBuilder.BuildRepositories()
-
+        WriteUseCaseBuilder._BuildWriteUseCases()
     
