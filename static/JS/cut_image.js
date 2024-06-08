@@ -1,8 +1,8 @@
-import { closeModalProductForm } from "../JS/modal";
+//import { closeModalProductForm } from "../JS/modal";
 
-const base_url = "http://127.0.0.1:8000/";
+//const base_url = "http://127.0.0.1:8000/";
 
-//const base_url = "https://trackmyprice.co/";
+const base_url = "https://trackmyprice.co/";
 
 // document.addEventListener("DOMContentLoaded", function () {
 //   // Selecciona la imagen y el contenedor

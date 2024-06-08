@@ -21,27 +21,27 @@ DI_APLICATION = Injector(ApplicationServicesInject)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-BASE_PATH_PROJECT = "C:\\Users\\camil\\OneDrive\\Desktop\\Proyectos\\TMP\\PTengine\\"
-
-PATHS = {
-    "base_url" : 'http://127.0.0.1:8000/',
-    "tmp" : f'{BASE_PATH_PROJECT}screen\\static\\temp\\',
-    "img_folder" : f'{BASE_PATH_PROJECT}screen\\static\\img\\',
-    "error" : f'{BASE_PATH_PROJECT}screen\\static\\err_img\\',
-    "tesseract": 'C:\\Program Files (x86)\\Tesseract-OCR\\tesseract',
-    "ImageRoutes" : "http://127.0.0.1:8000/static/img/"
-}
-
-TESSERACT_FLAGS = r"--psm 6 --oem 3 -c tessedit_char_whitelist=0123456789 outputbase digits"
+# BASE_PATH_PROJECT = "C:\\Users\\camil\\OneDrive\\Desktop\\Proyectos\\TMP\\PTengine\\"
 
 # PATHS = {
-#     "base_url" : 'https://trackmyprice.co/',
-#     "tmp" : '/usr/ptengine/PTengine/screen/static/temp/',
-#     "img_folder" : '/usr/ptengine/PTengine/screen/static/img/',
-#     "error" : '/usr/ptengine/PTengine/screen/static/err_img/',
-#     "tesseract" : '/usr/bin/tesseract',
-#     "ImageRoutes" : "https://trackmyprice.co/static/img/"
+#     "base_url" : 'http://127.0.0.1:8000/',
+#     "tmp" : f'{BASE_PATH_PROJECT}screen\\static\\temp\\',
+#     "img_folder" : f'{BASE_PATH_PROJECT}screen\\static\\img\\',
+#     "error" : f'{BASE_PATH_PROJECT}screen\\static\\err_img\\',
+#     "tesseract": 'C:\\Program Files (x86)\\Tesseract-OCR\\tesseract',
+#     "ImageRoutes" : "http://127.0.0.1:8000/static/img/"
 # }
+
+# TESSERACT_FLAGS = r"--psm 6 --oem 3 -c tessedit_char_whitelist=0123456789 outputbase digits"
+
+PATHS = {
+    "base_url" : 'https://trackmyprice.co/',
+    "tmp" : '/usr/ptengine/PTengine/screen/static/temp/',
+    "img_folder" : '/usr/ptengine/PTengine/screen/static/img/',
+    "error" : '/usr/ptengine/PTengine/screen/static/err_img/',
+    "tesseract" : '/usr/bin/tesseract',
+    "ImageRoutes" : "https://trackmyprice.co/static/img/"
+}
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -107,7 +107,7 @@ CELERY_TIMEZONE = 'UTC'
 CELERY_BEAT_SCHEDULE = {
     'enviar_correo_periodico': {
         'task': 'bosquejo.tasks.execute_auto_task',
-        'schedule': 60  #28800
+        'schedule': 30000  #28800
     },
 }
 ROOT_URLCONF = 'bosquejo.urls'
