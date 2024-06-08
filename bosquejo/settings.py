@@ -32,7 +32,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 #     "ImageRoutes" : "http://127.0.0.1:8000/static/img/"
 # }
 
-# TESSERACT_FLAGS = r"--psm 6 --oem 3 -c tessedit_char_whitelist=0123456789 outputbase digits"
+TESSERACT_FLAGS = r"--psm 6 --oem 3 -c tessedit_char_whitelist=0123456789 outputbase digits"
 
 PATHS = {
     "base_url" : 'https://trackmyprice.co/',

@@ -80,7 +80,7 @@ class ScreenShot():
             self.browser.get(self.url)
             seleniumServices = SeleniumCloseAds(self.browser)
             seleniumServices.FindUrl(self.url)
-            time.sleep(10)
+            time.sleep(12)
 
             if action == "save":
                 self.browser.save_screenshot(f"{self.save_path_img}{file_name}.png")
