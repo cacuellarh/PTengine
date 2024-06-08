@@ -1,8 +1,9 @@
 from abc import ABC, abstractmethod
+
 from TrackMyPrice.Core.Application.Models.Response.Response import RepositoryResponse
 
-class IScannedImageCreateUseCase(ABC):
+class IClientGetUseCase(ABC):
 
     @abstractmethod
-    def Execute(self, request) -> RepositoryResponse:
+    def Execute(dataFilter)-> RepositoryResponse:
         pass

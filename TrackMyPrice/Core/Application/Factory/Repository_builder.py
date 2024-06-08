@@ -23,9 +23,6 @@ class RepositoryBuilder:
                         RepositoryBuilder.__listRepositories[name] = obj
 
 
-        for k, v in RepositoryBuilder.__listRepositories.items():
-            print(k,v)
-
     @staticmethod
     def GetRepository(repositoryType : str):
 
