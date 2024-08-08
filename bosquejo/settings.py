@@ -13,11 +13,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import os
 from injector import Injector
-from TrackMyPrice.Core.Application.ServicesInjector.ApplicationServicesRegistration import ApplicationServicesInject
-from TrackMyPrice.Infraestructure.ServicesRegistration.InfraestructureServicesRegistration import InfraestructureServicesInject
 
-DI_INJECTOR = Injector(InfraestructureServicesInject)
-DI_APLICATION = Injector(ApplicationServicesInject)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent

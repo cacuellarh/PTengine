@@ -1,6 +1,24 @@
 {% extends 'Base.html' %}
 {% load static %}
 {% block content %}
+
+{% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+
+            <div class="modal_window" id="modal_email_confirm"> 
+                <div class="modal_container modal_container_medium">
+                    <img src="{% static '/img/icons/icon_celebration.png' %}" alt="Url">
+                    <h2>¡Gracias por utilizar Tracker Price!</h2>
+                    <h3>Tu producto actualmente se estará monitoreando periódicamente para detectar cambios.</h3>
+                    <p class="text">{{message}}</p>
+                    <a href="{% url 'main_menu' %}">Volver al inicio</a>
+                </div>    
+            </div>
+                
+            {% endfor %}
+        </div>
+{% endif %}
 <section class="description">
     <h2>Monitoreamos cambios en los precios de tus productos favoritos</h2>
     <h3>... para que, cuando cambien, ¡puedas comprarlos al mejor precio!"</h3>
@@ -15,7 +33,7 @@
         </article>
         <img class="img_next" src="../static/img/icons/icon_next.png" alt="">
     </div>
-    <div>
+    <!-- <div>
         <figure>
             <img src="../static/img/icons/icon_select.png" alt="Seleccione área">
         </figure>
@@ -23,13 +41,13 @@
             <p><strong>Selecciona un área</strong><br>del precio del producto que deseas monitorear</p>
         </article>
         <img class="img_next" src="../static/img/icons/icon_next.png" alt="">
-    </div>
+    </div> -->
     <div>
         <figure>
             <img src="../static/img/icons/icon_input .png" alt="Frecuencia">
         </figure>
         <article>
-            <p><strong>Introduce el nombre</strong><br>del producto que deseas monitorear</p>
+            <p><strong>Introduce tu correo</strong><br>Donde llegaran los cambios monitoreados a tu producto</p>
         </article>
         <img class="img_next" src="../static/img/icons/icon_next.png" alt="">
     </div>
@@ -46,7 +64,8 @@
     <form method="post" action="{% url 'execute' %}" class="page_url">
         {% csrf_token %}
         <input type="text" id="url_input" name="url" placeholder="Introduce la URL" required="required">
-        <button class="button_style " type="submit" id="capture">Capturar</button>
+        <input type="email" id="url_input" name="EmailContact" placeholder="Introduce tu correo" required="required">
+        <button class="button_style " type="submit" id="capture">Monitorear</button>
     </form>
     <div class="page">
         <div id="loader" class="loader hidden_loader">

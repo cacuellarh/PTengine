@@ -1,0 +1,6 @@
+from injector import Injector
+from TrackMyPrice.Infraestructure.ServicesRegistration.InfraestructureServicesRegistration import InfraestructureServicesInject
+from TrackMyPrice.Core.Application.ServicesInjector.ApplicationServicesRegistration import ApplicationServicesInject
+
+DI_INJECTOR = Injector(InfraestructureServicesInject)
+DI_APLICATION = Injector(ApplicationServicesInject)

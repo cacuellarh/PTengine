@@ -1,18 +1,19 @@
 from TrackMyPrice.Core.Application.Contracts.Repository.IBaseRepository import IBaseRepository
 from django.db import models
 from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned
+from TrackMyPrice.Core.Application.Factory.FormFactory import FormFactory
 from TrackMyPrice.Core.Application.Models.Response.Response import RepositoryResponse
 from TrackMyPrice.Core.Application.Contracts.Factories.FormFactories.FormFactory import IFormFactory
 from TrackMyPrice.Core.Application.Models.Request.ApiResponse import ResponseDetails
-from django.conf import settings
 from django.core.serializers import serialize
+
+#from bosquejo.injector import DI_APLICATION
 
 class BaseRepository(IBaseRepository):
 
     def __init__(self, currentModel : models.Model)-> None:
         self.model : models.Model= currentModel
-        self.__formFactory :IFormFactory = settings.DI_APLICATION.get(IFormFactory)
-
+        self.__formFactory :IFormFactory = FormFactory()
     def __MakeResponse(self, responseDetails: ResponseDetails) -> RepositoryResponse:
         message = responseDetails.message if responseDetails.status else f"Error trace: {self.__class__.__name__}, details: {responseDetails.message}"
         return RepositoryResponse(responseDetails.status, responseDetails.status_code, message, responseDetails.data)
@@ -40,6 +41,7 @@ class BaseRepository(IBaseRepository):
 
     def CreateRecord(self, data, modelForm) -> RepositoryResponse:
         try:
+            print(modelForm)
             form = self.__formFactory.CreateFormFactory(modelForm)
             currentForm = form.CreateForm()
             insertData = currentForm(data)

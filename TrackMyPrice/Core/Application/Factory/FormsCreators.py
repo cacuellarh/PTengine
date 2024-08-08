@@ -3,6 +3,7 @@ from django import forms
 from screen.DB.Forms.Client_form import ClientForm
 from screen.DB.Forms.Image_traker import ImageForm
 from screen.DB.Forms.ErrorForm import ErrorForm
+from screen.DB.Forms.ImageBasicForm import ImageBasicForm
 
 
 class ScannedImageCreator(IFormCreator):
@@ -19,3 +20,8 @@ class ClientFormCreator(IFormCreator):
 
     def CreateForm()-> forms.ModelForm:
         return ClientForm
+    
+class ImageFormCreator(IFormCreator):
+
+    def CreateForm()-> forms.ModelForm:
+        return ImageBasicForm    

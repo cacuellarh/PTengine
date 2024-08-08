@@ -7,6 +7,7 @@ class FormFactory(IFormFactory):
     def __init__(self) -> None:
         self.__formsRegistered: dict[str, IFormCreator] = {}
         self.__BuildFactories()
+        print(self.__formsRegistered)
     def CreateFormFactory(self,factoryName : str) -> IFormCreator:
         
         if factoryName in self.__formsRegistered:

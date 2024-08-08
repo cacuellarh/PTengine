@@ -194,10 +194,10 @@
 
 /* Estilos información */
 .card {
-    display: grid;
+    display: flex;
     padding: 0 17rem 5rem;
     width: 100%;
-    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-columns: 25% 25% 25%
 }
 
 .card div {

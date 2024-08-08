@@ -9,6 +9,8 @@ class ScreenConfig(AppConfig):
     name = 'screen'
 
     def ready(self) -> None:
-        RepositoryBuilder.BuildRepositories()
-        WriteUseCaseBuilder._BuildWriteUseCases()
+        #RepositoryBuilder.BuildRepositories()
+        #WriteUseCaseBuilder._BuildWriteUseCases()
+        
+        pass
     

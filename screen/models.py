@@ -67,3 +67,8 @@ class Contact_form (models.Model):
     phone_contact = models.CharField(max_length=15)
     company_contact = models.CharField(max_length=10)
     message_contact = models.CharField(max_length=1000)
+
+class ImageBasic (models.Model):
+    idImage = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    url = models.CharField(max_length=500, default=None)
+    EmailContact = models.EmailField(null=None)
